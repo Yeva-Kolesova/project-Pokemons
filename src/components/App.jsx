@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { lazy, useEffect } from 'react';
+import { useEffect } from 'react';
 /*import { PrivateRoute } from '../routesConfig/PrivateRoute';
 import { RestrictedRoute } from '../routesConfig/RestrictedRoute';*/
 import { SharedLayout } from './SharedLayout/SharedLayout';
@@ -15,12 +15,12 @@ export const App = () => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  const CurrencyPage = lazy(() => import('../pages/CurrencyPage'));
+  /*const CurrencyPage = lazy(() => import('../pages/CurrencyPage'));
   const DashboardPage = lazy(() => import('../pages/DashboardPage'));
   const HomePage = lazy(() => import('../pages/HomePage'));
   const LoginPage = lazy(() => import('../pages/LoginPage'));
   const RegistrationPage = lazy(() => import('../pages/RegistrationPage'));
-  const StatisticsPage = lazy(() => import('../pages/StatisticsPage'));
+  const StatisticsPage = lazy(() => import('../pages/StatisticsPage'));*/
 
   return isRefreshing
     ? (<b>Refreshing user...</b>)

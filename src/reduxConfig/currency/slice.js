@@ -16,7 +16,7 @@ const initialState = {
   error: null,
 };
 
-function handlePending(state) {
+/*function handlePending(state) {
   state.isLoading = true;
 }
 
@@ -28,22 +28,22 @@ function handleFulfilled(state) {
 function handleRejected(state, action) {
   state.isLoading = false;
   state.error = action.payload;
-}
+}*/
 
 const slice = createSlice({
   name: 'currency',
   initialState,
   reducers: {},
-  extraReducers: builder => {
+  /*   extraReducers: builder => {
 
-    /*     Приклад
-           .addCase(ваше_ім'я_функції_Thunk.pending, handlePending)
-           .addCase(ваше_ім'я_функції_Thunk.fulfilled, (state, action) => {
-             handleFulfilled(state)
-             state.transactions.items.push(action.payload)
-           })
-           .addCase(ваше_ім'я_функції_Thunk.rejected, handleRejected)*/
-  },
+  *     Приклад
+            .addCase(ваше_ім'я_функції_Thunk.pending, handlePending)
+            .addCase(ваше_ім'я_функції_Thunk.fulfilled, (state, action) => {
+              handleFulfilled(state)
+              state.transactions.items.push(action.payload)
+            })
+            .addCase(ваше_ім'я_функції_Thunk.rejected, handleRejected)
+  },*/
 });
 
 export const currencyReducer = slice.reducer;
