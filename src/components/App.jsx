@@ -22,43 +22,43 @@ export const App = () => {
   const RegistrationPage = lazy(() => import('../pages/RegistrationPage'));
   const StatisticsPage = lazy(() => import('../pages/StatisticsPage'));*/
 
-  return isRefreshing
-    ? (<b>Refreshing user...</b>)
-    :
-    (<Routes>
-        <Route path='/' element={<SharedLayout />}>
-          {/*<Route index element={<LoginPage />} />*/}
-          {/*<Route
+  return isRefreshing ? (
+    <b>Refreshing user...</b>
+  ) : (
+    <Routes>
+      <Route path="/" element={<SharedLayout />}>
+        {/*<Route index element={<LoginPage />} />*/}
+        {/* <Route
             path='register'
             element={<RestrictedRoute redirectTo='/dashboard' component={<RegistrationPage />} />}
-          />*/}
-          {/*<Route
+          /> */}
+        {/*<Route
             path='login'
             element={
               <RestrictedRoute redirectTo='/dashboard' component={<LoginPage />}
               />
             } />*/}
-          {/*<Route
+        {/*<Route
             path='dashboard'
             element={
               <PrivateRoute redirectTo='/login' component={<DashboardPage />}
               />
             }>*/}
-            {/*<Route
+        {/*<Route
               path='home'
               element={<HomePage />}
             />*/}
-            {/*<Route
+        {/*<Route
               path='statistics'
               element={<StatisticsPage />}
             />*/}
-           {/* <Route
+        {/* <Route
               path='currency'
               element={<CurrencyPage />}
             />*/}
-          {/*</Route>*/}
-        </Route>
-        <Route path='*' element={<Navigate to='/' />} />
-      </Routes>
-    );
+        {/*</Route>*/}
+      </Route>
+      <Route path="*" element={<Navigate to="/" />} />
+    </Routes>
+  );
 };
