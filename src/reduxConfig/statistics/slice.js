@@ -6,7 +6,7 @@ const initialState = {
   error: null,
 }
 
-function handlePending(state) {
+/*function handlePending(state) {
   state.isLoading = true
 }
 
@@ -18,7 +18,7 @@ function handleFulfilled(state) {
 function handleRejected(state, action) {
   state.isLoading = false
   state.error = action.payload
-}
+}*/
 
 const slice = createSlice({
   name: 'statistics',
@@ -26,18 +26,18 @@ const slice = createSlice({
   reducers: {
 
   },
-  extraReducers: builder => {
+  /*  extraReducers: builder => {
 
-    /*     Приклад
+   *     Приклад
 
-          .addCase(ваше_ім'я_функції_Thunk.pending, handlePending)
-          .addCase(ваше_ім'я_функції_Thunk.fulfilled, (state, action) => {
-            handleFulfilled(state)
-            state.statistics = action.payload
-          })
-          .addCase(ваше_ім'я_функції_Thunk.rejected, handleRejected)
-           */
-  }
+           .addCase(ваше_ім'я_функції_Thunk.pending, handlePending)
+           .addCase(ваше_ім'я_функції_Thunk.fulfilled, (state, action) => {
+             handleFulfilled(state)
+             state.statistics = action.payload
+           })
+           .addCase(ваше_ім'я_функції_Thunk.rejected, handleRejected)
+
+  } */
 })
 
 export const statisticsReducer = slice.reducer
