@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { logInThunk } from 'reduxConfig/auth/operations';
-// import pathToSvg from '../../images/icons.svg';
+import icons from '../../images/icons.svg';
 
 import {
   StyledBoxForm,
@@ -27,9 +27,9 @@ const LoginForm = () => {
   return (
     <StyledBoxForm>
       <StyledForm onSubmit={handleSubmit(submit)}>
-        {/* <svg width="28" height="28">
-          <use href=""></use>
-        </svg> */}
+        <svg width={25} height={25}>
+          <use href={`${icons}#icon-Logo`} />
+        </svg>
         <StyledTitle>Money Guard</StyledTitle>
         <StyledLabel>
           <StyledInput>
@@ -52,7 +52,7 @@ const LoginForm = () => {
           </StyledInput>
         </StyledLabel>
         <StyledLogin>Log in</StyledLogin>
-        <StyledLink>Register</StyledLink>
+        <StyledLink to="/register">Register</StyledLink>
       </StyledForm>
     </StyledBoxForm>
   );

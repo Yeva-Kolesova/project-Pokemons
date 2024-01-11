@@ -9,19 +9,17 @@ export const StyledBoxForm = styled.div`
   align-items: center;
   height: 100vh;
   padding: 2rem;
-
-  background: #302e8e;
   box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(50px);
 `;
 
 export const StyledTitle = styled.p`
   color: var(--white, #fbfbfb);
   font-family: Poppins;
-  font-size: 19.111px;
+  font-size: 19px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  margin-bottom: 52px;
 `;
 
 export const StyledForm = styled.form`
