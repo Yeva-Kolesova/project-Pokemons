@@ -23,13 +23,12 @@ export const App = () => {
   const LoginPage = lazy(() => import('../pages/LoginPage'));
   const RegistrationPage = lazy(() => import('../pages/RegistrationPage'));
   const StatisticsPage = lazy(() => import('../pages/StatisticsPage'));
-
   return isRefreshing ? (
     <b>Refreshing user...</b>
   ) : (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        <Route index element={<LoginPage />} />
+        <Route index element={<DashboardPage />} />
         <Route
           path="register"
           element={
@@ -38,12 +37,6 @@ export const App = () => {
               component={<RegistrationPage />}
             />
           }
-        />
-      <Route path='/' element={<SharedLayout />}>
-        <Route index element={<DashboardPage />} />
-        <Route
-          path='register'
-          element={<RestrictedRoute redirectTo='/dashboard' component={<RegistrationPage />} />}
         />
         <Route
           path="login"
@@ -54,17 +47,13 @@ export const App = () => {
             />
           }
         />
-          path='login'
-          element={
-            <RestrictedRoute redirectTo='/dashboard' component={<LoginPage />}
-            />
-          } />
         <Route
           path="dashboard"
           element={
             <PrivateRoute redirectTo="/login" component={<DashboardPage />} />
           }
         >
+          <Route index element={<HomePage />} />
           <Route path="home" element={<HomePage />} />
           <Route path="statistics" element={<StatisticsPage />} />
           {<Route path="currency" element={<CurrencyPage />} />}
