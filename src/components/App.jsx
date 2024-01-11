@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { useEffect } from 'react';
+import { lazy, useEffect } from 'react';
 /*import { PrivateRoute } from '../routesConfig/PrivateRoute';
 import { RestrictedRoute } from '../routesConfig/RestrictedRoute';*/
 import { SharedLayout } from './SharedLayout/SharedLayout';
@@ -15,9 +15,11 @@ export const App = () => {
     dispatch(refreshUser());
   }, [dispatch]);
 
+  const HomePage = lazy(() => import('../pages/HomePage'));
+
   /*const CurrencyPage = lazy(() => import('../pages/CurrencyPage'));
   const DashboardPage = lazy(() => import('../pages/DashboardPage'));
-  const HomePage = lazy(() => import('../pages/HomePage'));
+  
   const LoginPage = lazy(() => import('../pages/LoginPage'));
   const RegistrationPage = lazy(() => import('../pages/RegistrationPage'));
   const StatisticsPage = lazy(() => import('../pages/StatisticsPage'));*/
@@ -44,10 +46,7 @@ export const App = () => {
               <PrivateRoute redirectTo='/login' component={<DashboardPage />}
               />
             }>*/}
-        {/*<Route
-              path='home'
-              element={<HomePage />}
-            />*/}
+        <Route path="home" element={<HomePage />} />
         {/*<Route
               path='statistics'
               element={<StatisticsPage />}
