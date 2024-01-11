@@ -1,24 +1,24 @@
-import styled from 'styled-components'
-import { NavLink } from 'react-router-dom'
+import styled from 'styled-components';
 
 export const StyledHeader = styled.header`
   display: flex;
   width: 100%;
   height: 60px;
-  background: linear-gradient(270deg, #2E1746 3.2%, #2E225F 99.98%);
-  box-shadow: 0 4px 40px 0 rgba(0, 0, 0, 0.25), 0 -3px 2px 0 rgba(0, 0, 0, 0.10) inset;
+  background: linear-gradient(270deg, #2e1746 3.2%, #2e225f 99.98%);
+  box-shadow: 0 4px 40px 0 rgba(0, 0, 0, 0.25),
+    0 -3px 2px 0 rgba(0, 0, 0, 0.1) inset;
 
   @media only screen and (min-width: 768px) {
     height: 80px;
   }
-  `
+`;
 
 export const HeaderWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-`
+`;
 
 export const LogoWrapper = styled.div`
   display: flex;
@@ -28,7 +28,7 @@ export const LogoWrapper = styled.div`
   p {
     font-size: 12.84px;
     line-height: 1.51;
-    color: #FBFBFB;
+    color: #fbfbfb;
   }
 
   @media only screen and (min-width: 768px) {
@@ -41,7 +41,7 @@ export const LogoWrapper = styled.div`
       height: 22.468px;
     }
   }
-`
+`;
 
 export const UserInfoWrapper = styled.div`
   display: flex;
@@ -74,7 +74,7 @@ export const UserInfoWrapper = styled.div`
       }
     }
   }
-`
+`;
 
 export const StyledExit = styled.button`
   background-color: transparent;
@@ -88,6 +88,6 @@ export const StyledExit = styled.button`
   transition: color 250ms ease-in-out;
 
   &:hover {
-    color:var(--icon-violet);
+    color: var(--icon-violet);
   }
 `;

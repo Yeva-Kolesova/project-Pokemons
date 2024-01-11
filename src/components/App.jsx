@@ -17,46 +17,49 @@ export const App = () => {
 
   const HomePage = lazy(() => import('../pages/HomePage'));
   const CurrencyPage = lazy(() => import('../pages/CurrencyPage'));
-  const DashboardPage = lazy(() => import('../pages/DashboardPage/DashboardPage'));
+  const DashboardPage = lazy(() =>
+    import('../pages/DashboardPage/DashboardPage')
+  );
   const LoginPage = lazy(() => import('../pages/LoginPage'));
   const RegistrationPage = lazy(() => import('../pages/RegistrationPage'));
   const StatisticsPage = lazy(() => import('../pages/StatisticsPage'));
-
   return isRefreshing ? (
     <b>Refreshing user...</b>
   ) : (
     <Routes>
-      <Route path='/' element={<SharedLayout />}>
+      <Route path="/" element={<SharedLayout />}>
         <Route index element={<DashboardPage />} />
         <Route
-          path='register'
-          element={<RestrictedRoute redirectTo='/dashboard' component={<RegistrationPage />} />}
+          path="register"
+          element={
+            <RestrictedRoute
+              redirectTo="/dashboard"
+              component={<RegistrationPage />}
+            />
+          }
         />
         <Route
-          path='login'
+          path="login"
           element={
-            <RestrictedRoute redirectTo='/dashboard' component={<LoginPage />}
+            <RestrictedRoute
+              redirectTo="/dashboard"
+              component={<LoginPage />}
             />
-          } />
+          }
+        />
         <Route
-          path='dashboard'
+          path="dashboard"
           element={
-            <PrivateRoute redirectTo='/login' component={<DashboardPage />}
-            />
-          }>
+            <PrivateRoute redirectTo="/login" component={<DashboardPage />} />
+          }
+        >
           <Route index element={<HomePage />} />
-          <Route path='home' element={<HomePage />} />
-          <Route
-            path='statistics'
-            element={<StatisticsPage />}
-          />
-          {<Route
-            path='currency'
-            element={<CurrencyPage />}
-          />}
+          <Route path="home" element={<HomePage />} />
+          <Route path="statistics" element={<StatisticsPage />} />
+          {<Route path="currency" element={<CurrencyPage />} />}
         </Route>
       </Route>
-      <Route path='*' element={<Navigate to='/' />} />
+      <Route path="*" element={<Navigate to="/" />} />
     </Routes>
   );
 };
