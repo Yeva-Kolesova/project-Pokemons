@@ -5,7 +5,7 @@ export const StyledBalanceContainer = styled.div`
   border-radius: 8px;
   background: rgba(82, 59, 126, 0.60);
   box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(50px);
+  //backdrop-filter: blur(50px);
   display: flex;
   flex-direction: column;
   gap: 12px;
