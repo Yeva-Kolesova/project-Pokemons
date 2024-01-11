@@ -16,7 +16,7 @@ export const App = () => {
   }, [dispatch]);
 
   const HomePage = lazy(() => import('../pages/HomePage'));
-  // const CurrencyPage = lazy(() => import('../pages/CurrencyPage'));
+  const CurrencyPage = lazy(() => import('../pages/CurrencyPage'));
   const DashboardPage = lazy(() => import('../pages/DashboardPage'));
   const LoginPage = lazy(() => import('../pages/LoginPage'));
   const RegistrationPage = lazy(() => import('../pages/RegistrationPage'));
@@ -49,10 +49,10 @@ export const App = () => {
               path='statistics'
               element={<StatisticsPage />}
             />*/}
-        {/* <Route
+        { <Route
               path='currency'
               element={<CurrencyPage />}
-            />*/}
+            />}
         </Route>
       </Route>
       <Route path="*" element={<Navigate to="/" />} />
