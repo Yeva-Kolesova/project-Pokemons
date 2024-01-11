@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { lazy, useEffect } from 'react';
-/*import { PrivateRoute } from '../routesConfig/PrivateRoute';
-import { RestrictedRoute } from '../routesConfig/RestrictedRoute';*/
+import { PrivateRoute } from '../routesConfig/PrivateRoute';
+// import { RestrictedRoute } from '../routesConfig/RestrictedRoute';
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsRefreshing } from '../reduxConfig/auth/selectors';
@@ -16,13 +16,11 @@ export const App = () => {
   }, [dispatch]);
 
   const HomePage = lazy(() => import('../pages/HomePage'));
-
-  /*const CurrencyPage = lazy(() => import('../pages/CurrencyPage'));
+  // const CurrencyPage = lazy(() => import('../pages/CurrencyPage'));
   const DashboardPage = lazy(() => import('../pages/DashboardPage'));
-  
-  const LoginPage = lazy(() => import('../pages/LoginPage'));
-  const RegistrationPage = lazy(() => import('../pages/RegistrationPage'));
-  const StatisticsPage = lazy(() => import('../pages/StatisticsPage'));*/
+  // const LoginPage = lazy(() => import('../pages/LoginPage'));
+  // const RegistrationPage = lazy(() => import('../pages/RegistrationPage'));
+  // const StatisticsPage = lazy(() => import('../pages/StatisticsPage'));
 
   return isRefreshing ? (
     <b>Refreshing user...</b>
@@ -40,12 +38,12 @@ export const App = () => {
               <RestrictedRoute redirectTo='/dashboard' component={<LoginPage />}
               />
             } />*/}
-        {/*<Route
+        <Route
             path='dashboard'
             element={
               <PrivateRoute redirectTo='/login' component={<DashboardPage />}
               />
-            }>*/}
+            }>
         <Route path="home" element={<HomePage />} />
         {/*<Route
               path='statistics'
@@ -55,7 +53,7 @@ export const App = () => {
               path='currency'
               element={<CurrencyPage />}
             />*/}
-        {/*</Route>*/}
+        </Route>
       </Route>
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>
