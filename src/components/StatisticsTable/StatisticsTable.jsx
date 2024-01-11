@@ -67,7 +67,7 @@ const StatisticsTable = () => {
         ))}
       </select>
       <ul>
-        {transactions.map(({ categoryId, amount }) => (
+        {filteredTransactions.map(({ categoryId, amount }) => (
           <li key={nanoid()}>
             {categoryId} {amount}
           </li>
@@ -75,7 +75,7 @@ const StatisticsTable = () => {
       </ul>
       <div>
         <h4>Expenses:</h4>
-        <p>{totalExpenses(transactions)}</p>
+        <p>{totalExpenses(filteredTransactions)}</p>
       </div>
       <div>
         <h4>Income:</h4>
