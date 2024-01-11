@@ -6,7 +6,6 @@ import { SharedLayout } from './SharedLayout/SharedLayout';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsRefreshing } from '../reduxConfig/auth/selectors';
 import { refreshUser } from '../reduxConfig/auth/operations';
-import StatisticsPage from 'pages/StatisticsPage';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -17,48 +16,43 @@ export const App = () => {
   }, [dispatch]);
 
   const HomePage = lazy(() => import('../pages/HomePage'));
-  // const CurrencyPage = lazy(() => import('../pages/CurrencyPage'));
+  const CurrencyPage = lazy(() => import('../pages/CurrencyPage'));
   const DashboardPage = lazy(() => import('../pages/DashboardPage'));
   const LoginPage = lazy(() => import('../pages/LoginPage'));
   const RegistrationPage = lazy(() => import('../pages/RegistrationPage'));
   const StatisticsPage = lazy(() => import('../pages/StatisticsPage'));
-
+  
   return isRefreshing ? (
     <b>Refreshing user...</b>
   ) : (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<LoginPage />} />
+         <Route
+            path='register'
+            element={<RestrictedRoute redirectTo='/dashboard' component={<RegistrationPage />} />}
+          />
         <Route
-          path="register"
-          element={
-            <RestrictedRoute
-              redirectTo="/dashboard"
-              component={<RegistrationPage />}
+            path='login'
+            element={
+              <RestrictedRoute redirectTo='/dashboard' component={<LoginPage />}
+              />
+            } />
+        <Route
+            path='dashboard'
+            element={
+              <PrivateRoute redirectTo='/login' component={<DashboardPage />}
+              />
+            }>
+        <Route path="home" element={<HomePage />} />
+        <Route
+              path='statistics'
+              element={<StatisticsPage />}
             />
-          }
-        />
-        <Route
-          path="login"
-          element={
-            <RestrictedRoute
-              redirectTo="/dashboard"
-              component={<LoginPage />}
-            />
-          }
-        />
-        <Route
-          path="dashboard"
-          element={
-            <PrivateRoute redirectTo="/login" component={<DashboardPage />} />
-          }
-        >
-          <Route path="home" element={<HomePage />} />
-          <Route path="statistics" element={<StatisticsPage />} />
-          {/* <Route
+        { <Route
               path='currency'
               element={<CurrencyPage />}
-            />*/}
+            />}
         </Route>
       </Route>
       <Route path="*" element={<Navigate to="/" />} />
