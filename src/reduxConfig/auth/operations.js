@@ -1,42 +1,48 @@
-import { createAsyncThunk } from '@reduxjs/toolkit'
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api, clearToken, setToken } from '../../configAxios/api';
 
 export const registerThunk = createAsyncThunk(
   'auth/register',
   async (credentials, thunkAPI) => {
     try {
-      const { data } = await api.post('/auth/sign-up', credentials)
-      setToken(data.token)
-      return data
+      const { username, password, email } = credentials;
+      const { data } = await api.post('/auth/sign-up', {
+        username,
+        password,
+        email,
+      });
+      setToken(data.token);
+      return data;
     } catch (e) {
-      return thunkAPI.rejectWithValue(e.response.data.message)
+      return thunkAPI.rejectWithValue(e.response.data.message);
     }
-  })
+  }
+);
 
 export const logInThunk = createAsyncThunk(
   'auth/login',
   async (credentials, thunkAPI) => {
     try {
-      const { data } = await api.post('/auth/sign-in', credentials)
-      setToken(data.token)
-      return data
+      const { data } = await api.post('/auth/sign-in', credentials);
+      setToken(data.token);
+      return data;
     } catch (e) {
-      return thunkAPI.rejectWithValue(e.message)
+      return thunkAPI.rejectWithValue(e.message);
     }
   }
-)
+);
 
 export const logOutThunk = createAsyncThunk(
   'auth/logout',
   async (_, thunkAPI) => {
     try {
-      await api.post('/auth/sign-out')
-      clearToken()
+      await api.post('/auth/sign-out');
+      clearToken();
     } catch (e) {
-      return thunkAPI.rejectWithValue(e.message)
+      return thunkAPI.rejectWithValue(e.message);
     }
   }
-)
+);
 
 export const refreshUser = createAsyncThunk(
   'auth/refresh',
