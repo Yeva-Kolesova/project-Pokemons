@@ -4,14 +4,14 @@ import Navigation from '../../components/Navigation/Navigation';
 import { Outlet } from 'react-router-dom';
 import Balance from '../../components/Balance/Balance';
 import Container from '../../components/Container/Container';
-import { DashboardContainer, LeftContainer, NavAndBalanceWrapper } from './DashboardPage.styled';
+import { DashboardContainer, LeftContainer, NavAndBalanceWrapper, SectionContainer } from './DashboardPage.styled';
 import { useMediaQuery } from 'react-responsive';
 import { CurrencyPage } from '../CurrencyPage';
 
 function DashboardPage() {
   const isTabletOrDesktop = useMediaQuery({ query: '(min-width: 768px)' });
   return (
-    <>
+    <SectionContainer>
       <Header />
       <Container>
         <DashboardContainer>
@@ -27,7 +27,7 @@ function DashboardPage() {
           </Suspense>
         </DashboardContainer>
       </Container>
-    </>
+    </SectionContainer>
   );
 }
 

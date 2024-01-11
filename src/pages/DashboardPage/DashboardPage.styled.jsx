@@ -1,4 +1,20 @@
 import styled from 'styled-components';
+import bcgDesktopPath from '../../images/desctopStatistic.webp'
+import bcgTabletPath from '../../images/tabletStatistic.webp'
+import bcgMobPath from '../../images/mobileHome.webp'
+
+export const SectionContainer = styled.section`
+  background-image: url(${bcgMobPath});
+
+  @media only screen and (min-width: 768px) {
+    background-image: url(${bcgTabletPath});
+  }
+
+  @media only screen and (min-width: 1280px) {
+    background-image: url(${bcgDesktopPath});
+    flex-direction: row;
+  }
+`;
 
 export const DashboardContainer = styled.div`
   display: flex;
@@ -7,6 +23,10 @@ export const DashboardContainer = styled.div`
 
   @media only screen and (min-width: 768px) {
     gap: 20px;
+  }
+
+  @media only screen and (min-width: 1280px) {
+    flex-direction: row;
   }
 `;
 
