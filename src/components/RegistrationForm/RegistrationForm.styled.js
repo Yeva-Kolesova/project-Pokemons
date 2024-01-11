@@ -23,6 +23,7 @@ export const StyledTitle = styled.p`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  margin-bottom: 40px;
 `;
 
 export const StyledForm = styled.form`
