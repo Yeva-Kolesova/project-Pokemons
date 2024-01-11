@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { registerThunk } from '../../reduxConfig/auth/operations';
+import icons from '../../images/icons.svg';
 import {
   StyledBoxForm,
   StyledEmailIcon,
@@ -30,6 +31,9 @@ const RegistrationForm = () => {
   return (
     <StyledBoxForm>
       <StyledForm onSubmit={handleSubmit(submit)}>
+        <svg width={17} height={17}>
+          <use href={`${icons}#icon-Logo`} />
+        </svg>
         <StyledTitle>Money Guard</StyledTitle>
         <StyledLabel>
           <StyledInput>
