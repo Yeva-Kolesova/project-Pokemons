@@ -1,8 +1,7 @@
-import React from 'react';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Chart as ChartJS, registerables } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(...registerables);
 
 export const data = {
   labels: [
@@ -38,11 +37,12 @@ export const data = {
 
 export function Chart() {
   const options = {
-    cutout: '70%',
-    layout: {
-      padding: 0,
+    cutoutPercentage: 70,
+    elements: {
+      arc: {
+        borderWidth: 0,
+      },
     },
-    // Додаємо функцію afterDraw для малювання тексту
     plugins: {
       legend: {
         display: false,
@@ -54,13 +54,17 @@ export function Chart() {
         const fontSize = (height / 114).toFixed(2);
         ctx.font = fontSize + 'em Arial';
         ctx.textBaseline = 'middle';
-        ctx.fillStyle = '#000'; // Колір тексту
+        ctx.fillStyle = '#000';
         const text = '24000.00';
         const textX = Math.round((width - ctx.measureText(text).width) / 2);
         const textY = height / 2;
         ctx.fillText(text, textX, textY);
       },
     },
+    maintainAspectRatio: false,
+    responsive: false,
+    width: 288,
+    height: 288,
   };
 
   return <Doughnut data={data} options={options} />;
