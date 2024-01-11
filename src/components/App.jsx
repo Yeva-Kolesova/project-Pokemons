@@ -17,7 +17,9 @@ export const App = () => {
 
   const HomePage = lazy(() => import('../pages/HomePage'));
   const CurrencyPage = lazy(() => import('../pages/CurrencyPage'));
-  const DashboardPage = lazy(() => import('../pages/DashboardPage'));
+  const DashboardPage = lazy(() =>
+    import('../pages/DashboardPage/DashboardPage')
+  );
   const LoginPage = lazy(() => import('../pages/LoginPage'));
   const RegistrationPage = lazy(() => import('../pages/RegistrationPage'));
   const StatisticsPage = lazy(() => import('../pages/StatisticsPage'));
@@ -37,6 +39,12 @@ export const App = () => {
             />
           }
         />
+      <Route path='/' element={<SharedLayout />}>
+        <Route index element={<DashboardPage />} />
+        <Route
+          path='register'
+          element={<RestrictedRoute redirectTo='/dashboard' component={<RegistrationPage />} />}
+        />
         <Route
           path="login"
           element={
@@ -46,6 +54,11 @@ export const App = () => {
             />
           }
         />
+          path='login'
+          element={
+            <RestrictedRoute redirectTo='/dashboard' component={<LoginPage />}
+            />
+          } />
         <Route
           path="dashboard"
           element={
