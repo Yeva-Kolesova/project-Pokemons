@@ -20,8 +20,8 @@ export const App = () => {
   const DashboardPage = lazy(() => import('../pages/DashboardPage'));
   const LoginPage = lazy(() => import('../pages/LoginPage'));
   const RegistrationPage = lazy(() => import('../pages/RegistrationPage'));
-  // const StatisticsPage = lazy(() => import('../pages/StatisticsPage'));
-
+  const StatisticsPage = lazy(() => import('../pages/StatisticsPage'));
+  
   return isRefreshing ? (
     <b>Refreshing user...</b>
   ) : (
@@ -45,10 +45,10 @@ export const App = () => {
               />
             }>
         <Route path="home" element={<HomePage />} />
-        {/*<Route
+        <Route
               path='statistics'
               element={<StatisticsPage />}
-            />*/}
+            />
         { <Route
               path='currency'
               element={<CurrencyPage />}
