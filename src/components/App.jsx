@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { lazy, useEffect } from 'react';
 import { PrivateRoute } from '../routesConfig/PrivateRoute';
-// import { RestrictedRoute } from '../routesConfig/RestrictedRoute';
+import { RestrictedRoute } from '../routesConfig/RestrictedRoute';
 import { SharedLayout } from './SharedLayout/SharedLayout';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsRefreshing } from '../reduxConfig/auth/selectors';
@@ -18,8 +18,8 @@ export const App = () => {
   const HomePage = lazy(() => import('../pages/HomePage'));
   // const CurrencyPage = lazy(() => import('../pages/CurrencyPage'));
   const DashboardPage = lazy(() => import('../pages/DashboardPage'));
-  // const LoginPage = lazy(() => import('../pages/LoginPage'));
-  // const RegistrationPage = lazy(() => import('../pages/RegistrationPage'));
+  const LoginPage = lazy(() => import('../pages/LoginPage'));
+  const RegistrationPage = lazy(() => import('../pages/RegistrationPage'));
   // const StatisticsPage = lazy(() => import('../pages/StatisticsPage'));
 
   return isRefreshing ? (
@@ -27,17 +27,17 @@ export const App = () => {
   ) : (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        {/*<Route index element={<LoginPage />} />*/}
-        {/* <Route
+        <Route index element={<LoginPage />} />
+         <Route
             path='register'
             element={<RestrictedRoute redirectTo='/dashboard' component={<RegistrationPage />} />}
-          /> */}
-        {/*<Route
+          />
+        <Route
             path='login'
             element={
               <RestrictedRoute redirectTo='/dashboard' component={<LoginPage />}
               />
-            } />*/}
+            } />
         <Route
             path='dashboard'
             element={
