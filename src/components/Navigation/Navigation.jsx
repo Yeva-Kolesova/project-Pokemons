@@ -8,20 +8,20 @@ function Navigation() {
 
   return (
     <StyledNavigation>
-      <StyledLink to={'/home'}>
+      <StyledLink to={'home'}>
         <StyledIcon width={38} height={38}>
           <use href={`${icons}#icon-home_bcg`} />
         </StyledIcon>
         {isTabletOrDesktop && <p>Home</p>}
       </StyledLink>
-      <StyledLink to={'/statistics'}>
+      <StyledLink to={'statistics'}>
         <StyledIcon width={38} height={38}>
           <use href={`${icons}#icon-stat_bcg`} />
         </StyledIcon>
         {isTabletOrDesktop && <p>Statistics</p>}
       </StyledLink>
       {!isTabletOrDesktop && (
-        <StyledLink to={'/currency'}>
+        <StyledLink to={'currency'}>
           <StyledIcon width={38} height={38}>
             <use href={`${icons}#icon-currency_bcg`} />
           </StyledIcon>

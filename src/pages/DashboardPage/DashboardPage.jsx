@@ -4,7 +4,12 @@ import Navigation from '../../components/Navigation/Navigation';
 import { Outlet } from 'react-router-dom';
 import Balance from '../../components/Balance/Balance';
 import Container from '../../components/Container/Container';
-import { DashboardContainer, LeftContainer, NavAndBalanceWrapper } from './DashboardPage.styled';
+import {
+  DashboardContainer, GradientLeftBottom, GradientLeftTop,
+  GradientRight,
+  LeftContainer,
+  NavAndBalanceWrapper,
+} from './DashboardPage.styled';
 import { useMediaQuery } from 'react-responsive';
 import { CurrencyPage } from '../CurrencyPage';
 
@@ -15,6 +20,9 @@ function DashboardPage() {
       <Header />
       <Container>
         <DashboardContainer>
+          <GradientRight/>
+          <GradientLeftBottom/>
+          <GradientLeftTop/>
           <LeftContainer>
             <NavAndBalanceWrapper>
               <Navigation />
