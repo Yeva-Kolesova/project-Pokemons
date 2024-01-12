@@ -1,6 +1,30 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from 'configAxios/api';
 
+export const getTransactionsСategoriesThunk = createAsyncThunk(
+  'getCategories',
+  async (_, thunkApi) => {
+    try {
+      const { data } = await api.get('transaction-categories');
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const addTransactionThunk = createAsyncThunk(
+  'addTransaction',
+  async (transaction, thunkApi) => {
+    try {
+      const { data } = await api.post('transactions', transaction);
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const newTransactionThunk = createAsyncThunk(
   'transactions/new',
   async (_, ThunkAPI) => {

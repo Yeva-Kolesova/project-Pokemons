@@ -1,9 +1,9 @@
 export function selectIsLoggedIn(state) {
-  return state.auth.isLoggedIn
+  return state.auth.isLoggedIn;
 }
 
 export function selectUser(state) {
-  return state.auth.user
+  return state.auth.user;
 }
 
 export function selectUserName(state) {
@@ -12,9 +12,9 @@ export function selectUserName(state) {
 
 
 export function selectBalance(state) {
-  return state.auth.user.balance
+  return state.auth.user.balance;
 }
 
 export function selectIsRefreshing(state) {
-  return state.auth.isRefreshing
+  return state.auth.isRefreshing;
 }
