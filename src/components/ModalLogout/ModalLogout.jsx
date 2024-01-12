@@ -1,30 +1,49 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { logOutThunk } from "reduxConfig/auth/operations";
 
 
-const ModalLogout = () => {
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-
-  const logOut = () => {
-    dispatch(logOutThunk())
-    .then(() => {
-        navigate('/')
-    })
-  }
+const ModalLogout = ({ closeModal }) => {
+    const dispatch = useDispatch();
+    const handleLogout = () => {
+      dispatch(logOutThunk());
+    };
 
 
+    const onBackdropClick = e => {
+        if (e.target === e.currentTarget) {
+          closeModal();
+        }
+      };
+    
+      useEffect(() => {
+        const handleEscape = e => {
+          if (e.key === 'Escape') {
+            closeModal();
+          }
+        };
+    
+        document.addEventListener('keydown', handleEscape);
+        return () => {
+          document.removeEventListener('keydown', handleEscape);
+        };
+      }, [closeModal]);
+    
   return (
-    <div>
+    <div onClick={onBackdropClick}>
         {/* <svg>
             <use/>
         </svg> */}
         <h3>Money Guard</h3>
         <p>Are you sure you want to log out?</p>
-        <button onClick={logOut}>logout</button>
-        <button>cancel</button>
+        <button onClick={handleLogout}>logout</button>
+      <button
+        onClick={() => {
+          closeModal(false);
+        }}
+      >
+        cancel
+      </button>
     </div>
   )
 }
