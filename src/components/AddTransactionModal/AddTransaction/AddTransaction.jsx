@@ -1,6 +1,6 @@
 import { Calendar } from '../Calendar/Calendar';
 // import ReactSelect from 'react-select';
-import { selectCategories } from 'reduxConfig/transactions/selectors';
+// import { selectCategories } from 'reduxConfig/transactions/selectors';
 // import { addTransactionThunk } from 'reduxConfig/transactions/operations';
 import {
   ActiveExpense,
@@ -21,19 +21,9 @@ import sprite from '../sprite.svg';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useEffect, useState } from 'react';
 import { InputToggle, LabelToggle, SpanToggle } from './AddTransaction.styled';
-import { useSelector } from 'react-redux';
 
 export const AddTransaction = ({ closeModal }) => {
   const [isMinus, setIsMinus] = useState(true);
-
-  const categori = useSelector(selectCategories);
-  const income = categori.find(el => el.type === 'INCOME');
-
-  const filteredCategori = categori.filter(el => el.type !== 'INCOME');
-  const options = filteredCategori.map(el => ({
-    value: el.id,
-    label: el.name,
-  }));
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
