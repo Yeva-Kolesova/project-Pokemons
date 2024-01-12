@@ -29,8 +29,8 @@ export const SpanToggle = styled.span`
   &::before {
     position: absolute;
     content: '+';
-    left: -1px;
-    top: -1px;
+    left: -2px;
+    top: -2px;
     width: 44px;
     height: 44px;
     border-radius: 44px;

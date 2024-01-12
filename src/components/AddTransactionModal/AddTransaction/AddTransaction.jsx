@@ -8,10 +8,12 @@ import {
   Backdrop,
   BtnAdd,
   BtnCancel,
+  ButtonsWrap,
   CloseModalBtn,
   Input,
   Modal,
   NoActive,
+  TextareaStyled,
   TransactionToggleWrap,
   WrapSumCalendar,
 } from './AddTransaction.styled';
@@ -19,6 +21,7 @@ import sprite from '../sprite.svg';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useEffect, useState } from 'react';
 import { InputToggle, LabelToggle, SpanToggle } from './AddTransaction.styled';
+import { useSelector } from 'react-redux';
 
 export const AddTransaction = ({ closeModal }) => {
   const [isMinus, setIsMinus] = useState(true);
@@ -88,21 +91,25 @@ export const AddTransaction = ({ closeModal }) => {
           </TransactionToggleWrap>
 
           {isMinus && (
-            <select name="transactionType" required>
+            <select
+              name="category"
               placeholder="Select a category"
-              <option value="">Select a category</option>
-            </select>
+              value=""
+              options=""
+            ></select>
           )}
 
           <WrapSumCalendar>
             <Input type="number" name="sum" placeholder="0.00" />
             <Calendar />
           </WrapSumCalendar>
-          <Input type="text" name="comment" placeholder="Comment" />
-          <BtnAdd type="submit">Add</BtnAdd>
-          <BtnCancel type="button" onClick={onCancelButton}>
-            Cancel
-          </BtnCancel>
+          <TextareaStyled placeholder="Comment" />
+          <ButtonsWrap>
+            <BtnAdd type="submit">Add</BtnAdd>
+            <BtnCancel type="button" onClick={onCancelButton}>
+              Cancel
+            </BtnCancel>
+          </ButtonsWrap>
         </form>
       </Modal>
     </Backdrop>
