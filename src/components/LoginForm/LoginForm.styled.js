@@ -8,7 +8,7 @@ export const StyledBoxForm = styled.div`
   justify-content: center;
   align-items: center;
   height: 100vh;
-  padding: 2rem;
+
   box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
 `;
 
@@ -29,6 +29,8 @@ export const StyledForm = styled.form`
   align-items: center;
   max-width: 533px;
   max-height: 570px;
+  backdrop-filter: blur(50px);
+  padding: 98px 20px;
 `;
 
 export const StyledLabel = styled.label`
@@ -39,7 +41,7 @@ export const StyledLabel = styled.label`
 
 export const StyledInput = styled.div`
   position: relative;
-  width: 90%;
+  width: 100%;
   display: flex;
   align-items: center;
   padding: 5px 11px;
