@@ -14,7 +14,7 @@ const initialState = {
     balance: 0,
   },
   token: null,
-  isLoggedIn: true,
+  isLoggedIn: false,
   isRefreshing: false,
 };
 

@@ -22,7 +22,9 @@ export const App = () => {
   );
   const LoginPage = lazy(() => import('../pages/LoginPage'));
   const RegistrationPage = lazy(() => import('../pages/RegistrationPage'));
-  const StatisticsPage = lazy(() => import('../pages/StatisticsPage'));
+  const StatisticsPage = lazy(() =>
+    import('../pages/StatisticPage/StatisticsPage')
+  );
   return isRefreshing ? (
     <b>Refreshing user...</b>
   ) : (
