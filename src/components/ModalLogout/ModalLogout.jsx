@@ -13,7 +13,6 @@ const ModalLogout = () => {
     .then(() => {
         navigate('/')
     })
-    .catch(error)
   }
 
 
