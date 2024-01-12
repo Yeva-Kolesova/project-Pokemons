@@ -31,10 +31,12 @@ const authSlice = createSlice({
     builder
       .addCase(registerThunk.fulfilled, handleLogIn)
       .addCase(logInThunk.fulfilled, handleLogIn)
-      .addCase(logOutThunk.fulfilled, state => {
-        state.user = { id: null, username: null, email: null, balance: 0 };
-        state.token = null;
-        state.isLoggedIn = false;
+      .addCase(logOutThunk.fulfilled, (state) => {
+        state.user = {
+          id: null, username: null, email: null, balance: 0,
+        }
+        state.token = null
+        state.isLoggedIn = false
       })
       .addCase(refreshUser.pending, state => {
         state.isRefreshing = true;
