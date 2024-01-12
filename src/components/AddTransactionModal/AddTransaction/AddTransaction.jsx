@@ -1,6 +1,6 @@
 import { Calendar } from '../Calendar/Calendar';
 // import ReactSelect from 'react-select';
-import { selectCategories } from 'reduxConfig/transactions/selectors';
+// import { selectCategories } from 'reduxConfig/transactions/selectors';
 // import { addTransactionThunk } from 'reduxConfig/transactions/operations';
 import {
   ActiveExpense,
