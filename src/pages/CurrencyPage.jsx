@@ -1,7 +1,7 @@
 import React from 'react';
-import { Currency } from 'components/Currency/Currency';
+import  Currency from '../components/Currency/Currency';
 
-export const CurrencyPage = () => {
+const CurrencyPage = () =>  {
   return (
     <>
       <Currency />
@@ -9,3 +9,4 @@ export const CurrencyPage = () => {
   );
 };
 
+export default CurrencyPage;
