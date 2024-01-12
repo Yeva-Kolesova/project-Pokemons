@@ -43,9 +43,17 @@ export const AddTransaction = ({ closeModal }) => {
       border: 'none',
       borderBottom: '1px solid rgba(255, 255, 255, 0.4)',
       outline: 'none',
-      color: 'rgba(255, 255, 255, 0.6)',
-      fontSize: '18px',
       borderRadius: '0',
+      boxShadow: 'none',
+      '&:hover': {
+        border: 'none',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.4)'
+      }
+    }),
+    singleValue: styles => ({
+      ...styles,
+      color: '#FBFBFB',
+      fontSize: '18px',
     }),
     placeholder: styles => ({
       ...styles,
@@ -65,10 +73,18 @@ export const AddTransaction = ({ closeModal }) => {
       fontSize: '16px',
       fontWeight: '400'
     }),
-    option: (styles, {data, isFocused, isSelected}) => {
-      return {
-        ...styles,
-
+    option: (styles, {isFocused}) => {
+      if (isFocused) {
+        return {
+          ...styles,
+          background: '#FFFFFF1A',
+          color: '#FF868D',
+        }
+      }
+      else {
+        return {
+          ...styles,
+        }
       }
     },
   };
@@ -158,7 +174,8 @@ export const AddTransaction = ({ closeModal }) => {
               components={{ DropdownIndicator, IndicatorSeparator: () => null }}
               placeholder='Select a category'
               styles={selectStyle}
-            menuPosition='top'/>
+              isSearchable={false}
+            />
           )}
 
           <WrapSumCalendar>
