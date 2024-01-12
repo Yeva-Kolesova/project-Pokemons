@@ -1,12 +1,14 @@
 import {
   Actions,
+  ActionsContainer,
   Button,
-  ItemCategory,
-  ItemComment,
-  ItemData,
-  ItemSum,
-  ItemType,
   ListTab,
+  PCategory,
+  PComment,
+  PData,
+  PSum,
+  PType,
+  Pencil,
 } from './TransactionItem.styled';
 import { LuPencil } from 'react-icons/lu';
 
@@ -15,20 +17,18 @@ const TransactionItem = ({ data }) => {
 
   return (
     <ListTab>
-      <ItemData>{transactionDate}</ItemData>
-      <ItemType>{type}</ItemType>
-      <ItemCategory>{categoryId}</ItemCategory>
-      <ItemComment>{comment}</ItemComment>
-      <ItemSum>{amount}</ItemSum>
+      <PData>{transactionDate}</PData>
+      <PType>{type}</PType>
+      <PCategory>{categoryId}</PCategory>
+      <PComment>{comment}</PComment>
+      <PSum>{amount}</PSum>
       <Actions>
-        <p>
-          <button>
-            <LuPencil size={14} />
-          </button>
-        </p>
-        <p>
+        <ActionsContainer>
+          <Pencil>
+            <LuPencil color={' white'} />
+          </Pencil>
           <Button>Delete</Button>
-        </p>
+        </ActionsContainer>
       </Actions>
     </ListTab>
   );

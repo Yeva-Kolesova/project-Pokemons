@@ -1,13 +1,11 @@
 import styled from 'styled-components';
 
-export const ListTab = styled.li`
+export const ListTab = styled.tr`
   list-style-type: none;
+  height: 53px;
 
   @media only screen and (min-width: 768px) {
     border-bottom: 1px solid rgba(255, 255, 255, 0.41);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
   }
 
   @media only screen and (min-width: 1280px) {
@@ -15,46 +13,76 @@ export const ListTab = styled.li`
   }
 `;
 
-export const ItemData = styled.p`
+export const PData = styled.td`
   color: var(--white, #fbfbfb);
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  text-align: left;
+  padding-left: 20px;
+  vertical-align: middle;
+  width: 100px;
 `;
-export const ItemType = styled.p`
+export const PType = styled.td`
   color: var(--white, #fbfbfb);
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  text-align: center;
+  vertical-align: middle;
+  width: 100px;
 `;
-export const ItemCategory = styled.p`
+export const PCategory = styled.td`
   color: var(--white, #fbfbfb);
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  text-align: left;
+  vertical-align: middle;
+  width: 100px;
 `;
-export const ItemComment = styled.p`
+export const PComment = styled.td`
   color: var(--white, #fbfbfb);
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  text-align: left;
+  vertical-align: middle;
+  width: 150px;
 `;
-export const ItemSum = styled.li`
+export const PSum = styled.td`
   color: var(--dashboard-text, #ff868d);
   text-align: right;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  text-align: right;
+  vertical-align: middle;
+  width: 100px;
 `;
 
-export const Actions = styled.div`
+export const Actions = styled.td`
+  text-align: right;
+  width: 150px;
+`;
+export const ActionsContainer = styled.div`
+  width: 100%;
+  height: 100%;
   display: flex;
+  justify-content: flex-end;
+  align-items: center;
   gap: 8px;
+`;
+
+export const Pencil = styled.button`
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 `;
 
 export const Button = styled.button`
@@ -63,6 +91,9 @@ export const Button = styled.button`
   justify-content: center;
   align-items: center;
   gap: 2px;
+  height: 29px;
+  width: 69px;
+  cursor: pointer;
 
   border: none;
 
@@ -70,7 +101,7 @@ export const Button = styled.button`
     --button-gradient,
     linear-gradient(97deg, #ffc727 -16.42%, #9e40ba 97.04%, #7000ff 150.71%)
   );
-  /* Button shadow */
+
   box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
 
   color: var(--white, #fbfbfb);
