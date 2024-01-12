@@ -4,12 +4,14 @@ export const ListTab = styled.tr`
   list-style-type: none;
   height: 53px;
 
-  @media only screen and (min-width: 768px) {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.41);
+  &:not(:last-child) {
+    @media only screen and (min-width: 768px) {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.41);
+    }
   }
 
   @media only screen and (min-width: 1280px) {
-    width: 698px;
+    /* width: 698px; */
   }
 `;
 
@@ -79,7 +81,7 @@ export const ActionsContainer = styled.div`
   gap: 8px;
 `;
 
-export const Pencil = styled.button`
+export const PencilButton = styled.button`
   border: none;
   background-color: transparent;
   cursor: pointer;

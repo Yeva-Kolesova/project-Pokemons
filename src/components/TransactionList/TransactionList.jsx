@@ -12,7 +12,9 @@ import {
   TitleData,
   TitleSum,
   TitleType,
+  TransactionCardList,
 } from './TransactionList.styled';
+import TransactionCardItem from 'components/TransactionCardItem/TransactionCardItem';
 
 const TransactionList = () => {
   const transactions = useSelector(selectTransactions);
@@ -36,6 +38,12 @@ const TransactionList = () => {
           ))}
         </ListTransaction>
       </HomeTab>
+
+      <TransactionCardList>
+        {transactions.map(transaction => (
+          <TransactionCardItem key={transaction.id} data={transaction} />
+        ))}
+      </TransactionCardList>
     </>
   );
 };

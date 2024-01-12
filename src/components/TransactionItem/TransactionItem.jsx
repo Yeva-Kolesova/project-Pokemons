@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   Actions,
   ActionsContainer,
@@ -8,12 +9,14 @@ import {
   PData,
   PSum,
   PType,
-  Pencil,
+  PencilButton,
 } from './TransactionItem.styled';
 import { LuPencil } from 'react-icons/lu';
 
 const TransactionItem = ({ data }) => {
   const { transactionDate, type, categoryId, comment, amount } = data;
+
+  const [isEditTransactionForm, setIsEditTransactionForm] = useState(false);
 
   return (
     <ListTab>
@@ -24,9 +27,13 @@ const TransactionItem = ({ data }) => {
       <PSum>{amount}</PSum>
       <Actions>
         <ActionsContainer>
-          <Pencil>
+          <PencilButton
+            type="button"
+            onClick={() => setIsEditTransactionForm(true)}
+          >
             <LuPencil color={' white'} />
-          </Pencil>
+          </PencilButton>
+          {isEditTransactionForm}
           <Button>Delete</Button>
         </ActionsContainer>
       </Actions>
