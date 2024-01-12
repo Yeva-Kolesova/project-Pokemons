@@ -97,12 +97,18 @@ const StatisticsDashboard = () => {
       fontSize: '16px',
       fontWeight: '400'
     }),
-    option: (styles, { isFocused}) => {
+    option: (styles, { isFocused, isSelected }) => {
       if (isFocused) {
         return {
           ...styles,
           background: '#FFFFFF1A',
           color: '#FF868D',
+        }
+      }
+      else if (isSelected) {
+        return {
+          ...styles,
+          background: 'transparent',
         }
       }
       else {
