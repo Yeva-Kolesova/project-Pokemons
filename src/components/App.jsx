@@ -6,10 +6,12 @@ import { SharedLayout } from './SharedLayout/SharedLayout';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsRefreshing } from '../reduxConfig/auth/selectors';
 import { refreshUser } from '../reduxConfig/auth/operations';
+import { useMediaQuery } from 'react-responsive';
 
 export const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
+  const isTabletOrDesktop = useMediaQuery({ query: '(min-width: 768px)' });
 
   useEffect(() => {
     dispatch(refreshUser());
@@ -61,7 +63,7 @@ export const App = () => {
           <Route index element={<HomePage />} />
           <Route path="home" element={<HomePage />} />
           <Route path="statistics" element={<StatisticsPage />} />
-          <Route path="currency" element={<CurrencyPage />} />
+          <Route path="currency" element={isTabletOrDesktop ? <Navigate to='/' /> : <CurrencyPage />} />
         </Route>
       </Route>
       <Route path="*" element={<Navigate to="/" />} />
