@@ -2,6 +2,7 @@ import { nanoid } from '@reduxjs/toolkit';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchTransSumThunk } from 'reduxConfig/statistics/operations';
+import { StyledDahsboard, StyledSelect } from './StatisticsDashboard.styled';
 
 const StatisticsDashboard = () => {
   const months = [
@@ -24,7 +25,7 @@ const StatisticsDashboard = () => {
   const dispatch = useDispatch();
 
   const [selectedMonthIndex, setSelectedMonthIndex] = useState(0);
-  const [selectedYear, setSelectedYear] = useState(years[0]);
+  const [selectedYear, setSelectedYear] = useState(years[4]);
 
   const handleMonthChange = event => {
     const newMonthIndex = months.indexOf(event.target.value);
@@ -47,8 +48,8 @@ const StatisticsDashboard = () => {
   }, [dispatch, selectedMonthIndex, selectedYear]);
 
   return (
-    <div>
-      <select
+    <StyledDahsboard>
+      <StyledSelect
         name="month"
         id="month"
         onChange={handleMonthChange}
@@ -59,8 +60,8 @@ const StatisticsDashboard = () => {
             {month}
           </option>
         ))}
-      </select>
-      <select
+      </StyledSelect>
+      <StyledSelect
         name="year"
         id="year"
         onChange={handleYearChange}
@@ -71,8 +72,8 @@ const StatisticsDashboard = () => {
             {year}
           </option>
         ))}
-      </select>
-    </div>
+      </StyledSelect>
+    </StyledDahsboard>
   );
 };
 
