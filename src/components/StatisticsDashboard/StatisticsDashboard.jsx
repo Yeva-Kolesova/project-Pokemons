@@ -117,8 +117,8 @@ const StatisticsDashboard = () => {
     return (
       <components.DropdownIndicator {...props}>
         {props.isFocused
-          ? <SlArrowUp size={18} label='Arrow down' primaryColor={'var(--white)'} />
-          : <SlArrowDown size={18} label='Arrow down' primaryColor={'var(--white)'} />}
+          ? <SlArrowUp size={18} label='Arrow down' color={'var(--white)'} />
+          : <SlArrowDown size={18} label='Arrow down' color={'var(--white)'} />}
       </components.DropdownIndicator>
     );
   };
