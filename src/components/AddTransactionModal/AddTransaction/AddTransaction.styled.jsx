@@ -34,25 +34,6 @@ export const Modal = styled.div`
     border-radius: 8px;
   }
 
-  select {
-    margin-bottom: 40px;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-    outline: none;
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 18px;
-    font-weight: 400;
-    &::placeholder {
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 18px;
-      font-weight: 400;
-      font-family: 'Poppins';
-    }
-
-    @media only screen and (max-width: 768px) {
-    }
-  }
   select:required {
     color: rgba(255, 255, 255, 0.6);
     padding-left: 8px;

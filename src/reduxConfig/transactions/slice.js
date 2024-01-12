@@ -1,8 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  addTransactionThunk,
-  getTransactionsСategoriesThunk,
-} from '../transactions/operations';
+  addTransactionThunk, getTransactionsCategoriesThunk,
+} from './operations';
 
 const initialState = {
   categories: [],
@@ -61,6 +60,7 @@ const initialState = {
   isLoading: false,
   error: null,
 };
+
 function handlePending(state) {
   state.isLoading = true;
 }
@@ -80,23 +80,22 @@ function handleRejected(state, action) {
   state.error = action.payload;
 }
 
-function handleTransactionsCategories(state, { payload }) {
-  state.categories = payload;
-  state.isLoading = false;
-}
-
 const slice = createSlice({
   name: 'transactions',
   initialState,
   reducers: {},
   extraReducers: builder => {
     builder
-      .addCase(getTransactionsСategoriesThunk.pending, handlePending)
+      .addCase(getTransactionsCategoriesThunk.pending, handlePending)
       .addCase(
-        getTransactionsСategoriesThunk.fulfilled,
-        handleTransactionsCategories
+        getTransactionsCategoriesThunk.fulfilled, (state, { payload }) => {
+          state.categories = payload.map(category => {
+            return { value: category.id, label: category.name };
+          });
+          state.isLoading = false;
+        },
       )
-      .addCase(getTransactionsСategoriesThunk.rejected, handleRejected)
+      .addCase(getTransactionsCategoriesThunk.rejected, handleRejected)
       .addCase(addTransactionThunk.pending, handlePending)
       .addCase(addTransactionThunk.fulfilled, handleAddTransaction)
       .addCase(addTransactionThunk.rejected, handleRejected);

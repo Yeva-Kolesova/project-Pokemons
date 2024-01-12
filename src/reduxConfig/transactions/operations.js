@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from 'configAxios/api';
 
-export const getTransactionsСategoriesThunk = createAsyncThunk(
+export const getTransactionsCategoriesThunk = createAsyncThunk(
   'getCategories',
   async (_, thunkApi) => {
     try {
