@@ -23,7 +23,7 @@ const ModalLogout = () => {
         </svg> */}
         <h3>Money Guard</h3>
         <p>Are you sure you want to log out?</p>
-        <button onClick={logOut}>logout</button>
+        <button onClick={handle}>logout</button>
         <button>cancel</button>
     </div>
   )
