@@ -1,6 +1,5 @@
 import { Calendar } from '../Calendar/Calendar';
 import { selectCategories } from 'reduxConfig/transactions/selectors';
-// import { addTransactionThunk } from 'reduxConfig/transactions/operations';
 import {
   ActiveExpense,
   ActiveIncome,
@@ -21,7 +20,9 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { useEffect, useState } from 'react';
 import { InputToggle, LabelToggle, SpanToggle } from './AddTransaction.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { getTransactionsСategoriesThunk } from 'reduxConfig/transactions/operations';
+import { getTransactionsCategoriesThunk } from '../../../reduxConfig/transactions/operations';
+import Select, { components } from 'react-select';
+import { SlArrowDown } from 'react-icons/sl';
 
 export const AddTransaction = ({ closeModal }) => {
   const [isMinus, setIsMinus] = useState(true);
@@ -33,10 +34,57 @@ export const AddTransaction = ({ closeModal }) => {
   //   label: el.name,
   // }));
 
+  const selectStyle = {
+    control: styles => ({
+      ...styles,
+      backgroundColor: 'transparent',
+      marginBottom: '-2px',
+      marginTop: '40px',
+      border: 'none',
+      borderBottom: '1px solid rgba(255, 255, 255, 0.4)',
+      outline: 'none',
+      color: 'rgba(255, 255, 255, 0.6)',
+      fontSize: '18px',
+      borderRadius: '0',
+    }),
+    placeholder: styles => ({
+      ...styles,
+      color: 'rgba(255, 255, 255, 0.6)',
+      fontSize: '18px',
+    }),
+    menu: styles => ({
+      ...styles,
+      borderRadius: '8px',
+      backgroundColor: 'white',
+      background: 'linear-gradient(0deg, rgba(83, 61, 186, 0.70) 0%, rgba(80, 48, 154, 0.70) 43.14%, rgba(106, 70, 165, 0.52) 73.27%, rgba(133, 93, 175, 0.13) 120.03%)',
+      boxShadow: '0px 4px 60px 0px rgba(0, 0, 0, 0.25)',
+      backdropFilter: 'blur(50px)',
+      overflow: 'hidden',
+      color: '#FBFBFB',
+      fontFamily: "'Poppins', sans-serif",
+      fontSize: '16px',
+      fontWeight: '400'
+    }),
+    option: (styles, {data, isFocused, isSelected}) => {
+      return {
+        ...styles,
+
+      }
+    },
+  };
+
+  const DropdownIndicator = (props) => {
+    return (
+      <components.DropdownIndicator {...props}>
+        <SlArrowDown label='Arrow down' primaryColor={'var(--white)'} />
+      </components.DropdownIndicator>
+    );
+  };
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getTransactionsСategoriesThunk());
+    dispatch(getTransactionsCategoriesThunk());
   }, [dispatch]);
 
   useEffect(() => {
@@ -72,7 +120,7 @@ export const AddTransaction = ({ closeModal }) => {
   return (
     <Backdrop onClick={onBackdropClick}>
       <Modal>
-        <CloseModalBtn type="button" onClick={() => closeModal()}>
+        <CloseModalBtn type='button' onClick={() => closeModal()}>
           {
             <svg>
               <use xlinkHref={`${sprite}#icon-close`} />
@@ -89,7 +137,7 @@ export const AddTransaction = ({ closeModal }) => {
             )}
             <LabelToggle>
               <InputToggle
-                type="checkbox"
+                type='checkbox'
                 defaultChecked
                 onChange={() => setIsMinus(!isMinus)}
               />
@@ -104,24 +152,23 @@ export const AddTransaction = ({ closeModal }) => {
           </TransactionToggleWrap>
 
           {isMinus && (
-            <select name="transactionType" id="" required>
-              <option value="" selected disabled hidden>
-                Select a category
-              </option>
-              {transactionCategories.map(({ name }) => (
-                <option>{name}</option>
-              ))}
-            </select>
+            <Select
+              required
+              options={transactionCategories}
+              components={{ DropdownIndicator, IndicatorSeparator: () => null }}
+              placeholder='Select a category'
+              styles={selectStyle}
+            menuPosition='top'/>
           )}
 
           <WrapSumCalendar>
-            <Input type="number" name="sum" placeholder="0.00" />
+            <Input type='number' name='sum' placeholder='0.00' />
             <Calendar />
           </WrapSumCalendar>
-          <TextareaStyled placeholder="Comment" />
+          <TextareaStyled placeholder='Comment' />
           <ButtonsWrap>
-            <BtnAdd type="submit">Add</BtnAdd>
-            <BtnCancel type="button" onClick={onCancelButton}>
+            <BtnAdd type='submit'>Add</BtnAdd>
+            <BtnCancel type='button' onClick={onCancelButton}>
               Cancel
             </BtnCancel>
           </ButtonsWrap>
