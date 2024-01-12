@@ -85,7 +85,6 @@ export const TransactionToggleWrap = styled.div`
   gap: 20px;
   align-items: center;
   justify-content: center;
-  margin-bottom: 40px;
 `;
 
 export const Input = styled.input`
@@ -184,6 +183,7 @@ export const WrapSumCalendar = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 40px;
+  margin-top: 40px;
 
   input {
     background: transparent;
