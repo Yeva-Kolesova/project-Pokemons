@@ -3,9 +3,14 @@ import styled from 'styled-components';
 export const HomeTab = styled.table`
   border-collapse: collapse;
   border-spacing: 0;
+
+  display: none;
+
   @media only screen and (min-width: 768px) {
     width: 704px;
     height: 312px;
+
+    display: block;
   }
 
   @media only screen and (min-width: 1280px) {
@@ -100,7 +105,7 @@ export const ListTransaction = styled.tbody`
   display: block;
 
   &::-webkit-scrollbar {
-    width: 14px;
+    width: 8px;
   }
 
   &::-webkit-scrollbar-track {
@@ -122,4 +127,11 @@ export const ListTransaction = styled.tbody`
   }
   @media only screen and (min-width: 1280px) {
   }
+`;
+
+export const TransactionCardList = styled.ul`
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 `;
