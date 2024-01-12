@@ -15,7 +15,7 @@ function Header() {
     <StyledHeader>
       <Container>
         <HeaderWrapper>
-          <LogoWrapper>
+          <LogoWrapper to={'/'} >
             <svg width={17} height={17}>
               <use href={`${icons}#icon-Logo`}/>
             </svg>

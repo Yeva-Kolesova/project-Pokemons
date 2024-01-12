@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export const StyledHeader = styled.header`
   display: flex;
@@ -20,7 +21,7 @@ export const HeaderWrapper = styled.div`
   align-items: center;
 `;
 
-export const LogoWrapper = styled.div`
+export const LogoWrapper = styled(NavLink)`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -49,12 +50,13 @@ export const UserInfoWrapper = styled.div`
   gap: 8px;
   color: var(--transparency-60);
   text-align: right;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 1.33;
 
-  span {
-    font-size: 16px;
+  span, p {
+    font-size: 18px;
     position: relative;
+    line-height: 1.33;
   }
 
   @media only screen and (min-width: 768px) {
