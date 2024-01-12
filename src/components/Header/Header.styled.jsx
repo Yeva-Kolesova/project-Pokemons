@@ -1,83 +1,93 @@
-import styled from 'styled-components'
-import { NavLink } from 'react-router-dom'
+import styled from 'styled-components';
 
 export const StyledHeader = styled.header`
   display: flex;
   width: 100%;
   height: 60px;
-  background: linear-gradient(270deg, #2E1746 3.2%, #2E225F 99.98%);
-  box-shadow: 0 4px 40px 0 rgba(0, 0, 0, 0.25), 0 -3px 2px 0 rgba(0, 0, 0, 0.10) inset;
-  `
+  background: linear-gradient(270deg, #2e1746 3.2%, #2e225f 99.98%);
+  box-shadow: 0 4px 40px 0 rgba(0, 0, 0, 0.25),
+    0 -3px 2px 0 rgba(0, 0, 0, 0.1) inset;
+
+  @media only screen and (min-width: 768px) {
+    height: 80px;
+  }
+`;
 
 export const HeaderWrapper = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-`
+`;
 
 export const LogoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  p{
-    //width: min-content;
-    color: #FBFBFB;
+  p {
     font-size: 12.84px;
-    line-height: 1;
+    line-height: 1.51;
+    color: #fbfbfb;
+  }
 
-    @media only screen and (min-width: 768px) {
-      //width: auto;
+  @media only screen and (min-width: 768px) {
+    p {
+      font-size: 17.1px;
+    }
+
+    svg {
+      width: 23.489px;
+      height: 22.468px;
     }
   }
-`
-
+`;
 
 export const UserInfoWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
-  color: rgba(255, 255, 255, 0.60);
+  color: var(--transparency-60);
   text-align: right;
   font-size: 16px;
-`
+  line-height: 1.33;
 
-export const StyledLink = styled(NavLink)`
-
-  color: rgba(255, 255, 255, 0.60);
-  font-size: 16px;
-  text-decoration: none;
-/*  position: relative;
-  text-decoration: none;
-  padding: 10px 0;
-  font-size: 20px;
-  font-weight: 600;
-  color: #008080;
-
-  transition: color 250ms ease-in-out;*/
-
-  /*&::after{
-    content: '';
-    height: 3px;
-    width: 0;
-    position: absolute;
-    left: 0;
-    bottom: 5px;
-    background-color: #008080;
-    border-radius: 2px;
-
-    transition:
-      background-color 250ms ease-in-out,
-      width 250ms ease-in-out;
+  span {
+    font-size: 16px;
+    position: relative;
   }
 
-  &:hover::after{
-    width: 100%;
-    background-color: #005454;
-  }*/
+  @media only screen and (min-width: 768px) {
+    gap: 24px;
 
-/*  &:hover {
-    color: #005454;
-  }*/
-`
+    span {
+      &::after {
+        content: '';
+        height: 30px;
+        width: 1px;
+        position: absolute;
+        right: -12px;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: var(--transparency-60);
+        border-radius: 2px;
+      }
+    }
+  }
+`;
+
+export const StyledExit = styled.button`
+  background-color: transparent;
+  border: none;
+  color: var(--transparency-60);
+  display: flex;
+  align-items: center;
+  padding: 0;
+  gap: 8px;
+
+  transition: color 250ms ease-in-out;
+
+  &:hover {
+    color: var(--icon-violet);
+  }
+`;

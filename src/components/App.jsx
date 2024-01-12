@@ -17,42 +17,51 @@ export const App = () => {
 
   const HomePage = lazy(() => import('../pages/HomePage'));
   const CurrencyPage = lazy(() => import('../pages/CurrencyPage'));
-  const DashboardPage = lazy(() => import('../pages/DashboardPage'));
+  const DashboardPage = lazy(() =>
+    import('../pages/DashboardPage/DashboardPage')
+  );
   const LoginPage = lazy(() => import('../pages/LoginPage'));
   const RegistrationPage = lazy(() => import('../pages/RegistrationPage'));
-  const StatisticsPage = lazy(() => import('../pages/StatisticsPage'));
-  
+  const StatisticsPage = lazy(() =>
+    import('../pages/StatisticPage/StatisticsPage')
+  );
   return isRefreshing ? (
     <b>Refreshing user...</b>
   ) : (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        <Route index element={<LoginPage />} />
-         <Route
-            path='register'
-            element={<RestrictedRoute redirectTo='/dashboard' component={<RegistrationPage />} />}
-          />
+        <Route index element={<RestrictedRoute
+          redirectTo="/dashboard"
+          component={<LoginPage />}
+        />} />
         <Route
-            path='login'
-            element={
-              <RestrictedRoute redirectTo='/dashboard' component={<LoginPage />}
-              />
-            } />
-        <Route
-            path='dashboard'
-            element={
-              <PrivateRoute redirectTo='/login' component={<DashboardPage />}
-              />
-            }>
-        <Route path="home" element={<HomePage />} />
-        <Route
-              path='statistics'
-              element={<StatisticsPage />}
+          path="register"
+          element={
+            <RestrictedRoute
+              redirectTo="/dashboard"
+              component={<RegistrationPage />}
             />
-        { <Route
-              path='currency'
-              element={<CurrencyPage />}
-            />}
+          }
+        />
+        <Route
+          path="login"
+          element={
+            <RestrictedRoute
+              redirectTo="/dashboard"
+              component={<LoginPage />}
+            />
+          }
+        />
+        <Route
+          path="dashboard"
+          element={
+            <PrivateRoute redirectTo="/login" component={<DashboardPage />} />
+          }
+        >
+          <Route index element={<HomePage />} />
+          <Route path="home" element={<HomePage />} />
+          <Route path="statistics" element={<StatisticsPage />} />
+          <Route path="currency" element={<CurrencyPage />} />
         </Route>
       </Route>
       <Route path="*" element={<Navigate to="/" />} />

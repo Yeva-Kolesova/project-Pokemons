@@ -1,13 +1,20 @@
 import { nanoid } from '@reduxjs/toolkit';
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { selectTransactions } from 'reduxConfig/transactions/selectors';
+import React, { useState } from 'react';
+// import { useSelector } from 'react-redux';
+// import { selectCategories } from 'reduxConfig/statistics/selectors';
+// import { selectTransactions } from 'reduxConfig/transactions/selectors';
+import {
+  StyledCategorySelect,
+  StyledExpenses,
+  StyledIncome,
+  StyledItem,
+} from './StatisticsTable.styled';
 
 const StatisticsTable = () => {
-  //   const categories = getCategories().filter(
-  //     category => category.type === 'EXPENSE'
-  //   );
-  const transactions = useSelector(selectTransactions());
+  // const categories = useSelector(selectCategories).filter(
+  //   category => category.type === 'EXPENSE'
+  // );
+  // const transactions = useSelector(selectTransactions);
 
   const categories = [
     'Main expenses',
@@ -22,50 +29,68 @@ const StatisticsTable = () => {
     'Entertainment',
   ];
 
-  //   const transactions = [
-  //     { categoryId: 'Main expenses', amount: 8700.0 },
-  //     { categoryId: 'Products', amount: 3800.74 },
-  //     { categoryId: 'Car', amount: 1500.0 },
-  //     { categoryId: 'Self care', amount: 800.0 },
-  //     { categoryId: 'Child care', amount: 2208.5 },
-  //     { categoryId: 'Household products', amount: 300.0 },
-  //     { categoryId: 'Education', amount: 3400.0 },
-  //     { categoryId: 'Leisure', amount: 1230.0 },
-  //     { categoryId: 'Other expenses', amount: 610.0 },
-  //   ];
+  const transactions = [
+    { categoryId: 'Main expenses', amount: '8700.00' },
+    { categoryId: 'Products', amount: '3800.74' },
+    { categoryId: 'Car', amount: '1500.00' },
+    { categoryId: 'Self care', amount: '800.00' },
+    { categoryId: 'Child care', amount: '2208.50' },
+    { categoryId: 'Household products', amount: '300.00' },
+    { categoryId: 'Education', amount: '3400.00' },
+    { categoryId: 'Leisure', amount: '1230.00' },
+    { categoryId: 'Other expenses', amount: '610.00' },
+  ];
+
+  const [selectedCategory, setSelectedCategory] = useState('');
+
+  // const filteredTransactions = transactions.filter(
+  //   transaction => transaction.categoryId === selectedCategory
+  // );
 
   const totalExpenses = transactions => {
     const total = transactions.reduce((accumulator, transaction) => {
-      return accumulator + transaction.amount;
+      return accumulator + Number(transaction.amount);
     }, 0);
 
     return total.toFixed(2);
   };
 
+  const handleCategoryChange = e => setSelectedCategory(e.target.value);
+
   return (
     <>
-      <form>
-        <select name="category" id="category">
-          {categories.map(category => (
-            <option key={nanoid()}>{category}</option>
-          ))}
-        </select>
-      </form>
+      <StyledCategorySelect
+        name="category"
+        id="category"
+        onChange={handleCategoryChange}
+        value={selectedCategory}
+      >
+        <option defaultValue>Categories</option>
+        {categories.map(category => (
+          <option key={nanoid()} value={category.id}>
+            {category}
+          </option>
+        ))}
+      </StyledCategorySelect>
       <ul>
         {transactions.map(({ categoryId, amount }) => (
-          <li key={nanoid()}>
-            {categoryId} {amount}
-          </li>
+          <StyledItem key={nanoid()}>
+            <div>
+              <span />
+              <p>{categoryId}</p>
+            </div>
+            <p>{amount}</p>
+          </StyledItem>
         ))}
       </ul>
-      <div>
+      <StyledExpenses>
         <h4>Expenses:</h4>
         <p>{totalExpenses(transactions)}</p>
-      </div>
-      <div>
+      </StyledExpenses>
+      <StyledIncome>
         <h4>Income:</h4>
         <p>27350.00</p>
-      </div>
+      </StyledIncome>
     </>
   );
 };
