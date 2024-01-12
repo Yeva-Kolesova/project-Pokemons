@@ -43,8 +43,10 @@ export const Modal = styled.div`
     color: rgba(255, 255, 255, 0.6);
     font-size: 18px;
     font-weight: 400;
-
     &::placeholder {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 18px;
+      font-weight: 400;
       font-family: 'Poppins';
     }
 
