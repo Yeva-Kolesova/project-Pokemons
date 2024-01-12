@@ -20,7 +20,7 @@ export const Modal = styled.div`
   flex-direction: column;
   align-items: center;
   max-width: 320px;
-  height: 100vh;
+  /* height: 100vh; */
   padding: 40px 20px;
   background: (#ffffff, rgba(255, 255, 255, 0.1));
   box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
@@ -41,9 +41,12 @@ export const Modal = styled.div`
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     outline: none;
     color: rgba(255, 255, 255, 0.6);
-    font-family: Poppins;
     font-size: 18px;
     font-weight: 400;
+
+    &::placeholder {
+      font-family: 'Poppins';
+    }
 
     @media only screen and (max-width: 768px) {
     }
@@ -69,7 +72,7 @@ export const Modal = styled.div`
   form {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    /* gap: 40px; */
     margin-bottom: 20px;
     min-width: 100%;
   }
@@ -96,7 +99,7 @@ export const CloseModalBtn = styled.button`
 
 export const TransactionToggleWrap = styled.div`
   display: flex;
-  gap: 24px;
+  gap: 20px;
   align-items: center;
   justify-content: center;
   margin-bottom: 40px;
@@ -107,51 +110,75 @@ export const Input = styled.input`
   border: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   outline: none;
-  padding: 8px 20px;
-  color: #fbfbfb;
   font-size: 18px;
+  padding-left: 8px;
+  padding-bottom: 8px;
 `;
-
+export const ButtonsWrap = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+`;
 export const BtnAdd = styled.button`
+  width: 280px;
+  height: 50px;
   cursor: pointer;
   border-radius: 20px;
   border: none;
   outline: none;
-  width: 280px;
-  height: 50px;
-  padding: 13px 118px 10px 118px;
-  font-family: 'Poppins', sans-serif;
+  padding: 13px 10px;
   font-size: 18px;
-  line-height: calc(27 / 18);
   color: #fbfbfb;
+  box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
   background: linear-gradient(
     97deg,
     #ffc727 -16.42%,
     #9e40ba 97.04%,
     #7000ff 150.71%
   );
-  box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
-  margin-left: auto;
-  margin-right: auto;
+  text-align: center;
   text-transform: uppercase;
+  letter-spacing: 1.8px;
+  @media only screen and (mix-width: 768px) {
+    width: 300px;
+  }
 `;
 
 export const BtnCancel = styled.button`
+  width: 280px;
+  height: 50px;
   cursor: pointer;
   border-radius: 20px;
   border: none;
   outline: none;
-  width: 280px;
-  height: 50px;
-  padding: 13px 115px 13px 115px;
-  font-family: 'Poppins', sans-serif;
+  padding: 13px 10px;
   font-size: 18px;
-  line-height: calc(27 / 18);
-  background-color: #fbfbfb;
   color: #623f8b;
-  margin-left: auto;
-  margin-right: auto;
+  box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
+  background-color: #fbfbfb;
+  text-align: center;
   text-transform: uppercase;
+  letter-spacing: 1.8px;
+
+  @media only screen and (mix-width: 768px) {
+    width: 300px;
+  }
+`;
+
+export const TextareaStyled = styled.textarea`
+  height: 35px;
+  margin-bottom: 40px;
+  font-size: 18px;
+  font-weight: 400;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+
+  &::placeholder {
+    /* margin-bottom: 52px; */
+  }
 `;
 
 export const ActiveExpense = styled.p`
@@ -174,14 +201,22 @@ export const WrapSumCalendar = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 40px;
+
   input {
     background: transparent;
     border: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     outline: none;
     padding: 8px 20px;
+    padding-left: 8px;
+    padding-bottom: 8px;
     color: #fbfbfb;
     font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+  }
+  @media only screen and (mix-width: 768px) {
+    /* flex-direction: row; */
   }
 `;
 
