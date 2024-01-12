@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { fetchTransSumThunk } from 'reduxConfig/statistics/operations';
 import { StyledDashboard } from './StatisticsDashboard.styled';
 import Select, { components } from 'react-select';
-import { SlArrowDown } from 'react-icons/sl';
+import { SlArrowDown, SlArrowUp } from 'react-icons/sl';
 import { useMediaQuery } from 'react-responsive';
 
 const StatisticsDashboard = () => {
@@ -116,7 +116,9 @@ const StatisticsDashboard = () => {
   const DropdownIndicator = (props) => {
     return (
       <components.DropdownIndicator {...props}>
-        <SlArrowDown size={18} label='Arrow down' primaryColor={'var(--white)'} />
+        {props.isFocused
+          ? <SlArrowUp size={18} label='Arrow down' primaryColor={'var(--white)'} />
+          : <SlArrowDown size={18} label='Arrow down' primaryColor={'var(--white)'} />}
       </components.DropdownIndicator>
     );
   };

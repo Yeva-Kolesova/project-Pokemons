@@ -17,12 +17,12 @@ import {
 } from './AddTransaction.styled';
 import sprite from '../sprite.svg';
 import 'react-datepicker/dist/react-datepicker.css';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { InputToggle, LabelToggle, SpanToggle } from './AddTransaction.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTransactionsCategoriesThunk } from '../../../reduxConfig/transactions/operations';
 import Select, { components } from 'react-select';
-import { SlArrowDown } from 'react-icons/sl';
+import { SlArrowDown, SlArrowUp } from 'react-icons/sl';
 
 export const AddTransaction = ({ closeModal }) => {
   const [isMinus, setIsMinus] = useState(true);
@@ -92,7 +92,9 @@ export const AddTransaction = ({ closeModal }) => {
   const DropdownIndicator = (props) => {
     return (
       <components.DropdownIndicator {...props}>
-        <SlArrowDown label='Arrow down' primaryColor={'var(--white)'} />
+        {props.isFocused
+          ? <SlArrowUp size={18} label='Arrow down' primaryColor={'var(--white)'} />
+          : <SlArrowDown size={18} label='Arrow down' primaryColor={'var(--white)'} />}
       </components.DropdownIndicator>
     );
   };
