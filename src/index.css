@@ -28,12 +28,15 @@
 }
 
 body {
-  height: 100vh;
   margin: 0;
   font-family: 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #101010;
+
+  @media only screen and (min-width: 768px) {
+    height: 100vh;
+  }
 }
 
 code {

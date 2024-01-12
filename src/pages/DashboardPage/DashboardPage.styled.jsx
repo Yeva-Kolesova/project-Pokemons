@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const SectionContainer = styled.section`
-  height: 100vh;
   overflow: clip;
 
   @media only screen and (min-width: 768px) {
@@ -22,6 +21,7 @@ export const DashboardContainer = styled.div`
   @media only screen and (min-width: 1280px) {
     flex-direction: row;
     height: calc(100vh - 80px);
+    gap: 0;
   }
 `;
 
@@ -169,7 +169,7 @@ export const LeftContainer = styled.div`
 
   @media only screen and (min-width: 1280px) {
     flex-direction: column;
-    width: 480px;
+    width: 464px;
     position: relative;
     height: calc(100vh - 80px);
 

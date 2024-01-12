@@ -21,15 +21,17 @@ export const StyledNavigation = styled.nav`
 export const StyledLink = styled(NavLink)`
   padding: 0;
   position: relative;
-  color: var(--transparency-40);
+ /* color: {({ $current }) => $current ? var(--icon-violet) : var(--transparency-40)};*/
+  color: ${({ $current }) => $current ? "#734aef" : "#FFFFFF66"};
   text-decoration: none;
+
   &::after {
     content: '';
     width: 30px;
     height: 30px;
-    background-color: transparent;
+    /*background-color: {({ $current }) => $current ? var(--white) : transparent};*/
+    background-color: ${({ $current }) => $current ? "#fbfbfb" : "transparent"};
     position: absolute;
-    border-radius: 8px;
     top: 4px;
     left: 4px;
     z-index: -10;
@@ -48,22 +50,12 @@ export const StyledLink = styled(NavLink)`
 
     &::after {
       content: '';
-      width: 10px;
-      height: 10px;
-      top: 4px;
-      left: 4px;
+      width: 14px;
+      height: 14px;
+      top: 7px;
+      left: 3px;
     }
   }
-
-  /*${({ $current }) => $current}*/
- /* &:active{
-    color:var(--icon-violet);
-  }
-
-  &::after:active{
-    background-color: var(--white);
-  }*/
-
 `;
 
 export const StyledIcon = styled.svg`
