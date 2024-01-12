@@ -122,7 +122,7 @@ const StatisticsDashboard = () => {
   const DropdownIndicator = (props) => {
     return (
       <components.DropdownIndicator {...props}>
-        {props.isFocused
+        {props.selectProps.menuIsOpen
           ? <SlArrowUp size={18} label='Arrow down' color={'var(--white)'} />
           : <SlArrowDown size={18} label='Arrow down' color={'var(--white)'} />}
       </components.DropdownIndicator>
