@@ -1,4 +1,4 @@
-import React from 'react';
+// import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 // import * as Yup from 'yup';
@@ -8,6 +8,7 @@ import {
   StyledBoxForm,
   StyledEmailIcon,
   StyledForm,
+  StyledIcon,
   StyledInput,
   StyledInputField,
   StyledLabel,
@@ -17,13 +18,14 @@ import {
   StyledTitle,
   StyledUserIcon,
 } from './RegistrationForm.styled';
+// import PasswordStrengthBar from 'react-password-strength-bar-with-style-item';
 // import PasswordStrengthBar from 'react-password-strength-bar';
-// const { password } = this.state;
 
 const RegistrationForm = () => {
   const { register, handleSubmit } = useForm();
+  // const { register, handleSubmit } = useForm({ resolver });
   const dispatch = useDispatch();
-
+  // const [pass, setPass] = useState('');
   const submit = data => {
     console.log(data);
     dispatch(registerThunk(data));
@@ -32,16 +34,15 @@ const RegistrationForm = () => {
   return (
     <StyledBoxForm>
       <StyledForm onSubmit={handleSubmit(submit)}>
-        <svg width={25} height={25}>
+        <StyledIcon width={25} height={25}>
           <use href={`${icons}#icon-Logo`} />
-        </svg>
+        </StyledIcon>
         <StyledTitle>Money Guard</StyledTitle>
         <StyledLabel>
           <StyledInput>
             <StyledUserIcon />
             <StyledInputField
               {...register('username', {
-                required: 'Username is required!',
                 minLength: {
                   value: 6,
                   message: 'Username must be at least 6 symbols long!',
@@ -49,6 +50,7 @@ const RegistrationForm = () => {
               })}
               placeholder="Name"
               type="text"
+              required
             />
           </StyledInput>
         </StyledLabel>
@@ -57,11 +59,11 @@ const RegistrationForm = () => {
             <StyledEmailIcon />
             <StyledInputField
               {...register('email', {
-                required: 'Email is required!',
                 minLength: { value: 9, message: 'Email number is too short!' },
               })}
               placeholder="E-mail"
               type="text"
+              required
             />
           </StyledInput>
         </StyledLabel>
@@ -70,28 +72,30 @@ const RegistrationForm = () => {
             <StyledPasswordIcon />
             <StyledInputField
               {...register('password', {
-                required: 'Password is required!',
                 minLength: {
                   value: 6,
                   message: 'Password must be at least 6 symbols long!',
                 },
               })}
               placeholder="Password"
-              type="text"
+              type="password"
+              required
             />
           </StyledInput>
         </StyledLabel>
         <StyledLabel>
-          <StyledInput>
+          <StyledInput width>
             <StyledPasswordIcon />
             <StyledInputField
               {...register('confirmPassword')}
               placeholder="Confirm password"
-              type="text"
+              type="password"
+              required
             />
           </StyledInput>
         </StyledLabel>
-        {/* <PasswordStrengthBar password={password} /> */}
+        {/* <input type="text" onChange={e => setPass(e.target.value)} /> */}
+        {/* <PasswordStrengthBar password={pass} /> */}
         <StyledRegister type="submit">Register</StyledRegister>
         <StyledLink to="/login">Log in</StyledLink>
       </StyledForm>
