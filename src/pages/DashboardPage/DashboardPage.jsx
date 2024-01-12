@@ -11,7 +11,7 @@ import {
   NavAndBalanceWrapper,
 } from './DashboardPage.styled';
 import { useMediaQuery } from 'react-responsive';
-import { CurrencyPage } from '../CurrencyPage';
+import  CurrencyPage  from '../CurrencyPage';
 
 function DashboardPage() {
   const isTabletOrDesktop = useMediaQuery({ query: '(min-width: 768px)' });
