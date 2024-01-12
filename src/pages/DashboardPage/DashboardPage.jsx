@@ -6,9 +6,9 @@ import Balance from '../../components/Balance/Balance';
 import Container from '../../components/Container/Container';
 import {
   DashboardContainer, GradientLeftBottom, GradientLeftTop,
-  GradientRight,
+  GradientRightBottom, GradientRightTop,
   LeftContainer,
-  NavAndBalanceWrapper,
+  NavAndBalanceWrapper, SectionContainer,
 } from './DashboardPage.styled';
 import { useMediaQuery } from 'react-responsive';
 import { CurrencyPage } from '../CurrencyPage';
@@ -16,13 +16,14 @@ import { CurrencyPage } from '../CurrencyPage';
 function DashboardPage() {
   const isTabletOrDesktop = useMediaQuery({ query: '(min-width: 768px)' });
   return (
-    <>
+    <SectionContainer>
       <Header />
       <Container>
         <DashboardContainer>
-          <GradientRight/>
+          <GradientRightBottom/>
           <GradientLeftBottom/>
           <GradientLeftTop/>
+          <GradientRightTop/>
           <LeftContainer>
             <NavAndBalanceWrapper>
               <Navigation />
@@ -35,7 +36,7 @@ function DashboardPage() {
           </Suspense>
         </DashboardContainer>
       </Container>
-    </>
+    </SectionContainer>
   );
 }
 

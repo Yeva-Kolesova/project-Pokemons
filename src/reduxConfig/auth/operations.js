@@ -36,7 +36,7 @@ export const logOutThunk = createAsyncThunk(
   'auth/logout',
   async (_, thunkAPI) => {
     try {
-      await api.post('/auth/sign-out');
+      await api.delete('/auth/sign-out');
       clearToken();
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
