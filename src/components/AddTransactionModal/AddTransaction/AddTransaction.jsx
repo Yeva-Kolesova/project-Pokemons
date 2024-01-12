@@ -21,7 +21,6 @@ import sprite from '../sprite.svg';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useEffect, useState } from 'react';
 import { InputToggle, LabelToggle, SpanToggle } from './AddTransaction.styled';
-import { useSelector } from 'react-redux';
 
 export const AddTransaction = ({ closeModal }) => {
   const [isMinus, setIsMinus] = useState(true);
