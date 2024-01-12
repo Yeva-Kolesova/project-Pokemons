@@ -18,7 +18,11 @@ import {
 } from './LoginForm.styled';
 
 const LoginForm = () => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    // formState: { errors },
+  } = useForm();
   const dispatch = useDispatch();
   const submit = data => {
     console.log(data);
@@ -35,20 +39,31 @@ const LoginForm = () => {
           <StyledInput>
             <StyledEmailIcon />
             <StyledInputField
-              {...register('email')}
+              {...register('email', {
+                required: 'Email is required!',
+                minLength: { value: 9, message: 'Email number is too short!' },
+              })}
               placeholder="E-mail"
               type="text"
             />
+            {/* {errors.email && <>{errors.email.message}</>} */}
           </StyledInput>
         </StyledLabel>
         <StyledLabel>
           <StyledInput>
             <StyledPasswordIcon />
             <StyledInputField
-              {...register('password')}
+              {...register('password', {
+                required: 'Password is required!',
+                minLength: {
+                  value: 6,
+                  message: 'Password must be at least 7 symbols long!',
+                },
+              })}
               placeholder="Password"
               type="text"
             />
+            {/* {errors.password && <>{errors.password.message}</>} */}
           </StyledInput>
         </StyledLabel>
         <StyledLogin>Log in</StyledLogin>
