@@ -9,9 +9,16 @@ export const Backdrop = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  backdrop-filter: blur(3.5px);
-  background-color: rgba(34, 13, 91, 0.23);
   z-index: 10;
+
+  &::before {
+    background-color: rgba(34, 13, 91, 0.23);
+    content: '';
+    backdrop-filter: blur(3.5px);
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
 `;
 
 export const Modal = styled.div`
@@ -22,10 +29,17 @@ export const Modal = styled.div`
   max-width: 320px;
   /* height: 100vh; */
   padding: 40px 20px;
-  background: (#ffffff, rgba(255, 255, 255, 0.1));
   box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(50px);
   overflow: hidden;
+
+  &::before {
+    background-color: rgba(255, 255, 255, 0.1);
+    content: '';
+    backdrop-filter: blur(50px);
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
 
   @media only screen and (min-width: 768px) {
     width: 540px;
@@ -244,3 +258,14 @@ export const SpanToggle = styled.span`
     transition: transform 0.3s ease;
   }
 `;
+
+export const Gradient = styled.div`
+  z-index: -20;
+  position: absolute;
+  width: 454px;
+  height: 454px;
+  border-radius: 454px;
+  background: rgba(47, 21, 176, 0.73);
+  filter: blur(100px);
+  inset:0;
+  `
