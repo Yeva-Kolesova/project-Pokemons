@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import ReactDatePicker from 'react-datepicker';
-import sprite from '../sprite.svg';
-import { CalendarS, DateWrapper, Popper } from './Calendar.styled';
+// import sprite from '../sprite.svg';
+import { CalendarS, DateWrapper } from './Calendar.styled';
 
 export const Calendar = () => {
   const [startDate, setStartDate] = useState(new Date());
