@@ -11,17 +11,20 @@ export const fetchCurrency = createAsyncThunk(
     async (_, { rejectWithValue }) => {
         try {
             const res = await currencyAPI.get('/bank/currency');
-            if (res.data?.length) {
+            if (res.data && res.data.length > 0) {
                 const filteredArray = res.data.filter(
                     el =>
                         (el.currencyCodeA === 840 && el.currencyCodeB === 980) ||
                         (el.currencyCodeA === 978 && el.currencyCodeB === 980)
                 );
-                const result = filteredArray.map(el => ({
-                    ...el,
-                    currencyName:
-                        el.currencyCodeA === 840 ? currencyNames.usd : currencyNames.eur,
-                }));
+                const result = filteredArray.map(el => {
+                    if (el.currencyCodeA === 840) {
+                        return { ...el, currencyName: currencyNames.usd };
+                    } else if (el.currencyCodeA === 978) {
+                        return { ...el, currencyName: currencyNames.eur };
+                    }
+                    return el;
+                });
                 return result;
             }
         } catch (error) {
