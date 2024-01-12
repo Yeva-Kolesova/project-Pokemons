@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { authReducer } from './auth/slice'
+import { authReducer } from './auth/slice';
 import {
   persistStore,
   persistReducer,
@@ -8,8 +8,8 @@ import {
   PAUSE,
   PERSIST,
   PURGE,
-  REGISTER
-} from 'redux-persist'
+  REGISTER,
+} from 'redux-persist';
 import storage from 'redux-persist/lib/storage'
 import { transactionsReducer } from './transactions/slice';
 import { currencyReducer } from './currency/slice';
@@ -22,9 +22,9 @@ const authPersistConfig = {
 }
 
 const currencyPersistConfig = {
-  key: 'currencyTime',
+  key: 'currency',
   storage,
-  whitelist: ['time']
+  whitelist: ['data']
 }
 
 export const store = configureStore({
