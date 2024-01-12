@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://yeva-kolesova.github.io/project-Pokemons/",
   "dependencies": {
+    "@hookform/resolvers": "^3.3.4",
     "@reduxjs/toolkit": "^2.0.1",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
