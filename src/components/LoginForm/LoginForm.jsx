@@ -8,6 +8,7 @@ import {
   StyledBoxForm,
   StyledEmailIcon,
   StyledForm,
+  StyledIcon,
   StyledInput,
   StyledInputField,
   StyledLabel,
@@ -21,7 +22,7 @@ const LoginForm = () => {
   const {
     register,
     handleSubmit,
-    // formState: { errors },
+    formState: { errors },
   } = useForm();
   const dispatch = useDispatch();
   const submit = data => {
@@ -31,22 +32,22 @@ const LoginForm = () => {
   return (
     <StyledBoxForm>
       <StyledForm onSubmit={handleSubmit(submit)}>
-        <svg width={25} height={25}>
+        <StyledIcon width={25} height={25}>
           <use href={`${icons}#icon-Logo`} />
-        </svg>
+        </StyledIcon>
         <StyledTitle>Money Guard</StyledTitle>
         <StyledLabel>
           <StyledInput>
             <StyledEmailIcon />
             <StyledInputField
               {...register('email', {
-                required: 'Email is required!',
                 minLength: { value: 9, message: 'Email number is too short!' },
               })}
               placeholder="E-mail"
               type="text"
+              required
             />
-            {/* {errors.email && <>{errors.email.message}</>} */}
+            {errors.email && <span>{errors.email.message}</span>}
           </StyledInput>
         </StyledLabel>
         <StyledLabel>
@@ -54,16 +55,16 @@ const LoginForm = () => {
             <StyledPasswordIcon />
             <StyledInputField
               {...register('password', {
-                required: 'Password is required!',
                 minLength: {
                   value: 6,
                   message: 'Password must be at least 7 symbols long!',
                 },
               })}
               placeholder="Password"
-              type="text"
+              type="password"
+              required
             />
-            {/* {errors.password && <>{errors.password.message}</>} */}
+            {errors.password && <span>{errors.password.message}</span>}
           </StyledInput>
         </StyledLabel>
         <StyledLogin>Log in</StyledLogin>
