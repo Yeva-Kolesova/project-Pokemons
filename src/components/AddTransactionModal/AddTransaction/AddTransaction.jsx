@@ -1,6 +1,5 @@
 import { Calendar } from '../Calendar/Calendar';
-// import ReactSelect from 'react-select';
-// import { selectCategories } from 'reduxConfig/transactions/selectors';
+import { selectCategories } from 'reduxConfig/transactions/selectors';
 // import { addTransactionThunk } from 'reduxConfig/transactions/operations';
 import {
   ActiveExpense,
@@ -21,9 +20,24 @@ import sprite from '../sprite.svg';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useEffect, useState } from 'react';
 import { InputToggle, LabelToggle, SpanToggle } from './AddTransaction.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { getTransactionsСategoriesThunk } from 'reduxConfig/transactions/operations';
 
 export const AddTransaction = ({ closeModal }) => {
   const [isMinus, setIsMinus] = useState(true);
+  const transactionCategories = useSelector(selectCategories);
+  // const incomes = transactionCategories.find(el => el.type === 'INCOME');
+  // const expenses = transactionCategories.filter(el => el.type !== 'INCOME');
+  // const categoryName = expenses.map(el => ({
+  //   value: el.id,
+  //   label: el.name,
+  // }));
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getTransactionsСategoriesThunk());
+  }, [dispatch]);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -90,12 +104,13 @@ export const AddTransaction = ({ closeModal }) => {
           </TransactionToggleWrap>
 
           {isMinus && (
-            <select
-              name="transactionType"
-              required
-              placeholder="Select a category"
-            >
-              <option>Select a category</option>
+            <select name="transactionType" id="" required>
+              <option value="" selected disabled hidden>
+                Select a category
+              </option>
+              {transactionCategories.map(({ name }) => (
+                <option>{name}</option>
+              ))}
             </select>
           )}
 

@@ -1,4 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
+import {
+  addTransactionThunk,
+  getTransactionsСategoriesThunk,
+} from '../transactions/operations';
 
 const initialState = {
   categories: [],
@@ -57,41 +61,45 @@ const initialState = {
   isLoading: false,
   error: null,
 };
-/*function handlePending(state) {
-  state.isLoading = true
+function handlePending(state) {
+  state.isLoading = true;
 }
 
-function handleFulfilled(state) {
-  state.isLoading = false
-  state.error = null
-}
+// function handleFulfilled(state) {
+//   state.isLoading = false
+//   state.error = null
+// }
+
+const handleAddTransaction = (state, { payload }) => {
+  state.transactions.push(payload);
+  state.isLoading = false;
+};
 
 function handleRejected(state, action) {
-  state.isLoading = false
-  state.error = action.payload
-}*/
+  state.isLoading = false;
+  state.error = action.payload;
+}
 
-// function handleTransactionsCategories(state, { payload }) {
-//   state.categories = payload;
-//   state.isLoading = false;
-// }
+function handleTransactionsCategories(state, { payload }) {
+  state.categories = payload;
+  state.isLoading = false;
+}
 
 const slice = createSlice({
   name: 'transactions',
   initialState,
   reducers: {},
   extraReducers: builder => {
-    // builder.addCase();
-    /*     Приклад
-          .addCase(ваше_ім'я_функції_Thunk.pending, handlePending)
-          .addCase(ваше_ім'я_функції_Thunk.fulfilled, (state, action) => {
-            handleFulfilled(state)
-            робота зі стейтом
-          })
-          .addCase(ваше_ім'я_функції_Thunk.rejected, handleRejected)
-          .
-  
-    }*/
+    builder
+      .addCase(getTransactionsСategoriesThunk.pending, handlePending)
+      .addCase(
+        getTransactionsСategoriesThunk.fulfilled,
+        handleTransactionsCategories
+      )
+      .addCase(getTransactionsСategoriesThunk.rejected, handleRejected)
+      .addCase(addTransactionThunk.pending, handlePending)
+      .addCase(addTransactionThunk.fulfilled, handleAddTransaction)
+      .addCase(addTransactionThunk.rejected, handleRejected);
   },
 });
 
