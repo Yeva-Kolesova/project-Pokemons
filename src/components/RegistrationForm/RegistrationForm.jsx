@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+// import * as Yup from 'yup';
 import { registerThunk } from '../../reduxConfig/auth/operations';
 import icons from '../../images/icons.svg';
 import {
@@ -17,9 +18,9 @@ import {
   StyledUserIcon,
 } from './RegistrationForm.styled';
 // import PasswordStrengthBar from 'react-password-strength-bar';
+// const { password } = this.state;
 
 const RegistrationForm = () => {
-  // const { password } = this.state;
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
 
@@ -39,7 +40,13 @@ const RegistrationForm = () => {
           <StyledInput>
             <StyledUserIcon />
             <StyledInputField
-              {...register('username')}
+              {...register('username', {
+                required: 'Username is required!',
+                minLength: {
+                  value: 6,
+                  message: 'Username must be at least 6 symbols long!',
+                },
+              })}
               placeholder="Name"
               type="text"
             />
@@ -49,7 +56,10 @@ const RegistrationForm = () => {
           <StyledInput>
             <StyledEmailIcon />
             <StyledInputField
-              {...register('email')}
+              {...register('email', {
+                required: 'Email is required!',
+                minLength: { value: 9, message: 'Email number is too short!' },
+              })}
               placeholder="E-mail"
               type="text"
             />
@@ -59,7 +69,13 @@ const RegistrationForm = () => {
           <StyledInput>
             <StyledPasswordIcon />
             <StyledInputField
-              {...register('password')}
+              {...register('password', {
+                required: 'Password is required!',
+                minLength: {
+                  value: 6,
+                  message: 'Password must be at least 6 symbols long!',
+                },
+              })}
               placeholder="Password"
               type="text"
             />

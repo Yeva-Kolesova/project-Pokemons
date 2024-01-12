@@ -28,7 +28,10 @@ export const App = () => {
   ) : (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
-        <Route index element={<LoginPage />} />
+        <Route index element={<RestrictedRoute
+          redirectTo="/dashboard"
+          component={<LoginPage />}
+        />} />
         <Route
           path="register"
           element={
@@ -56,7 +59,7 @@ export const App = () => {
           <Route index element={<HomePage />} />
           <Route path="home" element={<HomePage />} />
           <Route path="statistics" element={<StatisticsPage />} />
-          {<Route path="currency" element={<CurrencyPage />} />}
+          <Route path="currency" element={<CurrencyPage />} />
         </Route>
       </Route>
       <Route path="*" element={<Navigate to="/" />} />

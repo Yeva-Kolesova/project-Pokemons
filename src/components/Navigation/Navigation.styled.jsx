@@ -21,10 +21,9 @@ export const StyledNavigation = styled.nav`
 export const StyledLink = styled(NavLink)`
   padding: 0;
   position: relative;
-  color:var(--transparency-40);
+  color: var(--transparency-40);
   text-decoration: none;
-
-  &::after{
+  &::after {
     content: '';
     width: 30px;
     height: 30px;
@@ -41,13 +40,13 @@ export const StyledLink = styled(NavLink)`
     height: 27px;
     align-items: center;
 
-    p{
+    p {
       margin-left: 23px;
       color: var(--white);
       font-size: 18px;
     }
 
-    &::after{
+    &::after {
       content: '';
       width: 10px;
       height: 10px;
@@ -55,6 +54,15 @@ export const StyledLink = styled(NavLink)`
       left: 4px;
     }
   }
+
+  /*${({ $current }) => $current}*/
+ /* &:active{
+    color:var(--icon-violet);
+  }
+
+  &::after:active{
+    background-color: var(--white);
+  }*/
 
 `;
 
