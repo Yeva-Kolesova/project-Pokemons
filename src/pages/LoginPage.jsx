@@ -20,7 +20,8 @@ const StyledBox = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url(${imageMob});
-  background-color: #302e8e;
+  background-color: #101010;
+  height: 100vh;
 
   @media only screen and (min-width: 768px) {
     background-image: url(${imageTablet});
