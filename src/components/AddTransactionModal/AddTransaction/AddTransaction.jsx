@@ -38,18 +38,14 @@ export const AddTransaction = ({ closeModal }) => {
     control: styles => ({
       ...styles,
       backgroundColor: 'transparent',
-      marginBottom: '40px',
+      marginBottom: '-2px',
+      marginTop: '40px',
       border: 'none',
       borderBottom: '1px solid rgba(255, 255, 255, 0.4)',
       outline: 'none',
       color: 'rgba(255, 255, 255, 0.6)',
       fontSize: '18px',
       borderRadius: '0',
-    }),
-    indicatorSeparator: styles => ({
-      ...styles,
-      backgroundColor: 'transparent',
-      width: 0,
     }),
     placeholder: styles => ({
       ...styles,
@@ -58,12 +54,23 @@ export const AddTransaction = ({ closeModal }) => {
     }),
     menu: styles => ({
       ...styles,
-      height: '444px',
       borderRadius: '8px',
+      backgroundColor: 'white',
       background: 'linear-gradient(0deg, rgba(83, 61, 186, 0.70) 0%, rgba(80, 48, 154, 0.70) 43.14%, rgba(106, 70, 165, 0.52) 73.27%, rgba(133, 93, 175, 0.13) 120.03%)',
       boxShadow: '0px 4px 60px 0px rgba(0, 0, 0, 0.25)',
       backdropFilter: 'blur(50px)',
+      overflow: 'hidden',
+      color: '#FBFBFB',
+      fontFamily: "'Poppins', sans-serif",
+      fontSize: '16px',
+      fontWeight: '400'
     }),
+    option: (styles, {data, isFocused, isSelected}) => {
+      return {
+        ...styles,
+
+      }
+    },
   };
 
   const DropdownIndicator = (props) => {
@@ -145,8 +152,13 @@ export const AddTransaction = ({ closeModal }) => {
           </TransactionToggleWrap>
 
           {isMinus && (
-            <Select required options={transactionCategories} components={{ DropdownIndicator }}
-                    placeholder='Select a category' styles={selectStyle} />
+            <Select
+              required
+              options={transactionCategories}
+              components={{ DropdownIndicator, IndicatorSeparator: () => null }}
+              placeholder='Select a category'
+              styles={selectStyle}
+            menuPosition='top'/>
           )}
 
           <WrapSumCalendar>
