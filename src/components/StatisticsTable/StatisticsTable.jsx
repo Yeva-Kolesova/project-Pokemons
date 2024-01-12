@@ -8,6 +8,8 @@ import {
   StyledExpenses,
   StyledIncome,
   StyledItem,
+  StyledList,
+  StyledListContainer,
 } from './StatisticsTable.styled';
 
 const StatisticsTable = () => {
@@ -72,23 +74,25 @@ const StatisticsTable = () => {
           </option>
         ))}
       </StyledCategorySelect>
-      <ul>
-        {transactions.map(({ categoryId, amount }) => (
-          <StyledItem key={nanoid()}>
-            <div>
-              <span />
-              <p>{categoryId}</p>
-            </div>
-            <p>{amount}</p>
-          </StyledItem>
-        ))}
-      </ul>
+      <StyledListContainer>
+        <StyledList>
+          {transactions.map(({ categoryId, amount }) => (
+            <StyledItem key={nanoid()}>
+              <div>
+                <span />
+                <p>{categoryId}</p>
+              </div>
+              <p>{amount}</p>
+            </StyledItem>
+          ))}
+        </StyledList>
+      </StyledListContainer>
       <StyledExpenses>
-        <h4>Expenses:</h4>
+        <h3>Expenses:</h3>
         <p>{totalExpenses(transactions)}</p>
       </StyledExpenses>
       <StyledIncome>
-        <h4>Income:</h4>
+        <h3>Income:</h3>
         <p>27350.00</p>
       </StyledIncome>
     </>

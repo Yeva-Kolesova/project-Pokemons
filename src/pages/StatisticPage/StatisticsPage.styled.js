@@ -28,7 +28,6 @@ export const StyledContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   gap: 32px;
 
   @media only screen and (min-width: 768px) {
@@ -38,4 +37,5 @@ export const StyledContent = styled.div`
 
 export const StyledTable = styled.div`
   display: flex;
+  flex-direction: column;
 `;

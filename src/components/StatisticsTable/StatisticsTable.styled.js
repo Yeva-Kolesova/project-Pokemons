@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledCategorySelect = styled.select`
-  width: 395px;
+  width: -webkit-fill-available;
   height: 56px;
   padding: 16px 28px;
   border: none;
@@ -14,6 +14,25 @@ export const StyledCategorySelect = styled.select`
   font-size: 16px;
   font-family: Poppins;
   font-weight: 600;
+`;
+
+export const StyledListContainer = styled.div`
+  width: 100%;
+  height: auto;
+
+  @media only screen and (min-width: 768px) {
+    overflow-y: auto;
+    height: 305px;
+  }
+
+  @media only screen and (min-width: 1280px) {
+    height: auto;
+  }
+`;
+
+export const StyledList = styled.ul`
+  padding: 0;
+  margin: 0;
 `;
 
 export const StyledItem = styled.li`
@@ -35,6 +54,12 @@ export const StyledItem = styled.li`
     height: 24px;
     background-color: #fed057;
     border-radius: 2px;
+  }
+
+  p {
+    font-size: 14px;
+    font-weight: 400;
+    font-family: Poppins;
   }
 `;
 
