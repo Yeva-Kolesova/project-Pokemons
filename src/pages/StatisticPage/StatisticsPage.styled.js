@@ -12,6 +12,7 @@ export const StyledContainer = styled.div`
 
   @media only screen and (min-width: 768px) {
     h2 {
+      font-style: 30px;
       padding-bottom: 20px;
     }
   }
@@ -28,7 +29,6 @@ export const StyledContainer = styled.div`
 export const StyledContent = styled.div`
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   gap: 32px;
 
   @media only screen and (min-width: 768px) {
@@ -40,4 +40,7 @@ export const StyledTable = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
+  @media only screen and (min-width: 768px) and (max-width: 1279px) {
+    margin-top: -45px;
+  }
 `;

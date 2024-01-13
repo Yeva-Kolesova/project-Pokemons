@@ -12,11 +12,12 @@ export const StyledCategory = styled.div`
   background-color: rgba(82, 59, 126, 0.6);
   box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(50px);
-
-  color: #fbfbfb;
-  font-size: 16px;
-  font-family: Poppins;
-  font-weight: 600;
+  p {
+    color: var(--white);
+    font-size: 16px;
+    font-family: Poppins;
+    font-weight: 600;
+  }
 `;
 
 export const StyledListContainer = styled.div`
@@ -26,7 +27,7 @@ export const StyledListContainer = styled.div`
   @media only screen and (min-width: 768px) {
     overflow-y: auto;
     height: auto;
-    max-height: 305px;
+    max-height: 235px;
   }
 
   @media only screen and (min-width: 1280px) {
@@ -87,7 +88,7 @@ export const StyledIncome = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 28px 0;
+  padding: 16px 28px 45px;
 
   color: var(--white);
   font-size: 14px;

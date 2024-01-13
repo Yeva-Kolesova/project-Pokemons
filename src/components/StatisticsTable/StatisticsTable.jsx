@@ -12,6 +12,12 @@ import { selectSummary } from 'reduxConfig/statistics/selectors';
 import { fetchTransSumThunk } from 'reduxConfig/statistics/operations';
 import { coloredCategoriesMap } from 'components/Chart/Chart';
 
+export const formatNumber = number => {
+  return Math.abs(number)
+    .toFixed(2)
+    .replace(/\d(?=(\d{3})+\.)/g, '$& ');
+};
+
 const StatisticsTable = () => {
   const summary = useSelector(selectSummary);
 
@@ -47,18 +53,18 @@ const StatisticsTable = () => {
                 <span style={{ backgroundColor: category.color }} />
                 <p>{category.name}</p>
               </div>
-              <p>{Math.abs(category.total).toFixed(2)}</p>
+              <p>{formatNumber(category.total)}</p>
             </StyledItem>
           ))}
         </StyledList>
       </StyledListContainer>
       <StyledExpenses>
         <h3>Expenses:</h3>
-        <p>{Math.abs(summary.expenseSummary)?.toFixed(2)}</p>
+        <p>{formatNumber(summary.expenseSummary)}</p>
       </StyledExpenses>
       <StyledIncome>
         <h3>Income:</h3>
-        <p>{summary.incomeSummary?.toFixed(2)}</p>
+        <p>{formatNumber(summary.incomeSummary)}</p>
       </StyledIncome>
     </>
   );

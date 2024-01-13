@@ -7,6 +7,9 @@ export const StyledDashboard = styled.div`
   width: 100%;
   flex-direction: column;
 
+  font-family: Poppins;
+  font-size: 16px;
+
   @media only screen and (min-width: 768px) {
     gap: 16px;
     flex-direction: row;
@@ -16,4 +19,3 @@ export const StyledDashboard = styled.div`
     gap: 32px;
   }
 `;
-

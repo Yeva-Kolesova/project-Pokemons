@@ -1,4 +1,5 @@
 import { Chart as ChartJS, registerables } from 'chart.js';
+import { formatNumber } from 'components/StatisticsTable/StatisticsTable';
 import { Doughnut } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
 import { selectSummary } from 'reduxConfig/statistics/selectors';
@@ -15,6 +16,7 @@ export const coloredCategoriesMap = new Map([
   ['Education', 'rgba(129, 225, 255, 1)'],
   ['Leisure', 'rgba(36, 204, 167, 1)'],
   ['Other expenses', 'rgba(0, 173, 132, 1)'],
+  ['Entertainment', 'rgb(255, 137, 212)'],
 ]);
 
 export function Chart() {
@@ -33,8 +35,13 @@ export function Chart() {
   const data = {
     datasets: [
       {
-        data: periodSummary.map(expense => expense.total),
-        backgroundColor: periodSummary.map(expense => expense.color),
+        data: periodSummary.length
+          ? periodSummary.map(expense => expense.total)
+          : [1],
+        backgroundColor: periodSummary.length
+          ? periodSummary.map(expense => expense.color)
+          : '#45454568',
+        boxShadow: '0px 0px 8px 0px #000 inset',
       },
     ],
   };
@@ -76,9 +83,14 @@ export function Chart() {
         }}
       >
         <span
-          style={{ fontSize: '18px', fontWeight: 'bold', color: '#fbfbfb' }}
+          style={{
+            fontSize: '18px',
+            fontWeight: 'bold',
+            fontFamily: 'Poppins',
+            color: 'var(--white)',
+          }}
         >
-          ₴ {Math.abs(summary.expenseSummary).toFixed(2)}
+          ₴ {formatNumber(summary.expenseSummary)}
         </span>
       </div>
     </div>
