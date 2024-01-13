@@ -25,23 +25,11 @@ export const addTransactionThunk = createAsyncThunk(
   }
 );
 
-export const newTransactionThunk = createAsyncThunk(
-  'transactions/new',
-  async (_, ThunkAPI) => {
-    try {
-      const { data } = await api.post('/api/transactions');
-      return data;
-    } catch (error) {
-      return ThunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
 export const allTransactionThunk = createAsyncThunk(
   'transactions/all',
   async (_, ThunkAPI) => {
     try {
-      const { data } = await api.post('/api/transactions');
+      const { data } = await api.get('/transactions');
       return data;
     } catch (error) {
       return ThunkAPI.rejectWithValue(error.message);
@@ -53,7 +41,7 @@ export const updatedTransactionThunk = createAsyncThunk(
   'transactions/updated',
   async (_, ThunkAPI) => {
     try {
-      const { data } = await api.post('/api/transactions/{transactionId}');
+      const { data } = await api.patch('/transactions/{transactionId}');
       return data;
     } catch (error) {
       return ThunkAPI.rejectWithValue(error.message);
@@ -63,9 +51,9 @@ export const updatedTransactionThunk = createAsyncThunk(
 
 export const deleteTransactionThunk = createAsyncThunk(
   'transactions/delete',
-  async (categoryId, ThunkAPI) => {
+  async (transactionId, ThunkAPI) => {
     try {
-      const { data } = await api.post(`/api/transactions/${categoryId}`);
+      const { data } = await api.delete(`/transactions/${transactionId}`);
       return data;
     } catch (error) {
       return ThunkAPI.rejectWithValue(error.message);
@@ -77,7 +65,7 @@ export const summaryControllerTransactionThunk = createAsyncThunk(
   'transactions/summaryController',
   async (_, ThunkAPI) => {
     try {
-      const { data } = await api.post('/api/transactions-summary');
+      const { data } = await api.get('/transactions-summary');
       return data;
     } catch (error) {
       return ThunkAPI.rejectWithValue(error.message);
