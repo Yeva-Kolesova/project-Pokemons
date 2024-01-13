@@ -1,19 +1,20 @@
 import styled from 'styled-components';
 
-export const StyledDashboard = styled.div`
+export const StyledDahsboard = styled.div`
   display: flex;
-  gap: 20px;
+  gap: 32px;
   margin-bottom: 20px;
-  width: 100%;
-  flex-direction: column;
-
-  @media only screen and (min-width: 768px) {
-    gap: 16px;
-    flex-direction: row;
-  }
-
-  @media only screen and (min-width: 1280px) {
-    gap: 32px;
-  }
 `;
 
+export const StyledSelect = styled.select`
+  width: 182px;
+  height: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 8px;
+  background-color: rgba(74, 86, 226, 0.1);
+  padding: 12px 21px 14px 20px;
+
+  color: #fbfbfb;
+  font-size: 16px;
+  font-family: Poppins;
+`;
