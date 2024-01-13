@@ -1,8 +1,6 @@
 import { selectCategories } from 'reduxConfig/transactions/selectors';
-import { CloseBtn } from './AddTransaction.styled';
+import { CloseBtn, Expense, Income } from './AddTransaction.styled';
 import {
-  ActiveExpense,
-  ActiveIncome,
   Backdrop,
   BtnAdd,
   BtnCancel,
@@ -12,7 +10,6 @@ import {
   Form,
   Input,
   Modal,
-  NoActive,
   TextareaStyled,
   Title,
   TransactionToggleWrap,
@@ -28,12 +25,14 @@ import {
 } from '../../../reduxConfig/transactions/operations';
 import Select, { components } from 'react-select';
 import { SlArrowDown, SlArrowUp } from 'react-icons/sl';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import { useForm } from 'react-hook-form';
+// import { yupResolver } from '@hookform/resolvers/yup';
+// import * as yup from 'yup';
+import { useForm, Controller } from 'react-hook-form';
 import { Calendar } from '../Calendar/Calendar';
 
-const validationSchema = yup
+const INCOME_CODE = '063f1132-ba5d-42b4-951d-44011ca46262'
+
+/*const validationSchema = yup
   .object({
     amount: yup
       .number()
@@ -47,7 +46,7 @@ const validationSchema = yup
       .max(30)
       .required('Comment is required'),
   })
-  .required();
+  .required();*/
 
 export const AddTransaction = ({ closeModal }) => {
   const [isMinus, setIsMinus] = useState(true);
@@ -55,14 +54,10 @@ export const AddTransaction = ({ closeModal }) => {
   const dispatch = useDispatch();
   const transactionCategories = useSelector(selectCategories);
 
-  const {
-    register,
-    handleSubmit,
-    // formState: { errors },
-  } = useForm({
+  const { register, handleSubmit, control } = useForm(/*{
     mode: 'onChange',
     resolver: yupResolver(validationSchema),
-  });
+  }*/);
 
   useEffect(() => {
     dispatch(getTransactionsCategoriesThunk());
@@ -109,10 +104,13 @@ export const AddTransaction = ({ closeModal }) => {
     return transformedDate;
   };
 
-  const submit = e => {
-    const transaction = {
-      transactionDate: transformDate(startDate),
-    };
+  function onSubmit(formData) {
+    const transaction = {}
+    transaction.comment = formData.comment
+    transaction.amount = (formData.isExpense && formData.amount > 0 ) ? -formData.amount : formData.amount
+    transaction.type = formData.isExpense ? 'EXPENSE' : 'INCOME'
+    transaction.categoryId = formData.isExpense ? formData.category : INCOME_CODE
+    transaction.transactionDate = transformDate(startDate)
     dispatch(addTransactionThunk(transaction))
       .unwrap()
       .then(() => {
@@ -121,7 +119,8 @@ export const AddTransaction = ({ closeModal }) => {
       .catch(err => {
         console.log(err);
       });
-  };
+    closeModal();
+  }
 
   const selectStyle = {
     control: styles => ({
@@ -159,7 +158,7 @@ export const AddTransaction = ({ closeModal }) => {
       backdropFilter: 'blur(50px)',
       overflow: 'hidden',
       color: '#FBFBFB',
-      fontFamily: "'Poppins', sans-serif",
+      fontFamily: '\'Poppins\', sans-serif',
       fontSize: '16px',
       fontWeight: '400',
 
@@ -197,9 +196,9 @@ export const AddTransaction = ({ closeModal }) => {
     return (
       <components.DropdownIndicator {...props}>
         {props.selectProps.menuIsOpen ? (
-          <SlArrowUp size={18} label="Arrow up" color={'var(--white)'} />
+          <SlArrowUp size={18} label='Arrow up' color={'var(--white)'} />
         ) : (
-          <SlArrowDown size={18} label="Arrow down" color={'var(--white)'} />
+          <SlArrowDown size={18} label='Arrow down' color={'var(--white)'} />
         )}
       </components.DropdownIndicator>
     );
@@ -209,63 +208,63 @@ export const AddTransaction = ({ closeModal }) => {
     <Backdrop onClick={onBackdropClick}>
       <Modal>
         <Gradient />
-        <CloseModalBtn type="button" onClick={() => closeModal()}>
+        <CloseModalBtn type='button' onClick={() => closeModal()}>
           <CloseBtn />
         </CloseModalBtn>
         <Title>Add transaction</Title>
-        <Form onSubmit={handleSubmit(submit)}>
+        <Form onSubmit={handleSubmit(onSubmit)}>
+
           <TransactionToggleWrap>
-            {isMinus ? (
-              <NoActive>Income</NoActive>
-            ) : (
-              <ActiveIncome>Income</ActiveIncome>
-            )}
+            <Income $active={!isMinus}>Income</Income>
             <LabelToggle>
               <InputToggle
-                type="checkbox"
-                defaultChecked
+                type='checkbox'
+                defaultChecked={true}
+                {...register('isExpense')}
                 onChange={() => setIsMinus(!isMinus)}
               />
               <SpanToggle />
             </LabelToggle>
-
-            {isMinus ? (
-              <ActiveExpense>Expense</ActiveExpense>
-            ) : (
-              <NoActive>Expense</NoActive>
-            )}
+            <Expense $active={isMinus} >Expense</Expense>
           </TransactionToggleWrap>
 
           {isMinus && (
-            <Select
-              required
-              options={transactionCategories}
-              components={{ DropdownIndicator, IndicatorSeparator: () => null }}
-              placeholder="Select a category"
-              styles={selectStyle}
-              isSearchable={false}
-              // name="category"
-              // {...register('value')}
+            <Controller
+              name="category"
+              control={control}
+              rules={{ required: true }}
+              render={({ field, value }) => (
+                <Select
+                  id="category"
+                  options={transactionCategories}
+                  components={{ DropdownIndicator, IndicatorSeparator: () => null }}
+                  placeholder='Select a category'
+                  styles={selectStyle}
+                  isSearchable={false}
+                  value={transactionCategories.find((category) => category.value === value)}
+                  onChange={(option) => field.onChange(option.value)}
+                />
+              )}
             />
           )}
 
           <WrapSumCalendar>
             <Input
-              type="number"
-              name="amount"
-              placeholder="0.00"
+              type='number'
+              name='amount'
+              placeholder='0.00'
               {...register('amount')}
             />
             <Calendar
-            // {...register('date')}
+              // {...register('date')}
             />
           </WrapSumCalendar>
 
-          <TextareaStyled placeholder="Comment" {...register('comment')} />
+          <TextareaStyled placeholder='Comment' {...register('comment')} />
 
           <ButtonsWrap>
-            <BtnAdd type="submit">Add</BtnAdd>
-            <BtnCancel type="button" onClick={onCancelButton}>
+            <BtnAdd type='submit' >Add</BtnAdd>
+            <BtnCancel type='button' onClick={onCancelButton}>
               Cancel
             </BtnCancel>
           </ButtonsWrap>
