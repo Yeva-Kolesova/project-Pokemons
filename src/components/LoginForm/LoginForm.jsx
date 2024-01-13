@@ -3,13 +3,16 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { logInThunk } from 'reduxConfig/auth/operations';
 import icons from '../../images/icons.svg';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 import {
   StyledBoxForm,
   StyledEmailIcon,
+  StyledErr,
   StyledForm,
   StyledIcon,
-  StyledInput,
+  StyledInputBox,
   StyledInputField,
   StyledLabel,
   StyledLink,
@@ -17,17 +20,35 @@ import {
   StyledPasswordIcon,
   StyledTitle,
 } from './LoginForm.styled';
+import { toast } from 'react-toastify';
+
+const userSchema = yup.object().shape({
+  email: yup.string().email('Please enter a valid email!').required('Required'),
+  password: yup.string().min(6).max(12).required('Required'),
+});
 
 const LoginForm = () => {
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   formState: { errors },
+  // } = useForm();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+    reset,
+  } = useForm({
+    resolver: yupResolver(userSchema),
+  });
   const dispatch = useDispatch();
   const submit = data => {
     console.log(data);
-    dispatch(logInThunk(data));
+    dispatch(logInThunk(data))
+      .unwrap()
+      .then(res => toast.success(`Welcome ${res.user.username}!`))
+      .catch(err => toast.error(err));
+    reset();
   };
   return (
     <StyledBoxForm>
@@ -37,35 +58,28 @@ const LoginForm = () => {
         </StyledIcon>
         <StyledTitle>Money Guard</StyledTitle>
         <StyledLabel>
-          <StyledInput>
-            <StyledEmailIcon />
+          <StyledInputBox>
+            <StyledEmailIcon width={24} height={24} />
             <StyledInputField
-              {...register('email', {
-                minLength: { value: 9, message: 'Email number is too short!' },
-              })}
+              {...register('email')}
               placeholder="E-mail"
               type="text"
-              required
+              name="email"
             />
-            {errors.email && <span>{errors.email.message}</span>}
-          </StyledInput>
+          </StyledInputBox>
+          <StyledErr>{errors.email?.message}</StyledErr>
         </StyledLabel>
         <StyledLabel>
-          <StyledInput>
-            <StyledPasswordIcon />
+          <StyledInputBox>
+            <StyledPasswordIcon width={24} height={24} />
             <StyledInputField
-              {...register('password', {
-                minLength: {
-                  value: 6,
-                  message: 'Password must be at least 7 symbols long!',
-                },
-              })}
+              {...register('password')}
               placeholder="Password"
               type="password"
-              required
+              name="password"
             />
-            {errors.password && <span>{errors.password.message}</span>}
-          </StyledInput>
+          </StyledInputBox>
+          <StyledErr>{errors.password?.message}</StyledErr>
         </StyledLabel>
         <StyledLogin>Log in</StyledLogin>
         <StyledLink to="/register">Register</StyledLink>
