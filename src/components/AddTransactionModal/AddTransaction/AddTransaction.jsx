@@ -7,7 +7,7 @@ import {
   BtnAdd,
   BtnCancel,
   ButtonsWrap,
-  CloseModalBtn,
+  CloseModalBtn, Gradient,
   Input,
   Modal,
   NoActive,
@@ -17,12 +17,12 @@ import {
 } from './AddTransaction.styled';
 import sprite from '../sprite.svg';
 import 'react-datepicker/dist/react-datepicker.css';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { InputToggle, LabelToggle, SpanToggle } from './AddTransaction.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { getTransactionsCategoriesThunk } from '../../../reduxConfig/transactions/operations';
 import Select, { components } from 'react-select';
-import { SlArrowDown } from 'react-icons/sl';
+import { SlArrowDown, SlArrowUp } from 'react-icons/sl';
 
 export const AddTransaction = ({ closeModal }) => {
   const [isMinus, setIsMinus] = useState(true);
@@ -43,9 +43,17 @@ export const AddTransaction = ({ closeModal }) => {
       border: 'none',
       borderBottom: '1px solid rgba(255, 255, 255, 0.4)',
       outline: 'none',
-      color: 'rgba(255, 255, 255, 0.6)',
-      fontSize: '18px',
       borderRadius: '0',
+      boxShadow: 'none',
+      '&:hover': {
+        border: 'none',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.4)',
+      },
+    }),
+    singleValue: styles => ({
+      ...styles,
+      color: '#FBFBFB',
+      fontSize: '18px',
     }),
     placeholder: styles => ({
       ...styles,
@@ -55,20 +63,40 @@ export const AddTransaction = ({ closeModal }) => {
     menu: styles => ({
       ...styles,
       borderRadius: '8px',
-      backgroundColor: 'white',
-      background: 'linear-gradient(0deg, rgba(83, 61, 186, 0.70) 0%, rgba(80, 48, 154, 0.70) 43.14%, rgba(106, 70, 165, 0.52) 73.27%, rgba(133, 93, 175, 0.13) 120.03%)',
+      backgroundColor: 'transparent',
       boxShadow: '0px 4px 60px 0px rgba(0, 0, 0, 0.25)',
       backdropFilter: 'blur(50px)',
       overflow: 'hidden',
       color: '#FBFBFB',
-      fontFamily: "'Poppins', sans-serif",
+      fontFamily: '\'Poppins\', sans-serif',
       fontSize: '16px',
-      fontWeight: '400'
-    }),
-    option: (styles, {data, isFocused, isSelected}) => {
-      return {
-        ...styles,
+      fontWeight: '400',
 
+      '&::before': {
+        background: 'linear-gradient(0deg, rgba(83, 61, 186, 0.70) 0%, rgba(80, 48, 154, 0.70) 43.14%, rgba(106, 70, 165, 0.52) 73.27%, rgba(133, 93, 175, 0.13) 120.03%)',
+        content: '""',
+        filter: 'blur(50px)',
+        position: 'absolute',
+        inset: '0%',
+        zIndex: '-1',
+      },
+    }),
+    option: (styles, { isFocused, isSelected }) => {
+      if (isFocused) {
+        return {
+          ...styles,
+          background: '#FFFFFF1A',
+          color: '#FF868D',
+        };
+      } else if (isSelected) {
+        return {
+          ...styles,
+          background: 'transparent',
+        };
+      } else {
+        return {
+          ...styles,
+        };
       }
     },
   };
@@ -76,7 +104,9 @@ export const AddTransaction = ({ closeModal }) => {
   const DropdownIndicator = (props) => {
     return (
       <components.DropdownIndicator {...props}>
-        <SlArrowDown label='Arrow down' primaryColor={'var(--white)'} />
+        {props.selectProps.menuIsOpen
+          ? <SlArrowUp size={18} label='Arrow down' color={'var(--white)'} />
+          : <SlArrowDown size={18} label='Arrow down' color={'var(--white)'} />}
       </components.DropdownIndicator>
     );
   };
@@ -120,6 +150,7 @@ export const AddTransaction = ({ closeModal }) => {
   return (
     <Backdrop onClick={onBackdropClick}>
       <Modal>
+        <Gradient/>
         <CloseModalBtn type='button' onClick={() => closeModal()}>
           {
             <svg>
@@ -158,7 +189,8 @@ export const AddTransaction = ({ closeModal }) => {
               components={{ DropdownIndicator, IndicatorSeparator: () => null }}
               placeholder='Select a category'
               styles={selectStyle}
-            menuPosition='top'/>
+              isSearchable={false}
+            />
           )}
 
           <WrapSumCalendar>
