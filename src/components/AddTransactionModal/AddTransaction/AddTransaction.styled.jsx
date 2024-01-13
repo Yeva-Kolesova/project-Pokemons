@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { IoCloseOutline } from 'react-icons/io5';
-import minusIcon from '../../../images/minus.svg';
-import plusIcon from '../../../images/plus.svg';
+import minusIcon from '../../../images/minus.svg'
+import plusIcon from '../../../images/plus.svg'
+import { GrClose } from 'react-icons/gr';
 
 export const Backdrop = styled.div`
   position: fixed;
@@ -72,16 +72,16 @@ export const Form = styled.form`
 export const CloseModalBtn = styled.button`
   display: none;
   position: absolute;
-  fill: #fbfbfb;
-  width: 16px;
-  height: 16px;
   right: 20px;
   top: 20px;
   border: none;
   outline: transparent;
+  background-color: transparent;
 
   @media only screen and (min-width: 768px) {
     display: flex;
+    align-items: center;
+    justify-content: center;
   }
 `;
 
@@ -305,7 +305,13 @@ export const DateWrapper = styled.div`
   }
 `;
 
-export const CloseBtn = styled(IoCloseOutline)``;
+export const CloseBtn = styled(GrClose )`
+  margin: 0;
+  padding: 0;
+  width: 16px;
+  height: 16px;
+  color: #fbfbfb;
+`;
 
 export const Gradient = styled.div`
   z-index: -20;

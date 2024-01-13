@@ -120,10 +120,11 @@ export const AddTransaction = ({ closeModal }) => {
   function onSubmit(formData) {
     const transaction = {};
     transaction.comment = formData.comment;
+    const amountValue = Number(formData.amount).toFixed(2)
     transaction.amount =
-      formData.isExpense && formData.amount > 0
-        ? -formData.amount
-        : formData.amount;
+      formData.isExpense && amountValue > 0
+        ? -amountValue
+        : amountValue;
     transaction.type = formData.isExpense ? 'EXPENSE' : 'INCOME';
     transaction.categoryId = formData.isExpense
       ? formData.category
