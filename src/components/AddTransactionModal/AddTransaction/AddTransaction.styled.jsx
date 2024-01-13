@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { IoCloseOutline } from 'react-icons/io5';
 
 export const Backdrop = styled.div`
   position: fixed;
@@ -9,6 +10,7 @@ export const Backdrop = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: rgba(34, 13, 91, 0.23);
   z-index: 10;
 
   &::before {
@@ -27,11 +29,17 @@ export const Modal = styled.div`
   flex-direction: column;
   align-items: center;
   max-width: 320px;
-  /* height: 100vh; */
   padding: 40px 20px;
+  background: rgba(255, 255, 255, 0.1);
   box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(50px);
   overflow: hidden;
-
+  @media only screen and (min-width: 768px) {
+    min-width: 540px;
+    min-height: 589px;
+    padding: 40px 73px;
+    border-radius: 8px;
+  }
   &::before {
     background-color: rgba(255, 255, 255, 0.1);
     content: '';
@@ -40,39 +48,26 @@ export const Modal = styled.div`
     inset: 0;
     z-index: -1;
   }
+`;
+
+export const Title = styled.h1`
+  margin-bottom: 34px;
+  color: #fbfbfb;
+  font-size: 24px;
+  font-weight: 400;
+  text-align: center;
 
   @media only screen and (min-width: 768px) {
-    width: 540px;
-    height: 589px;
-    padding: 40px 40px;
-    border-radius: 8px;
+    font-size: 30px;
+    margin-bottom: 42px;
   }
+`;
 
-  select:required {
-    color: rgba(255, 255, 255, 0.6);
-    padding-left: 8px;
-    padding-bottom: 8px;
-  }
-
-  h1 {
-    margin-bottom: 34px;
-    color: #fbfbfb;
-    font-size: 24px;
-    font-weight: 400;
-    text-align: center;
-
-    @media only screen and (min-width: 768px) {
-      font-size: 30px;
-      margin-bottom: 40px;
-    }
-  }
-  form {
-    display: flex;
-    flex-direction: column;
-    /* gap: 40px; */
-    margin-bottom: 20px;
-    min-width: 100%;
-  }
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  width: 100%;
 `;
 
 export const CloseModalBtn = styled.button`
@@ -84,10 +79,8 @@ export const CloseModalBtn = styled.button`
   position: absolute;
   right: 20px;
   top: 20px;
-  /* background-color: transparent; */
   border: none;
   outline: transparent;
-  /* color: #ffffff; */
 
   @media only screen and (min-width: 768px) {
     display: flex;
@@ -102,14 +95,23 @@ export const TransactionToggleWrap = styled.div`
 `;
 
 export const Input = styled.input`
+  padding-left: 20px;
+  padding-bottom: 8px;
+  width: 100%;
   background: transparent;
   border: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   outline: none;
+  margin-bottom: 40px;
+  background: transparent;
+  color: #fbfbfb;
   font-size: 18px;
-  padding-left: 8px;
-  padding-bottom: 8px;
+  font-weight: 600;
+  @media only screen and (min-width: 768px) {
+    width: 181px;
+  }
 `;
+
 export const ButtonsWrap = styled.div`
   display: flex;
   align-items: center;
@@ -136,7 +138,7 @@ export const BtnAdd = styled.button`
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 1.8px;
-  @media only screen and (mix-width: 768px) {
+  @media only screen and (min-width: 768px) {
     width: 300px;
   }
 `;
@@ -157,23 +159,25 @@ export const BtnCancel = styled.button`
   text-transform: uppercase;
   letter-spacing: 1.8px;
 
-  @media only screen and (mix-width: 768px) {
+  @media only screen and (min-width: 768px) {
     width: 300px;
   }
 `;
 
 export const TextareaStyled = styled.textarea`
-  height: 35px;
   margin-bottom: 40px;
+  padding-left: 20px;
+  padding-bottom: 52px;
   font-size: 18px;
   font-weight: 400;
   background-color: transparent;
   border: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   color: #ffffff;
-
-  &::placeholder {
-    /* margin-bottom: 52px; */
+  overflow: hidden;
+  outline: none;
+  @media only screen and (min-width: 768px) {
+    padding-bottom: 8px;
   }
 `;
 
@@ -196,23 +200,27 @@ export const ActiveIncome = styled.p`
 export const WrapSumCalendar = styled.div`
   display: flex;
   flex-direction: column;
-  margin-bottom: 40px;
   margin-top: 40px;
+  margin-bottom: 40px;
+  @media only screen and (min-width: 768px) {
+    flex-direction: row;
+    gap: 32px;
+    margin-top: 0px;
+  }
 
   input {
     background: transparent;
     border: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     outline: none;
-    padding: 8px 20px;
-    padding-left: 8px;
+    padding-left: 20px;
     padding-bottom: 8px;
     color: #fbfbfb;
     font-size: 18px;
     font-weight: 600;
     margin: 0;
   }
-  @media only screen and (mix-width: 768px) {
+  @media only screen and (min-width: 768px) {
     /* flex-direction: row; */
   }
 `;
@@ -230,7 +238,7 @@ export const InputToggle = styled.input`
   &:checked + ::before {
     transform: translateX(40px);
     background-color: #ff868d;
-    content: '-';
+    content: '';
   }
 `;
 
@@ -247,9 +255,9 @@ export const SpanToggle = styled.span`
 
   &::before {
     position: absolute;
-    content: '+';
-    left: -1px;
-    top: -1px;
+    content: '';
+    left: -2px;
+    top: -2px;
     width: 44px;
     height: 44px;
     border-radius: 44px;
@@ -259,6 +267,26 @@ export const SpanToggle = styled.span`
   }
 `;
 
+export const DateWrapper = styled.div`
+  margin-top: 40px;
+  position: relative;
+  display: flex;
+  /* align-items: center; */
+  input {
+    color: #fbfbfb;
+    font-size: 18px;
+    font-weight: 400;
+    width: 280px;
+    padding-left: 20px;
+
+    @media only screen and (min-width: 768px) {
+      width: 181px;
+    }
+  }
+`;
+
+export const CloseBtn = styled(IoCloseOutline)``;
+
 export const Gradient = styled.div`
   z-index: -20;
   position: absolute;
@@ -267,5 +295,5 @@ export const Gradient = styled.div`
   border-radius: 454px;
   background: rgba(47, 21, 176, 0.73);
   filter: blur(100px);
-  inset:0;
-  `
+  inset: 0;
+`;
