@@ -1,6 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  addTransactionThunk, getTransactionsCategoriesThunk,
+  addTransactionThunk,
+  allTransactionThunk,
+  deleteTransactionThunk,
+  getTransactionsCategoriesThunk,
 } from './operations';
 
 const initialState = {
@@ -19,6 +22,16 @@ const handleAddTransaction = (state, { payload }) => {
   state.isLoading = false;
 };
 
+const handleAllTransaction = (state, { payload }) => {
+  state.transactions = payload;
+  state.isLoading = false;
+};
+
+const handleDeleteTransaction = (state, { payload }) => {
+  state.transactions = state.transactions.filter(t => t.id !== payload);
+  state.isLoading = false;
+};
+
 function handleRejected(state, action) {
   state.isLoading = false;
   state.error = action.payload;
@@ -32,17 +45,27 @@ const slice = createSlice({
     builder
       .addCase(getTransactionsCategoriesThunk.pending, handlePending)
       .addCase(
-        getTransactionsCategoriesThunk.fulfilled, (state, { payload }) => {
+        getTransactionsCategoriesThunk.fulfilled,
+        (state, { payload }) => {
           state.categories = payload.map(category => {
             return { value: category.id, label: category.name };
           });
           state.isLoading = false;
-        },
+        }
       )
       .addCase(getTransactionsCategoriesThunk.rejected, handleRejected)
+
       .addCase(addTransactionThunk.pending, handlePending)
       .addCase(addTransactionThunk.fulfilled, handleAddTransaction)
-      .addCase(addTransactionThunk.rejected, handleRejected);
+      .addCase(addTransactionThunk.rejected, handleRejected)
+
+      .addCase(allTransactionThunk.pending, handlePending)
+      .addCase(allTransactionThunk.fulfilled, handleAllTransaction)
+      .addCase(allTransactionThunk.rejected, handleRejected)
+
+      .addCase(deleteTransactionThunk.pending, handlePending)
+      .addCase(deleteTransactionThunk.fulfilled, handleDeleteTransaction)
+      .addCase(deleteTransactionThunk.rejected, handleRejected);
   },
 });
 

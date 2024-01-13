@@ -12,19 +12,29 @@ import {
   PencilButton,
 } from './TransactionItem.styled';
 import { LuPencil } from 'react-icons/lu';
+import { useDispatch } from 'react-redux';
+import { deleteTransactionThunk } from 'reduxConfig/transactions/operations';
 
 const TransactionItem = ({ data }) => {
-  const { transactionDate, type, categoryId, comment, amount } = data;
-
+  const dispatch = useDispatch();
+  const { id, transactionDate, type, categoryId, comment, amount } = data;
   const [isEditTransactionForm, setIsEditTransactionForm] = useState(false);
+
+  const handleDelete = transactionId => {
+    dispatch(deleteTransactionThunk(transactionId));
+  };
 
   return (
     <ListTab>
       <PData>{transactionDate}</PData>
-      <PType>{type}</PType>
+      <PType>{type === 'EXPENSE' ? '-' : '+'}</PType>
       <PCategory>{categoryId}</PCategory>
       <PComment>{comment}</PComment>
-      <PSum>{amount}</PSum>
+      <PSum
+        style={type === 'EXPENSE' ? { color: '#FF868D' } : { color: '#FFB627' }}
+      >
+        {Math.abs(amount).toFixed(2)}
+      </PSum>
       <Actions>
         <ActionsContainer>
           <PencilButton
@@ -34,7 +44,13 @@ const TransactionItem = ({ data }) => {
             <LuPencil color={' white'} />
           </PencilButton>
           {isEditTransactionForm}
-          <Button>Delete</Button>
+          <Button
+            onClick={() => {
+              handleDelete(id);
+            }}
+          >
+            Delete
+          </Button>
         </ActionsContainer>
       </Actions>
     </ListTab>
@@ -42,5 +58,3 @@ const TransactionItem = ({ data }) => {
 };
 
 export default TransactionItem;
-
-// /* <TbPencil />  Іконка олівець */

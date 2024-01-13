@@ -131,6 +131,7 @@ export const ListTransaction = styled.tbody`
 
 export const TransactionCardList = styled.ul`
   margin-top: 32px;
+  padding-bottom: 8px;
   display: flex;
   flex-direction: column;
   gap: 8px;
