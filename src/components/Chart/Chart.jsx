@@ -56,25 +56,6 @@ export function Chart() {
     width: 288,
     height: 288,
   };
-  // console.log(summary);
-  // const textCenter = summary => ({
-  //   id: 'textCenter',
-  //   beforeDatasetsDraw(chart, args, pluginOptions) {
-  //     const { ctx } = chart;
-  //     ctx.save();
-  //     ctx.font = 'bold 18px Poppins';
-  //     ctx.fillStyle = '#fbfbfb';
-  //     ctx.textAlign = 'center';
-  //     ctx.textBaseline = 'middle';
-  //     ctx.fillText(
-  //       `₴ ${Math.abs(summary.expenseSummary).toFixed(2)}`,
-  //       chart.width / 2,
-  //       chart.height / 2
-  //     );
-  //   },
-  // });
-
-  // const textCenterPlugin = textCenter(summary);
 
   return (
     <div

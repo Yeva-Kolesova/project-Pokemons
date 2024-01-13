@@ -56,7 +56,6 @@ export const StyledItem = styled.li`
   span {
     width: 24px;
     height: 24px;
-    /* background-color: #fed057; */
     border-radius: 2px;
   }
 
