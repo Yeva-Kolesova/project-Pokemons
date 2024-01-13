@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
 export const StyledContainer = styled.div`
-  color: #fbfbfb;
-  font-family: Poppins;
-  font-size: 30px;
-
+  width: 100%;
   h2 {
     padding-bottom: 8px;
+    color: #fbfbfb;
+    font-family: Poppins;
+    font-size: 30px;
+    font-weight: 400;
   }
 
   @media only screen and (min-width: 768px) {
@@ -27,7 +28,7 @@ export const StyledContainer = styled.div`
 export const StyledContent = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   gap: 32px;
 
   @media only screen and (min-width: 768px) {
@@ -38,4 +39,5 @@ export const StyledContent = styled.div`
 export const StyledTable = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
 `;
