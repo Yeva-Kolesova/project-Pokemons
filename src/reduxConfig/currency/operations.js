@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { currencyAPI } from '../../configAxios/currencyApi';
 
-const currencyNames = {
+const currencyID = {
     usd: 'USD',
     eur: 'EUR',
 };
@@ -19,9 +19,9 @@ export const fetchCurrency = createAsyncThunk(
                 );
                 const result = filteredArray.map(el => {
                     if (el.currencyCodeA === 840) {
-                        return { ...el, currencyName: currencyNames.usd };
+                        return { ...el, currencyName: currencyID.usd };
                     } else if (el.currencyCodeA === 978) {
-                        return { ...el, currencyName: currencyNames.eur };
+                        return { ...el, currencyName: currencyID.eur };
                     }
                     return el;
                 });
