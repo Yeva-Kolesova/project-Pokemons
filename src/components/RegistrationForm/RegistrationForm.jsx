@@ -1,34 +1,66 @@
-// import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-// import * as Yup from 'yup';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { registerThunk } from '../../reduxConfig/auth/operations';
 import icons from '../../images/icons.svg';
+import PasswordStrengthBar from 'react-password-strength-bar-with-style-item';
+// import PasswordStrengthBar from 'react-password-strength-bar';
 import {
   StyledBoxForm,
   StyledEmailIcon,
+  StyledErr,
   StyledForm,
   StyledIcon,
-  StyledInput,
+  StyledInputBox,
   StyledInputField,
   StyledLabel,
   StyledLink,
   StyledPasswordIcon,
   StyledRegister,
+  StyledSpan,
   StyledTitle,
   StyledUserIcon,
 } from './RegistrationForm.styled';
-// import PasswordStrengthBar from 'react-password-strength-bar-with-style-item';
-// import PasswordStrengthBar from 'react-password-strength-bar';
+import { toast } from 'react-toastify';
+
+const userSchema = yup.object().shape({
+  username: yup.string().required('Required'),
+  email: yup.string().email('Please enter a valid email!').required('Required'),
+  password: yup.string().min(6).max(12).required('Required'),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref('password'), null], 'Passwords must match!')
+    .required('Required'),
+});
 
 const RegistrationForm = () => {
-  const { register, handleSubmit } = useForm();
-  // const { register, handleSubmit } = useForm({ resolver });
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   formState: { errors },
+  // } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    resolver: yupResolver(userSchema),
+  });
+
   const dispatch = useDispatch();
-  // const [pass, setPass] = useState('');
+
+  const [pass, setPass] = useState('');
+
   const submit = data => {
     console.log(data);
-    dispatch(registerThunk(data));
+    dispatch(registerThunk(data))
+      .unwrap()
+      .then(res => toast.success(`Welcome ${res.user.username}!`))
+      .catch(err => toast.error(err));
+    reset();
   };
 
   return (
@@ -39,63 +71,66 @@ const RegistrationForm = () => {
         </StyledIcon>
         <StyledTitle>Money Guard</StyledTitle>
         <StyledLabel>
-          <StyledInput>
-            <StyledUserIcon />
+          <StyledInputBox>
+            <StyledUserIcon width={24} height={24} />
             <StyledInputField
-              {...register('username', {
-                minLength: {
-                  value: 6,
-                  message: 'Username must be at least 6 symbols long!',
-                },
-              })}
+              {...register('username')}
               placeholder="Name"
               type="text"
-              required
+              name="username"
             />
-          </StyledInput>
+          </StyledInputBox>
+          <StyledErr>{errors.username?.message}</StyledErr>
         </StyledLabel>
         <StyledLabel>
-          <StyledInput>
-            <StyledEmailIcon />
+          <StyledInputBox>
+            <StyledEmailIcon width={24} height={24} />
             <StyledInputField
-              {...register('email', {
-                minLength: { value: 9, message: 'Email number is too short!' },
-              })}
+              {...register('email')}
               placeholder="E-mail"
               type="text"
-              required
+              name="email"
             />
-          </StyledInput>
+          </StyledInputBox>
+          <StyledErr>{errors.email?.message}</StyledErr>
         </StyledLabel>
         <StyledLabel>
-          <StyledInput>
-            <StyledPasswordIcon />
+          <StyledInputBox>
+            <StyledPasswordIcon width={24} height={24} />
             <StyledInputField
-              {...register('password', {
-                minLength: {
-                  value: 6,
-                  message: 'Password must be at least 6 symbols long!',
-                },
-              })}
+              {...register('password')}
               placeholder="Password"
               type="password"
-              required
+              name="password"
+              onChange={e => setPass(e.target.value)}
             />
-          </StyledInput>
+          </StyledInputBox>
+          <StyledErr>{errors.password?.message}</StyledErr>
         </StyledLabel>
         <StyledLabel>
-          <StyledInput width>
-            <StyledPasswordIcon />
+          <StyledInputBox>
+            <StyledPasswordIcon width={24} height={24} />
             <StyledInputField
               {...register('confirmPassword')}
               placeholder="Confirm password"
               type="password"
-              required
+              name="confirmPassword"
             />
-          </StyledInput>
+          </StyledInputBox>
+          <StyledErr>{errors.confirmPassword?.message}</StyledErr>
         </StyledLabel>
-        {/* <input type="text" onChange={e => setPass(e.target.value)} /> */}
-        {/* <PasswordStrengthBar password={pass} /> */}
+
+        <StyledSpan>
+          <PasswordStrengthBar
+            password={pass}
+            style={{
+              marginTop: '8px',
+            }}
+            scoreWordStyle={{
+              display: 'none',
+            }}
+          />
+        </StyledSpan>
         <StyledRegister type="submit">Register</StyledRegister>
         <StyledLink to="/login">Log in</StyledLink>
       </StyledForm>
