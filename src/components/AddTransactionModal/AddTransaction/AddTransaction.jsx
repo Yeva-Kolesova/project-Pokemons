@@ -134,6 +134,8 @@ export const AddTransaction = ({ closeModal }) => {
       outline: 'none',
       borderRadius: '0',
       boxShadow: 'none',
+      cursor: 'pointer',
+
       '&:hover': {
         border: 'none',
         borderBottom: '1px solid rgba(255, 255, 255, 0.4)',
@@ -195,7 +197,7 @@ export const AddTransaction = ({ closeModal }) => {
     return (
       <components.DropdownIndicator {...props}>
         {props.selectProps.menuIsOpen ? (
-          <SlArrowUp size={18} label="Arrow down" color={'var(--white)'} />
+          <SlArrowUp size={18} label="Arrow up" color={'var(--white)'} />
         ) : (
           <SlArrowDown size={18} label="Arrow down" color={'var(--white)'} />
         )}

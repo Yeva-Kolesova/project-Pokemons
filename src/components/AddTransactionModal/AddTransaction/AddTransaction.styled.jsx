@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { IoCloseOutline } from 'react-icons/io5';
+import minusIcon from '../../../images/minus.svg'
+import plusIcon from '../../../images/plus.svg'
 
 export const Backdrop = styled.div`
   position: fixed;
@@ -10,7 +12,6 @@ export const Backdrop = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(34, 13, 91, 0.23);
   z-index: 10;
 
   &::before {
@@ -30,9 +31,7 @@ export const Modal = styled.div`
   align-items: center;
   max-width: 320px;
   padding: 40px 20px;
-  background: rgba(255, 255, 255, 0.1);
   box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(50px);
   overflow: hidden;
   @media only screen and (min-width: 768px) {
     min-width: 540px;
@@ -76,7 +75,6 @@ export const CloseModalBtn = styled.button`
   fill: #fbfbfb;
   width: 16px;
   height: 16px;
-  position: absolute;
   right: 20px;
   top: 20px;
   border: none;
@@ -98,7 +96,6 @@ export const Input = styled.input`
   padding-left: 20px;
   padding-bottom: 8px;
   width: 100%;
-  background: transparent;
   border: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   outline: none;
@@ -235,10 +232,20 @@ export const LabelToggle = styled.label`
 `;
 export const InputToggle = styled.input`
   display: none;
+
   &:checked + ::before {
     transform: translateX(40px);
     background-color: #ff868d;
+    box-shadow: 0 6px 15px 0 rgba(255, 134, 141, 0.5);
     content: '';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 50px;
+    background-image: url(${minusIcon});
+    background-repeat: no-repeat;
+    background-position: center;
   }
 `;
 
@@ -262,8 +269,16 @@ export const SpanToggle = styled.span`
     height: 44px;
     border-radius: 44px;
     background: #ffb627;
-    box-shadow: 0px 6px 15px 0px rgba(255, 199, 39, 0.5);
+    box-shadow: 0 6px 15px 0 rgba(255, 199, 39, 0.5);
     transition: transform 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 50px;
+    background-image: url(${plusIcon});
+    background-repeat: no-repeat;
+    background-position: center;
   }
 `;
 
