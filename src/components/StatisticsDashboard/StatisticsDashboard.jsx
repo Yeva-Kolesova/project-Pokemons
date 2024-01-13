@@ -70,6 +70,8 @@ const StatisticsDashboard = () => {
       paddingRight: '13px',
       border: '1px solid rgba(255, 255, 255, 0.6)',
       boxShadow: 'none',
+      cursor: 'pointer',
+
       '&:hover': {
         border: '1px solid rgba(255, 255, 255, 0.6)',
       }
@@ -123,7 +125,7 @@ const StatisticsDashboard = () => {
     return (
       <components.DropdownIndicator {...props}>
         {props.selectProps.menuIsOpen
-          ? <SlArrowUp size={18} label='Arrow down' color={'var(--white)'} />
+          ? <SlArrowUp size={18} label='Arrow up' color={'var(--white)'} />
           : <SlArrowDown size={18} label='Arrow down' color={'var(--white)'} />}
       </components.DropdownIndicator>
     );

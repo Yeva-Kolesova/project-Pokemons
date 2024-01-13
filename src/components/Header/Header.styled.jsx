@@ -25,6 +25,7 @@ export const LogoWrapper = styled(NavLink)`
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-decoration: none;
 
   p {
     font-size: 12.84px;
@@ -86,6 +87,7 @@ export const StyledExit = styled.button`
   align-items: center;
   padding: 0;
   gap: 8px;
+  cursor: pointer;
 
   transition: color 250ms ease-in-out;
 
