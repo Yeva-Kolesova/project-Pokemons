@@ -5,12 +5,12 @@ import { GrClose } from 'react-icons/gr';
 
 export const Backdrop = styled.div`
   position: fixed;
+  flex-direction: column;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
   z-index: 10;
 
@@ -22,10 +22,13 @@ export const Backdrop = styled.div`
     inset: 0;
     z-index: -1;
   }
+
+  @media only screen and (min-width: 768px) {
+    justify-content: center;
+  }
 `;
 
 export const Modal = styled.div`
-  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,7 +36,10 @@ export const Modal = styled.div`
   padding: 40px 20px;
   box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
   overflow: hidden;
+  height: 100%;
+
   @media only screen and (min-width: 768px) {
+    position: absolute;
     min-width: 540px;
     min-height: 589px;
     padding: 40px 73px;

@@ -36,6 +36,8 @@ import * as yup from 'yup';
 import { useForm, Controller } from 'react-hook-form';
 import { Calendar } from '../Calendar/Calendar';
 import { toast } from 'react-toastify';
+import { useMediaQuery } from 'react-responsive';
+import Header from '../../Header/Header';
 
 const INCOME_CODE = '063f1132-ba5d-42b4-951d-44011ca46262';
 
@@ -60,6 +62,7 @@ export const AddTransaction = ({ closeModal }) => {
   const [startDate] = useState(new Date());
   const dispatch = useDispatch();
   const transactionCategories = useSelector(selectCategories);
+  const isTabletOrDesktop = useMediaQuery({ query: '(min-width: 768px)' });
 
   const {
     register,
@@ -226,6 +229,7 @@ export const AddTransaction = ({ closeModal }) => {
 
   return (
     <Backdrop onClick={onBackdropClick}>
+      {!isTabletOrDesktop && <Header />}
       <Modal>
         <Gradient />
         <CloseModalBtn type="button" onClick={() => closeModal()}>

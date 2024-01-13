@@ -51,7 +51,7 @@ const ModalLogout = ({ closeModal }) => {
   return (
     <>
       <ModalWrapper onClick={onBackdropClick}>
-        {!isTabletOrDesktop && <Header />}
+        {!isTabletOrDesktop && <Header closeModal={closeModal}/>}
         <ModalContent>
           <Gradient />
           <StyledIcon>
