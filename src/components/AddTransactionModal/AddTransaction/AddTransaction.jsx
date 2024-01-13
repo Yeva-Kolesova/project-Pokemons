@@ -109,10 +109,11 @@ export const AddTransaction = ({ closeModal }) => {
     const year = startDate.getFullYear();
     const month = String(startDate.getMonth() + 1).padStart(2, '0');
     const day = String(startDate.getDate()).padStart(2, '0');
-    const hours = String(startDate.getHours()).padStart(2, '0');
-    const minutes = String(startDate.getMinutes()).padStart(2, '0');
-    const seconds = String(startDate.getSeconds()).padStart(2, '0');
-    const transformedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    // const hours = String(startDate.getHours()).padStart(2, '0');
+    // const minutes = String(startDate.getMinutes()).padStart(2, '0');
+    // const seconds = String(startDate.getSeconds()).padStart(2, '0');
+    // const transformedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    const transformedDate = `${year}-${month}-${day}`;
     return transformedDate;
   };
 
