@@ -1,99 +1,64 @@
-import { nanoid } from '@reduxjs/toolkit';
-import React, { useState } from 'react';
-// import { useSelector } from 'react-redux';
-// import { selectCategories } from 'reduxConfig/statistics/selectors';
-// import { selectTransactions } from 'reduxConfig/transactions/selectors';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
-  StyledCategorySelect,
+  StyledCategory,
   StyledExpenses,
   StyledIncome,
   StyledItem,
   StyledList,
   StyledListContainer,
 } from './StatisticsTable.styled';
+import { selectSummary } from 'reduxConfig/statistics/selectors';
+import { fetchTransSumThunk } from 'reduxConfig/statistics/operations';
+import { coloredCategoriesMap } from 'components/Chart/Chart';
 
 const StatisticsTable = () => {
-  // const categories = useSelector(selectCategories).filter(
-  //   category => category.type === 'EXPENSE'
-  // );
-  // const transactions = useSelector(selectTransactions);
+  const summary = useSelector(selectSummary);
 
-  const categories = [
-    'Main expenses',
-    'Products',
-    'Car',
-    'Self care',
-    'Child care',
-    'Household products',
-    'Education',
-    'Leisure',
-    'Other expenses',
-    'Entertainment',
-  ];
+  const dispatch = useDispatch();
 
-  const transactions = [
-    { categoryId: 'Main expenses', amount: '8700.00' },
-    { categoryId: 'Products', amount: '3800.74' },
-    { categoryId: 'Car', amount: '1500.00' },
-    { categoryId: 'Self care', amount: '800.00' },
-    { categoryId: 'Child care', amount: '2208.50' },
-    { categoryId: 'Household products', amount: '300.00' },
-    { categoryId: 'Education', amount: '3400.00' },
-    { categoryId: 'Leisure', amount: '1230.00' },
-    { categoryId: 'Other expenses', amount: '610.00' },
-  ];
+  const currentMonth = new Date().getMonth() + 1;
+  const currentYear = new Date().getFullYear();
 
-  const [selectedCategory, setSelectedCategory] = useState('');
+  useEffect(() => {
+    dispatch(fetchTransSumThunk({ month: currentMonth, year: currentYear }));
+  }, [dispatch, currentMonth, currentYear]);
 
-  // const filteredTransactions = transactions.filter(
-  //   transaction => transaction.categoryId === selectedCategory
-  // );
-
-  const totalExpenses = transactions => {
-    const total = transactions.reduce((accumulator, transaction) => {
-      return accumulator + Number(transaction.amount);
-    }, 0);
-
-    return total.toFixed(2);
-  };
-
-  const handleCategoryChange = e => setSelectedCategory(e.target.value);
-
+  const periodSummary = summary.categoriesSummary
+    ? summary.categoriesSummary
+        .filter(category => category.type === 'EXPENSE')
+        .map(category => ({
+          ...category,
+          color: coloredCategoriesMap.get(category.name),
+        }))
+        .sort((a, b) => a.total - b.total)
+    : [];
   return (
     <>
-      <StyledCategorySelect
-        name="category"
-        id="category"
-        onChange={handleCategoryChange}
-        value={selectedCategory}
-      >
-        <option defaultValue>Categories</option>
-        {categories.map(category => (
-          <option key={nanoid()} value={category.id}>
-            {category}
-          </option>
-        ))}
-      </StyledCategorySelect>
+      <StyledCategory>
+        <p>Category</p>
+        <p>Sum</p>
+      </StyledCategory>
       <StyledListContainer>
         <StyledList>
-          {transactions.map(({ categoryId, amount }) => (
-            <StyledItem key={nanoid()}>
+          {periodSummary.map((category, index) => (
+            <StyledItem key={index}>
               <div>
-                <span />
-                <p>{categoryId}</p>
+                <span style={{ backgroundColor: category.color }} />
+                <p>{category.name}</p>
               </div>
-              <p>{amount}</p>
+              <p>{Math.abs(category.total).toFixed(2)}</p>
             </StyledItem>
           ))}
         </StyledList>
       </StyledListContainer>
       <StyledExpenses>
         <h3>Expenses:</h3>
-        <p>{totalExpenses(transactions)}</p>
+        <p>{Math.abs(summary.expenseSummary)?.toFixed(2)}</p>
       </StyledExpenses>
       <StyledIncome>
         <h3>Income:</h3>
-        <p>27350.00</p>
+        <p>{summary.incomeSummary?.toFixed(2)}</p>
       </StyledIncome>
     </>
   );

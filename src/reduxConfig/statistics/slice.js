@@ -1,9 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchTransSumThunk, fetchCategoriesThunk } from './operations';
+import { fetchTransSumThunk } from './operations';
 
 const initialState = {
-  statistics: [],
-  categories: [],
+  summary: [],
   isLoading: false,
   error: null,
 };
@@ -30,17 +29,10 @@ const slice = createSlice({
     builder
       .addCase(fetchTransSumThunk.pending, handlePending)
       .addCase(fetchTransSumThunk.fulfilled, (state, { payload }) => {
-        state.statistics = payload;
+        state.summary = payload;
         handleFulfilled(state);
       })
-      .addCase(fetchTransSumThunk.rejected, handleRejected)
-
-      .addCase(fetchCategoriesThunk.pending, handlePending)
-      .addCase(fetchCategoriesThunk.fulfilled, (state, { payload }) => {
-        state.categories = payload;
-        handleFulfilled(state);
-      })
-      .addCase(fetchCategoriesThunk.rejected, handleRejected);
+      .addCase(fetchTransSumThunk.rejected, handleRejected);
   },
 });
 // *     Приклад
