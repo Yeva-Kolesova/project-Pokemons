@@ -11,12 +11,23 @@ import {
   StyledTitle,
   Text,
 } from './ModalLogout.styled';
+import Header from 'components/Header/Header';
+import { useMediaQuery } from 'react-responsive';
+import { Gradient } from 'components/AddTransactionModal/AddTransaction/AddTransaction.styled';
 
 const ModalLogout = ({ closeModal }) => {
+  const isTabletOrDesktop = useMediaQuery({ query: '(min-width: 768px)' });
   const dispatch = useDispatch();
   const handleLogout = () => {
     dispatch(logOutThunk());
   };
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
 
   const onBackdropClick = e => {
     if (e.target === e.currentTarget) {
@@ -38,23 +49,27 @@ const ModalLogout = ({ closeModal }) => {
   }, [closeModal]);
 
   return (
-    <ModalWrapper onClick={onBackdropClick}>
-      <ModalContent>
-        <StyledIcon>
-          <use href={`${icons}#icon-Logo`} />
-        </StyledIcon>
-        <StyledTitle>Money Guard</StyledTitle>
-        <Text>Are you sure you want to log out?</Text>
-        <ModalButton onClick={handleLogout}>logout</ModalButton>
-        <ModalButtonCancel
-          onClick={() => {
-            closeModal(false);
-          }}
-        >
-          cancel
-        </ModalButtonCancel>
-      </ModalContent>
-    </ModalWrapper>
+    <>
+      <ModalWrapper onClick={onBackdropClick}>
+        {!isTabletOrDesktop && <Header />}
+        <ModalContent>
+          <Gradient />
+          <StyledIcon>
+            <use href={`${icons}#icon-Logo`} />
+          </StyledIcon>
+          <StyledTitle>Money Guard</StyledTitle>
+          <Text>Are you sure you want to log out?</Text>
+          <ModalButton onClick={handleLogout}>logout</ModalButton>
+          <ModalButtonCancel
+            onClick={() => {
+              closeModal(false);
+            }}
+          >
+            cancel
+          </ModalButtonCancel>
+        </ModalContent>
+      </ModalWrapper>
+    </>
   );
 };
 
