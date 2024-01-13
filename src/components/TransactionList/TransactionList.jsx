@@ -23,12 +23,7 @@ const TransactionList = () => {
 
   useEffect(() => {
     dispatch(allTransactionThunk());
-    console.log(transactions);
-  }, []);
-
-  useEffect(() => {
-    console.log(transactions);
-  }, [transactions]);
+  }, [dispatch]);
 
   return (
     <>
