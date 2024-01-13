@@ -1,5 +1,11 @@
 import { selectCategories } from 'reduxConfig/transactions/selectors';
-import { CloseBtn, Expense, Income } from './AddTransaction.styled';
+import {
+  CloseBtn,
+  ErrorMessage,
+  Expense,
+  Income,
+  InputErrorWrap,
+} from './AddTransaction.styled';
 import {
   Backdrop,
   BtnAdd,
@@ -25,28 +31,29 @@ import {
 } from '../../../reduxConfig/transactions/operations';
 import Select, { components } from 'react-select';
 import { SlArrowDown, SlArrowUp } from 'react-icons/sl';
-// import { yupResolver } from '@hookform/resolvers/yup';
-// import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 import { useForm, Controller } from 'react-hook-form';
 import { Calendar } from '../Calendar/Calendar';
+import { toast } from 'react-toastify';
 
-const INCOME_CODE = '063f1132-ba5d-42b4-951d-44011ca46262'
+const INCOME_CODE = '063f1132-ba5d-42b4-951d-44011ca46262';
 
-/*const validationSchema = yup
+const schema = yup
   .object({
     amount: yup
       .number()
-      .typeError('Transaction value must be a number')
+      .typeError('Please, enter the sum of transaction')
       .min(1, 'Sum value must be at least 1 character')
       .required('Sum is required'),
-    date: yup.date().required('Please provide transaction date.'),
+
     comment: yup
       .string()
       .min(3, 'Comment must be at least 3 characters')
       .max(30)
       .required('Comment is required'),
   })
-  .required();*/
+  .required();
 
 export const AddTransaction = ({ closeModal }) => {
   const [isMinus, setIsMinus] = useState(true);
@@ -54,10 +61,15 @@ export const AddTransaction = ({ closeModal }) => {
   const dispatch = useDispatch();
   const transactionCategories = useSelector(selectCategories);
 
-  const { register, handleSubmit, control } = useForm(/*{
+  const {
+    register,
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm({
     mode: 'onChange',
-    resolver: yupResolver(validationSchema),
-  }*/);
+    resolver: yupResolver(schema),
+  });
 
   useEffect(() => {
     dispatch(getTransactionsCategoriesThunk());
@@ -105,19 +117,25 @@ export const AddTransaction = ({ closeModal }) => {
   };
 
   function onSubmit(formData) {
-    const transaction = {}
-    transaction.comment = formData.comment
-    transaction.amount = (formData.isExpense && formData.amount > 0 ) ? -formData.amount : formData.amount
-    transaction.type = formData.isExpense ? 'EXPENSE' : 'INCOME'
-    transaction.categoryId = formData.isExpense ? formData.category : INCOME_CODE
-    transaction.transactionDate = transformDate(startDate)
+    const transaction = {};
+    transaction.comment = formData.comment;
+    transaction.amount =
+      formData.isExpense && formData.amount > 0
+        ? -formData.amount
+        : formData.amount;
+    transaction.type = formData.isExpense ? 'EXPENSE' : 'INCOME';
+    transaction.categoryId = formData.isExpense
+      ? formData.category
+      : INCOME_CODE;
+    transaction.transactionDate = transformDate(startDate);
     dispatch(addTransactionThunk(transaction))
       .unwrap()
       .then(() => {
-        console.log('Transaction added');
+        toast.success('Transaction successfully added');
       })
       .catch(err => {
         console.log(err);
+        toast.error('Something went wrong, try again');
       });
     closeModal();
   }
@@ -158,7 +176,7 @@ export const AddTransaction = ({ closeModal }) => {
       backdropFilter: 'blur(50px)',
       overflow: 'hidden',
       color: '#FBFBFB',
-      fontFamily: '\'Poppins\', sans-serif',
+      fontFamily: "'Poppins', sans-serif",
       fontSize: '16px',
       fontWeight: '400',
 
@@ -196,9 +214,9 @@ export const AddTransaction = ({ closeModal }) => {
     return (
       <components.DropdownIndicator {...props}>
         {props.selectProps.menuIsOpen ? (
-          <SlArrowUp size={18} label='Arrow up' color={'var(--white)'} />
+          <SlArrowUp size={18} label="Arrow up" color={'var(--white)'} />
         ) : (
-          <SlArrowDown size={18} label='Arrow down' color={'var(--white)'} />
+          <SlArrowDown size={18} label="Arrow down" color={'var(--white)'} />
         )}
       </components.DropdownIndicator>
     );
@@ -208,24 +226,23 @@ export const AddTransaction = ({ closeModal }) => {
     <Backdrop onClick={onBackdropClick}>
       <Modal>
         <Gradient />
-        <CloseModalBtn type='button' onClick={() => closeModal()}>
+        <CloseModalBtn type="button" onClick={() => closeModal()}>
           <CloseBtn />
         </CloseModalBtn>
         <Title>Add transaction</Title>
         <Form onSubmit={handleSubmit(onSubmit)}>
-
           <TransactionToggleWrap>
             <Income $active={!isMinus}>Income</Income>
             <LabelToggle>
               <InputToggle
-                type='checkbox'
+                type="checkbox"
                 defaultChecked={true}
                 {...register('isExpense')}
                 onChange={() => setIsMinus(!isMinus)}
               />
               <SpanToggle />
             </LabelToggle>
-            <Expense $active={isMinus} >Expense</Expense>
+            <Expense $active={isMinus}>Expense</Expense>
           </TransactionToggleWrap>
 
           {isMinus && (
@@ -237,34 +254,46 @@ export const AddTransaction = ({ closeModal }) => {
                 <Select
                   id="category"
                   options={transactionCategories}
-                  components={{ DropdownIndicator, IndicatorSeparator: () => null }}
-                  placeholder='Select a category'
+                  components={{
+                    DropdownIndicator,
+                    IndicatorSeparator: () => null,
+                  }}
+                  placeholder="Select a category"
                   styles={selectStyle}
                   isSearchable={false}
-                  value={transactionCategories.find((category) => category.value === value)}
-                  onChange={(option) => field.onChange(option.value)}
+                  value={transactionCategories.find(
+                    category => category.value === value
+                  )}
+                  onChange={option => field.onChange(option.value)}
                 />
               )}
             />
           )}
 
           <WrapSumCalendar>
-            <Input
-              type='number'
-              name='amount'
-              placeholder='0.00'
-              {...register('amount')}
-            />
-            <Calendar
-              // {...register('date')}
-            />
+            <InputErrorWrap>
+              <Input
+                type="number"
+                name="amount"
+                placeholder="0.00"
+                {...register('amount')}
+                autoComplete="off"
+              />
+              {errors.amount && <p>{errors.amount.message}</p>}
+            </InputErrorWrap>
+            <Calendar register={register} />
           </WrapSumCalendar>
 
-          <TextareaStyled placeholder='Comment' {...register('comment')} />
+          <InputErrorWrap>
+            <TextareaStyled placeholder="Comment" {...register('comment')} />
+            {errors.comment && (
+              <ErrorMessage>{errors.comment.message}</ErrorMessage>
+            )}
+          </InputErrorWrap>
 
           <ButtonsWrap>
-            <BtnAdd type='submit' >Add</BtnAdd>
-            <BtnCancel type='button' onClick={onCancelButton}>
+            <BtnAdd type="submit">Add</BtnAdd>
+            <BtnCancel type="button" onClick={onCancelButton}>
               Cancel
             </BtnCancel>
           </ButtonsWrap>

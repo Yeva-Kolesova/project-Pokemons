@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { IoCloseOutline } from 'react-icons/io5';
-import minusIcon from '../../../images/minus.svg'
-import plusIcon from '../../../images/plus.svg'
+import minusIcon from '../../../images/minus.svg';
+import plusIcon from '../../../images/plus.svg';
 
 export const Backdrop = styled.div`
   position: fixed;
@@ -179,13 +179,13 @@ export const TextareaStyled = styled.textarea`
 `;
 
 export const Expense = styled.p`
-  color: ${({ $active }) => $active ? "#ff868d" : "#FFFFFF99"};
+  color: ${({ $active }) => ($active ? '#ff868d' : '#FFFFFF99')};
   font-size: 16px;
   font-weight: 600;
 `;
 
 export const Income = styled.p`
-  color: ${({ $active }) => $active ? "#ffb627" : "#FFFFFF99"};
+  color: ${({ $active }) => ($active ? '#ffb627' : '#FFFFFF99')};
   font-size: 16px;
   font-weight: 600;
 `;
@@ -316,4 +316,12 @@ export const Gradient = styled.div`
   background: rgba(47, 21, 176, 0.73);
   filter: blur(100px);
   inset: 0;
+`;
+
+export const InputErrorWrap = styled.div`
+  position: relative;
+`;
+
+export const ErrorMessage = styled.p`
+  color: #bd4248;
 `;
