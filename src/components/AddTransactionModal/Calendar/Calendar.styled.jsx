@@ -28,4 +28,5 @@ export const CalendarIcon = styled(FiCalendar)`
   width: 24px;
   height: 24px;
   color: var(--icon-violet, #734aef);
+  pointer-events: none;
 `;

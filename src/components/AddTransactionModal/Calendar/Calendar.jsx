@@ -2,7 +2,7 @@ import { useState } from 'react';
 import ReactDatePicker from 'react-datepicker';
 import { CalendarIcon, CalendarS, DateWrapper } from './Calendar.styled';
 
-export const Calendar = () => {
+export const Calendar = ({ register }) => {
   const [startDate, setStartDate] = useState(new Date());
   return (
     <DateWrapper>
@@ -13,6 +13,7 @@ export const Calendar = () => {
         dateFormat="dd.MM.yyyy"
         maxDate={new Date()}
         calendarContainer={CalendarS}
+        {...register('comment')}
       />
       <CalendarIcon />
     </DateWrapper>
