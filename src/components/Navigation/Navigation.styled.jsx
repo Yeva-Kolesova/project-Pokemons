@@ -21,7 +21,6 @@ export const StyledNavigation = styled.nav`
 export const StyledLink = styled(NavLink)`
   padding: 0;
   position: relative;
- /* color: {({ $current }) => $current ? var(--icon-violet) : var(--transparency-40)};*/
   color: ${({ $current }) => $current ? "#734aef" : "#FFFFFF66"};
   text-decoration: none;
 
@@ -29,7 +28,6 @@ export const StyledLink = styled(NavLink)`
     content: '';
     width: 30px;
     height: 30px;
-    /*background-color: {({ $current }) => $current ? var(--white) : transparent};*/
     background-color: ${({ $current }) => $current ? "#fbfbfb" : "transparent"};
     position: absolute;
     top: 4px;
