@@ -1,4 +1,4 @@
-import { selectCategories } from 'reduxConfig/transactions/selectors';
+import { selectFilteredCategories } from 'reduxConfig/transactions/selectors';
 import {
   CloseBtn,
   ErrorMessage,
@@ -39,7 +39,7 @@ import { toast } from 'react-toastify';
 import { useMediaQuery } from 'react-responsive';
 import Header from '../../Header/Header';
 
-const INCOME_CODE = '063f1132-ba5d-42b4-951d-44011ca46262';
+export const INCOME_CODE = '063f1132-ba5d-42b4-951d-44011ca46262';
 
 const schema = yup
   .object({
@@ -61,7 +61,7 @@ export const AddTransaction = ({ closeModal }) => {
   const [isMinus, setIsMinus] = useState(true);
   const [startDate] = useState(new Date());
   const dispatch = useDispatch();
-  const transactionCategories = useSelector(selectCategories);
+  const transactionCategories = useSelector(selectFilteredCategories);
   const isTabletOrDesktop = useMediaQuery({ query: '(min-width: 768px)' });
 
   const {
