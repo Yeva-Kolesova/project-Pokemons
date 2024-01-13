@@ -273,7 +273,7 @@ export const AddTransaction = ({ closeModal }) => {
           <WrapSumCalendar>
             <InputErrorWrap>
               <Input
-                type="number"
+                type="text"
                 name="amount"
                 placeholder="0.00"
                 {...register('amount')}
