@@ -5,58 +5,7 @@ import {
 
 const initialState = {
   categories: [],
-  transactions: [
-    {
-      id: '123ewrte45',
-      transactionDate: '2024-01-01',
-      type: 'INCOME',
-      categoryId: 'Other',
-      userId: 'wwwww',
-      comment: 'git for your',
-      amount: 300.0,
-      balanceAfter: 0,
-    },
-    {
-      id: '12er345',
-      transactionDate: '2024-01-01',
-      type: 'INCOME',
-      categoryId: 'Other',
-      userId: 'wwwww',
-      comment: 'git for your',
-      amount: 300.0,
-      balanceAfter: 0,
-    },
-    {
-      id: '122342345',
-      transactionDate: '2024-01-01',
-      type: 'INCOME',
-      categoryId: 'Other',
-      userId: 'wwwww',
-      comment: 'git for your',
-      amount: 300.0,
-      balanceAfter: 0,
-    },
-    {
-      id: '12345',
-      transactionDate: '2024-01-01',
-      type: 'INCOME',
-      categoryId: 'Other',
-      userId: 'wwwww',
-      comment: 'git for your',
-      amount: 300.0,
-      balanceAfter: 0,
-    },
-    {
-      id: 'fddferd',
-      transactionDate: '2024-01-01',
-      type: 'EXPENSE',
-      categoryId: 'Other',
-      userId: 'wwwww',
-      comment: 'git for your',
-      amount: -300.0,
-      balanceAfter: 0,
-    },
-  ],
+  transactions: [],
   isLoading: false,
   error: null,
 };
@@ -64,11 +13,6 @@ const initialState = {
 function handlePending(state) {
   state.isLoading = true;
 }
-
-// function handleFulfilled(state) {
-//   state.isLoading = false
-//   state.error = null
-// }
 
 const handleAddTransaction = (state, { payload }) => {
   state.transactions.push(payload);

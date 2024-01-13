@@ -178,18 +178,14 @@ export const TextareaStyled = styled.textarea`
   }
 `;
 
-export const ActiveExpense = styled.p`
-  color: #ff868d;
+export const Expense = styled.p`
+  color: ${({ $active }) => $active ? "#ff868d" : "#FFFFFF99"};
   font-size: 16px;
   font-weight: 600;
 `;
-export const NoActive = styled.p`
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 16px;
-  font-weight: 600;
-`;
-export const ActiveIncome = styled.p`
-  color: #ffb627;
+
+export const Income = styled.p`
+  color: ${({ $active }) => $active ? "#ffb627" : "#FFFFFF99"};
   font-size: 16px;
   font-weight: 600;
 `;
@@ -231,7 +227,16 @@ export const LabelToggle = styled.label`
   height: 40px;
 `;
 export const InputToggle = styled.input`
-  display: none;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
 
   &:checked + ::before {
     transform: translateX(40px);
