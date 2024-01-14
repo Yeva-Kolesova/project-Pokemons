@@ -43,6 +43,7 @@ import {
   DateWrapper,
 } from './Calendar.styled';
 import ReactDatePicker from 'react-datepicker';
+import { date } from 'yup';
 
 export const INCOME_CODE = '063f1132-ba5d-42b4-951d-44011ca46262';
 
@@ -53,6 +54,8 @@ const schema = yup
       .typeError('Please, enter the sum')
       .min(1, 'Sum value must be at least 1 character')
       .required('Sum is required'),
+    date: date().required('Date is required'),
+    category:yup.string().uuid('Incorrect format').required('Category is required'),
   })
   .required();
 
@@ -68,6 +71,7 @@ export const AddTransaction = ({ closeModal }) => {
     handleSubmit,
     control,
     formState: { errors },
+    setValue
   } = useForm({
     mode: 'onChange',
     resolver: yupResolver(schema),
@@ -220,6 +224,13 @@ export const AddTransaction = ({ closeModal }) => {
     );
   };
 
+  function handleDateChange(dateChange) {
+    setValue("date", dateChange, {
+      shouldDirty: true
+    });
+    setStartDate(dateChange);
+  }
+
   return (
     <Backdrop onClick={onBackdropClick}>
       {!isTabletOrDesktop && <Header />}
@@ -283,14 +294,19 @@ export const AddTransaction = ({ closeModal }) => {
               )}
             </InputErrorWrap>
             <DateWrapper>
-              <ReactDatePicker
+              <Controller
                 name="date"
-                selected={startDate}
-                onChange={date => setStartDate(date)}
-                dateFormat="dd.MM.yyyy"
-                maxDate={new Date()}
-                calendarContainer={CalendarContainer}
-                {...register('data')}
+                control={control}
+                defaultValue={startDate}
+                render={() => (
+                  <ReactDatePicker
+                    selected={startDate}
+                    onChange={handleDateChange}
+                    dateFormat="dd.MM.yyyy"
+                    maxDate={new Date()}
+                    calendarContainer={CalendarContainer}
+                  />
+                )}
               />
               <CalendarIcon />
             </DateWrapper>
