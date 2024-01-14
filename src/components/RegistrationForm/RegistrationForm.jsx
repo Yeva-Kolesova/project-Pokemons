@@ -60,7 +60,7 @@ const RegistrationForm = () => {
     dispatch(registerThunk(data))
       .unwrap()
       .then(res => {
-        toast.error(`Welcome ${res.user.username}!`);
+        toast.success(`Welcome ${res.user.username}!`);
       })
       .catch(err => {
         toast.error(err);
@@ -143,6 +143,7 @@ const RegistrationForm = () => {
             scoreWordStyle={{
               display: 'none',
             }}
+            isRequired={'true'}
             max={userSchema.fields.password.max}
           />
         </StyledSpan>

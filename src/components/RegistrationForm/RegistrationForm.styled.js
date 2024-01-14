@@ -140,11 +140,10 @@ export const StyledInputField = styled.input`
 
 export const StyledErr = styled.p`
   margin-left: 12px;
-  padding-top: 6px;
+  padding-top: 7px;
   color: rgb(255, 134, 141);
   font-size: 14px;
   font-weight: 500;
-  /* padding-left: 20px; */
 `;
 
 export const StyledSpan = styled.span`
@@ -179,6 +178,15 @@ export const StyledRegister = styled.button`
   text-transform: uppercase;
   cursor: pointer;
   max-width: 280px;
+  &:hover {
+    background: linear-gradient(
+      97deg,
+      #1f96ff -16.42%,
+      #7931cb 97.04%,
+      #e3a7fb 150.71%
+    );
+    backdrop-filter: blur(50px);
+  }
   @media only screen and (min-width: 768px) {
     max-width: 300px;
   }
@@ -205,6 +213,17 @@ export const StyledLink = styled(NavLink)`
   border-radius: 20px;
   background: #fcfcfc;
   box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
+
+  &:hover {
+    background: linear-gradient(
+      97deg,
+      #1f96ff -16.42%,
+      #7931cb 97.04%,
+      #e3a7fb 150.71%
+    );
+    backdrop-filter: blur(50px);
+    color: var(--white, #fbfbfb);
+  }
   @media only screen and (min-width: 768px) {
     max-width: 300px;
   }
