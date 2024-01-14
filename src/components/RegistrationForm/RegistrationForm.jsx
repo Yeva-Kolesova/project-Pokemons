@@ -16,6 +16,7 @@ import {
   StyledInputBox,
   StyledInputField,
   StyledLabel,
+  StyledLabelBox,
   StyledLink,
   StyledPasswordIcon,
   StyledRegister,
@@ -23,7 +24,6 @@ import {
   StyledTitle,
   StyledUserIcon,
 } from './RegistrationForm.styled';
-import { toast } from 'react-toastify';
 
 const userSchema = yup.object().shape({
   username: yup.string().required('Required'),
@@ -55,11 +55,14 @@ const RegistrationForm = () => {
   const [pass, setPass] = useState('');
 
   const submit = data => {
-    console.log(data);
     dispatch(registerThunk(data))
       .unwrap()
-      .then(res => toast.success(`Welcome ${res.user.username}!`))
-      .catch(err => toast.error(err));
+      .then(res => {
+        console.log(`Welcome ${res.user.username}!`);
+      })
+      .catch(err => {
+        console.error(err);
+      });
     reset();
   };
 
@@ -70,55 +73,63 @@ const RegistrationForm = () => {
           <use href={`${icons}#icon-Logo`} />
         </StyledIcon>
         <StyledTitle>Money Guard</StyledTitle>
-        <StyledLabel>
-          <StyledInputBox>
-            <StyledUserIcon width={24} height={24} />
-            <StyledInputField
-              {...register('username')}
-              placeholder="Name"
-              type="text"
-              name="username"
-            />
-          </StyledInputBox>
-          <StyledErr>{errors.username?.message}</StyledErr>
-        </StyledLabel>
-        <StyledLabel>
-          <StyledInputBox>
-            <StyledEmailIcon width={24} height={24} />
-            <StyledInputField
-              {...register('email')}
-              placeholder="E-mail"
-              type="text"
-              name="email"
-            />
-          </StyledInputBox>
-          <StyledErr>{errors.email?.message}</StyledErr>
-        </StyledLabel>
-        <StyledLabel>
-          <StyledInputBox>
-            <StyledPasswordIcon width={24} height={24} />
-            <StyledInputField
-              {...register('password')}
-              placeholder="Password"
-              type="password"
-              name="password"
-              onChange={e => setPass(e.target.value)}
-            />
-          </StyledInputBox>
-          <StyledErr>{errors.password?.message}</StyledErr>
-        </StyledLabel>
-        <StyledLabel>
-          <StyledInputBox>
-            <StyledPasswordIcon width={24} height={24} />
-            <StyledInputField
-              {...register('confirmPassword')}
-              placeholder="Confirm password"
-              type="password"
-              name="confirmPassword"
-            />
-          </StyledInputBox>
-          <StyledErr>{errors.confirmPassword?.message}</StyledErr>
-        </StyledLabel>
+        <StyledLabelBox>
+          <StyledLabel>
+            <StyledInputBox>
+              <StyledUserIcon width={24} height={24} />
+              <StyledInputField
+                {...register('username')}
+                placeholder="Name"
+                type="text"
+                name="username"
+              />
+            </StyledInputBox>
+            <StyledErr>{errors.username?.message}</StyledErr>
+          </StyledLabel>
+        </StyledLabelBox>
+        <StyledLabelBox>
+          <StyledLabel>
+            <StyledInputBox>
+              <StyledEmailIcon width={24} height={24} />
+              <StyledInputField
+                {...register('email')}
+                placeholder="E-mail"
+                type="text"
+                name="email"
+              />
+            </StyledInputBox>
+            <StyledErr>{errors.email?.message}</StyledErr>
+          </StyledLabel>
+        </StyledLabelBox>
+        <StyledLabelBox>
+          <StyledLabel>
+            <StyledInputBox>
+              <StyledPasswordIcon width={24} height={24} />
+              <StyledInputField
+                {...register('password')}
+                placeholder="Password"
+                type="password"
+                name="password"
+                onChange={e => setPass(e.target.value)}
+              />
+            </StyledInputBox>
+            <StyledErr>{errors.password?.message}</StyledErr>
+          </StyledLabel>
+        </StyledLabelBox>
+        <StyledLabelBox>
+          <StyledLabel>
+            <StyledInputBox>
+              <StyledPasswordIcon width={24} height={24} />
+              <StyledInputField
+                {...register('confirmPassword')}
+                placeholder="Confirm password"
+                type="password"
+                name="confirmPassword"
+              />
+            </StyledInputBox>
+            <StyledErr>{errors.confirmPassword?.message}</StyledErr>
+          </StyledLabel>
+        </StyledLabelBox>
 
         <StyledSpan>
           <PasswordStrengthBar
@@ -131,7 +142,8 @@ const RegistrationForm = () => {
             }}
           />
         </StyledSpan>
-        <StyledRegister type="submit">Register</StyledRegister>
+        <StyledRegister>Register</StyledRegister>
+
         <StyledLink to="/login">Log in</StyledLink>
       </StyledForm>
     </StyledBoxForm>
