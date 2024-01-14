@@ -5,45 +5,69 @@ export const CurrencyWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  max-width: 480px;
+  width: calc(100% + 16px);
   margin-left: -16px;
-  color: #fbfbfb
+  color: #fbfbfb;
+  box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
+
+
+  @media only screen and (max-width: 769px) {
+    width: 336px;
+    border-radius: 0px 0px 8px 8px;
+    background: rgba(74, 86, 226, 0.10);
+  }
+
+  @media only screen and (max-width: 320px) {
+    width: 307px;
+    margin-top: 24px;
+  }
 `;
 
 export const CurrencyTable = styled.div`
   max-height: 170px;
   width: 100%;
+  margin-bottom: 24px;
 `;
+
+export const CurrencyHeadWrapper = styled.div`
+  background-color: rgba(93, 78, 161, 0.6);
+`
 
 export const CurrencyTableHead = styled.ul`
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  // justify-content: center;
   gap: 50px;
   padding: 16px 0;
   margin: 0 auto 24px;
-  background-color: rgba(93, 78, 161, 0.6);
   width: 480px;
+  margin-left: 39px;
+
+  @media only screen and (max-width: 320px) {
+    margin-left: 16px;
+  }
 `;
 
-export const CurrencyTableBody = styled.div`
+export const CurrencyTableBody = styled.ul`
   display: flex;
   flex-direction: row;
-  justify-content: center;
   gap: 50px;
 `;
 
-export const CurrencyTableBodyList = styled.ul`
+export const CurrencyTableBodyList = styled.div`
   display: flex;
   flex-direction: column;
-  padding-left: 62px
   gap: 24px;
   margin-bottom: 14px;
+    margin-left: 41px
+  
+  @media only screen and (max-width: 320px) {
+    margin-left: 15px;
+  }
 `;
 
 export const CurrencyTableHeadItem = styled.li`
-  color: #fbfbfb
+  color: #fbfbfb;
   font-size: 16px;
   font-weight: 600;
   text-align: center;
@@ -51,11 +75,13 @@ export const CurrencyTableHeadItem = styled.li`
 
 export const CurrencyTableItem = styled.li`
   display: inline-block;
+  font-family: "Poppins", sans-serif;
   color: #fbfbfb
   font-size: 16px;
   line-height: 1.5;
   text-align: center;
   width: 62px;
+  font-weight: 400;
   &:last-child {
     width: 42px;
   }
@@ -65,10 +91,44 @@ export const CurrencyTableItem = styled.li`
 `;
 
 
-export const CurrecnyDiagram = styled.img`
+export const CurrecnyDiagram = styled.div`
+  position: relative;
   display: block;
-    /* max-width: 100%; */
-    height: auto;
-    width: 496px;
-    max-height: 167px;
+  height: auto;
+  max-height: 167px;
+  
+   @media only screen and (max-width: 1281px) {
+      max-width:480px;
+    }
+
+  img {
+
+     @media only screen and (max-width: 1281px) {
+      width:496px;
+    }
+  }
+
+  
+`
+
+export const LowerNumber = styled.p`
+  position: absolute;
+  top: 12px;
+  left: 48px;
+
+  color: #FF868D;
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+`
+
+export const HigherNumber = styled.p`
+  position: absolute;
+  top: -21px;
+  right: 97px;
+
+  color: #FF868D;
+  font-family: "Poppins", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
 `
