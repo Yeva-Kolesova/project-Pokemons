@@ -122,6 +122,12 @@ export const CardLineButtonEdit = styled.button`
   line-height: normal;
   letter-spacing: 0.32px;
   cursor: pointer;
+  transition: color 250ms ease-in-out;
+
+  color: var(--white);
+  &:hover {
+    color: var(--icon-violet);
+  }
 `;
 
 export const CardLinePEdit = styled.span`

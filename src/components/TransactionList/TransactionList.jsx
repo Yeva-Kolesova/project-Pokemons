@@ -15,7 +15,10 @@ import {
 } from './TransactionList.styled';
 import TransactionCardItem from 'components/TransactionCardItem/TransactionCardItem';
 import { useEffect } from 'react';
-import { allTransactionThunk } from 'reduxConfig/transactions/operations';
+import {
+  allTransactionThunk,
+  getTransactionsCategoriesThunk,
+} from 'reduxConfig/transactions/operations';
 
 const TransactionList = () => {
   const dispatch = useDispatch();
@@ -23,6 +26,7 @@ const TransactionList = () => {
 
   useEffect(() => {
     dispatch(allTransactionThunk());
+    dispatch(getTransactionsCategoriesThunk());
   }, [dispatch]);
 
   return (

@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Card,
   CardLine,
@@ -13,11 +13,14 @@ import {
 import { LuPencil } from 'react-icons/lu';
 import { useState } from 'react';
 import { deleteTransactionThunk } from 'reduxConfig/transactions/operations';
+import { selectCategories } from 'reduxConfig/transactions/selectors';
 
 const TransactionCardItem = ({ data }) => {
   const dispatch = useDispatch();
   const { id, transactionDate, type, categoryId, comment, amount } = data;
   const [isEditTransactionForm, setIsEditTransactionForm] = useState(false);
+
+  const categories = useSelector(selectCategories);
 
   const handleDelete = transactionId => {
     dispatch(deleteTransactionThunk(transactionId));
@@ -25,26 +28,28 @@ const TransactionCardItem = ({ data }) => {
 
   return (
     <Card>
-      <CardLine plus={amount >= 0}>
+      <CardLine $plus={amount >= 0}>
         <CardLineTitle>Date</CardLineTitle>
         <CardLineP>{transactionDate}</CardLineP>
       </CardLine>
-      <CardLine plus={amount >= 0}>
+      <CardLine $plus={amount >= 0}>
         <CardLineTitle>Type</CardLineTitle>
         <CardLineP>{type === 'EXPENSE' ? '-' : '+'}</CardLineP>
       </CardLine>
-      <CardLine plus={amount >= 0}>
+      <CardLine $plus={amount >= 0}>
         <CardLineTitle>Category</CardLineTitle>
-        <CardLineP>{categoryId}</CardLineP>
+        <CardLineP>
+          {categories?.filter(c => c?.value === categoryId)[0]?.label}
+        </CardLineP>
       </CardLine>
-      <CardLine plus={amount >= 0}>
+      <CardLine $plus={amount >= 0}>
         <CardLineTitle>Comment</CardLineTitle>
         <CardLineP>{comment}</CardLineP>
       </CardLine>
-      <CardLine plus={amount >= 0}>
+      <CardLine $plus={amount >= 0}>
         <CardLineTitle>Sum</CardLineTitle>
         <CardLinePSum
-          plus={amount >= 0}
+          $plus={amount >= 0}
           style={
             type === 'EXPENSE' ? { color: '#FF868D' } : { color: '#FFB627' }
           }
@@ -52,7 +57,7 @@ const TransactionCardItem = ({ data }) => {
           {Math.abs(amount).toFixed(2)}
         </CardLinePSum>
       </CardLine>
-      <CardLine plus={amount >= 0}>
+      <CardLine $plus={amount >= 0}>
         <CardLineButtonDelete
           onClick={() => {
             handleDelete(id);
