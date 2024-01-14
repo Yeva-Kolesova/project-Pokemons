@@ -7,6 +7,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import {
+  Gradient,
   StyledBoxForm,
   StyledEmailIcon,
   StyledErr,
@@ -20,10 +21,15 @@ import {
   StyledPasswordIcon,
   StyledTitle,
 } from './LoginForm.styled';
+import { toast } from 'react-toastify';
 
 const userSchema = yup.object().shape({
   email: yup.string().email('Please enter a valid email!').required('Required'),
-  password: yup.string().min(6).max(12).required('Required'),
+  password: yup
+    .string()
+    .min(6, 'Password must be at least 6 characters!')
+    .max(12)
+    .required('Required'),
 });
 
 const LoginForm = () => {
@@ -33,6 +39,7 @@ const LoginForm = () => {
     formState: { errors },
     reset,
   } = useForm({
+    mode: 'onChange',
     resolver: yupResolver(userSchema),
   });
   const dispatch = useDispatch();
@@ -40,16 +47,17 @@ const LoginForm = () => {
     dispatch(logInThunk(data))
       .unwrap()
       .then(res => {
-        console.log(`Welcome ${res.user.username}!`);
+        toast.success(`Welcome ${res.user.username}!`);
       })
       .catch(err => {
-        console.error(err);
+        toast.error(err);
       });
     reset();
   };
 
   return (
     <StyledBoxForm>
+      <Gradient />
       <StyledForm onSubmit={handleSubmit(submit)}>
         <StyledIcon width={25} height={25}>
           <use href={`${icons}#icon-Logo`} />
