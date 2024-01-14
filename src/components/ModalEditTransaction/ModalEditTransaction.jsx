@@ -52,7 +52,7 @@ function ModalEditTransaction({ closeModal, children }) {
     return () => {
       document.removeEventListener('keydown', handleEscape);
     };
-  }, [closeModal]);
+  }, [closeModal, handleEscPress]);
 
   return (
     <Backdrop onClick={handleBackdropClick} data-backdrop>

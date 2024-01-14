@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import minusIcon from '../../../images/minus.svg';
 import plusIcon from '../../../images/plus.svg';
 import { GrClose } from 'react-icons/gr';
+import Select from 'react-select';
 
 export const Backdrop = styled.div`
   position: fixed;
@@ -32,7 +33,7 @@ export const Modal = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 320px;
+  width: 100%;
   padding: 40px 20px;
   box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
   overflow: hidden;
@@ -40,7 +41,7 @@ export const Modal = styled.div`
 
   @media only screen and (min-width: 768px) {
     position: absolute;
-    min-width: 540px;
+    width: 540px;
     height: 589px;
     padding: 40px 73px;
     border-radius: 8px;
@@ -83,26 +84,33 @@ export const Title = styled.h1`
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin-bottom: 20px;
   width: 100%;
 `;
 
 export const Input = styled.input`
+  padding-left: 20px;
   padding-bottom: 8px;
   width: 280px;
   border: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   outline: none;
   background: transparent;
-  color: #fbfbfb;
+  color: var(--white);
   font-size: 18px;
   font-weight: 600;
-  text-align: center;
+
+  @media only screen and (min-width: 768px) {
+    text-align: center;
+    padding-left: 0;
+  }
 
   &::placeholder{
-    width: 280px;
-    transform: translateX(25%);
     color: #FFFFFF99;
+    @media only screen and (min-width: 768px) {
+      transform: translateX(40%);
+    }
   }
 
   @media only screen and (min-width: 768px) {
@@ -115,12 +123,12 @@ export const CommentInputStyled = styled.input`
   padding-bottom: 52px;
   font-size: 18px;
   font-weight: 600;
+  width: 280px;
   border: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   background-color: transparent;
   color: #fbfbfb;
   outline: transparent;
-  width: 280px;
   @media only screen and (min-width: 768px) {
   }
 
@@ -345,4 +353,12 @@ export const Income = styled.p`
   color: ${({ $active }) => ($active ? '#ffb627' : '#FFFFFF99')};
   font-size: 16px;
   font-weight: 600;
+`;
+
+export const StyledSelect = styled(Select)`
+  width: 280px;
+
+  @media only screen and (min-width: 768px) {
+    width: 394px;
+  }
 `;
