@@ -8,6 +8,7 @@ import icons from '../../images/icons.svg';
 import PasswordStrengthBar from 'react-password-strength-bar-with-style-item';
 // import PasswordStrengthBar from 'react-password-strength-bar';
 import {
+  Gradient,
   StyledBoxForm,
   StyledEmailIcon,
   StyledErr,
@@ -24,11 +25,16 @@ import {
   StyledTitle,
   StyledUserIcon,
 } from './RegistrationForm.styled';
+import { toast } from 'react-toastify';
 
 const userSchema = yup.object().shape({
   username: yup.string().required('Required'),
   email: yup.string().email('Please enter a valid email!').required('Required'),
-  password: yup.string().min(6).max(12).required('Required'),
+  password: yup
+    .string()
+    .min(6, 'Password must be at least 6 characters!')
+    .max(12, 'Password must be at most 12 characters')
+    .required('Required'),
   confirmPassword: yup
     .string()
     .oneOf([yup.ref('password'), null], 'Passwords must match!')
@@ -36,17 +42,13 @@ const userSchema = yup.object().shape({
 });
 
 const RegistrationForm = () => {
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   formState: { errors },
-  // } = useForm();
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
   } = useForm({
+    mode: 'onChange',
     resolver: yupResolver(userSchema),
   });
 
@@ -58,16 +60,17 @@ const RegistrationForm = () => {
     dispatch(registerThunk(data))
       .unwrap()
       .then(res => {
-        console.log(`Welcome ${res.user.username}!`);
+        toast.error(`Welcome ${res.user.username}!`);
       })
       .catch(err => {
-        console.error(err);
+        toast.error(err);
       });
     reset();
   };
 
   return (
     <StyledBoxForm>
+      <Gradient />
       <StyledForm onSubmit={handleSubmit(submit)}>
         <StyledIcon width={25} height={25}>
           <use href={`${icons}#icon-Logo`} />
@@ -140,6 +143,7 @@ const RegistrationForm = () => {
             scoreWordStyle={{
               display: 'none',
             }}
+            max={userSchema.fields.password.max}
           />
         </StyledSpan>
         <StyledRegister>Register</StyledRegister>
