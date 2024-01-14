@@ -34,10 +34,15 @@ import { SlArrowDown, SlArrowUp } from 'react-icons/sl';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useForm, Controller } from 'react-hook-form';
-import { Calendar } from '../Calendar/Calendar';
 import { toast } from 'react-toastify';
 import { useMediaQuery } from 'react-responsive';
 import Header from '../../Header/Header';
+import {
+  CalendarContainer,
+  CalendarIcon,
+  DateWrapper,
+} from './Calendar.styled';
+import ReactDatePicker from 'react-datepicker';
 
 export const INCOME_CODE = '063f1132-ba5d-42b4-951d-44011ca46262';
 
@@ -48,18 +53,12 @@ const schema = yup
       .typeError('Please, enter the sum')
       .min(1, 'Sum value must be at least 1 character')
       .required('Sum is required'),
-
-    comment: yup
-      .string()
-      .min(3, 'Comment must be at least 3 characters')
-      .max(30, 'The maximum length of a comment is 20 characters')
-      .required('Comment is required'),
   })
   .required();
 
 export const AddTransaction = ({ closeModal }) => {
   const [isMinus, setIsMinus] = useState(true);
-  const [startDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(new Date());
   const dispatch = useDispatch();
   const transactionCategories = useSelector(selectFilteredCategories);
   const isTabletOrDesktop = useMediaQuery({ query: '(min-width: 768px)' });
@@ -283,21 +282,26 @@ export const AddTransaction = ({ closeModal }) => {
                 <ErrorMessage>{errors.amount.message}</ErrorMessage>
               )}
             </InputErrorWrap>
-            <Calendar />
+            <DateWrapper>
+              <ReactDatePicker
+                name="date"
+                selected={startDate}
+                onChange={date => setStartDate(date)}
+                dateFormat="dd.MM.yyyy"
+                maxDate={new Date()}
+                calendarContainer={CalendarContainer}
+                {...register('data')}
+              />
+              <CalendarIcon />
+            </DateWrapper>
           </WrapSumCalendar>
 
-          <InputErrorWrap>
-            <CommentInputStyled
-              type="text"
-              placeholder="Comment"
-              autoComplete="off"
-              {...register('comment')}
-            />
-            {errors.comment && (
-              <ErrorMessage>{errors.comment.message}</ErrorMessage>
-            )}
-          </InputErrorWrap>
-
+          <CommentInputStyled
+            type="text"
+            placeholder="Comment"
+            autoComplete="off"
+            {...register('comment')}
+          />
           <ButtonsWrap>
             <BtnAdd type="submit">Add</BtnAdd>
             <BtnCancel type="button" onClick={onCancelButton}>

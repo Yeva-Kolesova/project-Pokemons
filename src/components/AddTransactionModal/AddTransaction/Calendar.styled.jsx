@@ -14,13 +14,15 @@ export const DateWrapper = styled.div`
     font-weight: 400;
     width: 280px;
     padding-left: 20px;
+
     @media only screen and (min-width: 768px) {
       width: 181px;
+      padding-left: 20px !important;
     }
   }
 `;
 
-export const CalendarS = styled.div`
+export const CalendarContainer = styled.div`
   overflow: hidden;
 `;
 
@@ -31,5 +33,9 @@ export const CalendarIcon = styled(FiCalendar)`
   width: 24px;
   height: 24px;
   color: var(--icon-violet, #734aef);
+
   pointer-events: none;
+  @media only screen and (min-width: 768px) {
+    right: 8px;
+  }
 `;
