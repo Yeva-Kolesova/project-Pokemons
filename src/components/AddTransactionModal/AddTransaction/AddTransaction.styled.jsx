@@ -56,6 +56,17 @@ export const Modal = styled.div`
   }
 `;
 
+export const Gradient = styled.div`
+  z-index: -20;
+  position: absolute;
+  width: 454px;
+  height: 454px;
+  border-radius: 454px;
+  background: rgba(47, 21, 176, 0.73);
+  filter: blur(100px);
+  inset: 0;
+`;
+
 export const Title = styled.h1`
   margin-bottom: 34px;
   color: #fbfbfb;
@@ -113,7 +124,7 @@ export const CommentInputStyled = styled.input`
   outline: transparent;
   width: 280px;
   &::placeholder {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 1);
     font-size: 18px;
     font-weight: 400;
   }
@@ -131,9 +142,11 @@ export const WrapSumCalendar = styled.div`
   justify-content: center;
   margin-top: 40px;
   margin-bottom: 40px;
+
   @media only screen and (min-width: 768px) {
     flex-direction: row;
     gap: 32px;
+    align-items: baseline;
     margin-top: 0px;
   }
 
@@ -152,16 +165,16 @@ export const WrapSumCalendar = styled.div`
     @media only screen and (min-width: 768px) {
       width: 181px;
       outline: transparent;
+      padding-left: 73px;
     }
   }
 
   input::placeholder {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 1);
     text-align: start;
     font-size: 18px;
     font-weight: 700;
     @media only screen and (min-width: 768px) {
-      text-align: center;
     }
   }
 `;
@@ -182,17 +195,6 @@ export const DateWrapper = styled.div`
       width: 181px;
     }
   }
-`;
-
-export const Gradient = styled.div`
-  z-index: -20;
-  position: absolute;
-  width: 454px;
-  height: 454px;
-  border-radius: 454px;
-  background: rgba(47, 21, 176, 0.73);
-  filter: blur(100px);
-  inset: 0;
 `;
 
 //==============BTNS
@@ -355,10 +357,17 @@ export const Income = styled.p`
 // ==========ERROR
 export const InputErrorWrap = styled.div`
   position: relative;
+  height: 47px;
 `;
 
 export const ErrorMessage = styled.p`
   color: rgb(255, 134, 141);
   font-size: 14px;
   font-weight: 500;
+  padding-left: 20px;
+
+  @media only screen and (min-width: 768px) {
+    padding-left: 0px;
+    text-align: center;
+  }
 `;
