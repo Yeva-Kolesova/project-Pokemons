@@ -108,7 +108,7 @@ export const BtnCancel = styled.button`
   padding: 13px 10px;
   font-size: 18px;
   color: #623f8b;
-  box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 9px 15px 0 rgba(0, 0, 0, 0.2);
   background-color: var(--white);
   text-align: center;
   text-transform: uppercase;
@@ -130,7 +130,7 @@ export const BtnSubmit = styled.button`
   padding: 13px 10px;
   font-size: 18px;
   color: var(--white);
-  box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 9px 15px 0 rgba(0, 0, 0, 0.2);
   background: linear-gradient(
     97deg,
     #ffc727 -16.42%,
