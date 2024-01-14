@@ -2,11 +2,9 @@ import styled from 'styled-components';
 import { FiCalendar } from 'react-icons/fi';
 
 export const DateWrapper = styled.div`
-  margin-top: 40px;
   position: relative;
   display: flex;
   @media only screen and (min-width: 768px) {
-    margin-top: 40px;
   }
   input {
     color: #fbfbfb;
@@ -14,6 +12,12 @@ export const DateWrapper = styled.div`
     font-weight: 400;
     width: 280px;
     padding-left: 20px;
+    padding-bottom: 8px;
+    cursor: pointer;
+    background: transparent;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 
     @media only screen and (min-width: 768px) {
       width: 181px;
