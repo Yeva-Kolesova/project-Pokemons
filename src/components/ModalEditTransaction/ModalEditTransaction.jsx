@@ -33,7 +33,7 @@ function ModalEditTransaction({ closeModal, children }) {
       document.removeEventListener('keydown', handleEscPress);
       document.body.style.overflow = 'visible';
     };
-  }, []);
+  }, [closeModal]);
 
   const handleBackdropClick = e => {
     if (e.target === e.currentTarget) {
