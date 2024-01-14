@@ -29,7 +29,8 @@ const TransactionItem = ({ data }) => {
   const categories = useSelector(selectCategories);
 
   const handleDelete = (transactionId, amount) => {
-    dispatch(deleteTransactionThunk(transactionId)).unwrap()
+    dispatch(deleteTransactionThunk(transactionId))
+      .unwrap()
       .then(() => {
         dispatch(reduceBalanceValue(amount));
       });
@@ -45,14 +46,16 @@ const TransactionItem = ({ data }) => {
         </PCategory>
         <PComment>{comment}</PComment>
         <PSum
-          style={type === 'EXPENSE' ? { color: '#FF868D' } : { color: '#FFB627' }}
+          style={
+            type === 'EXPENSE' ? { color: '#FF868D' } : { color: '#FFB627' }
+          }
         >
           {Math.abs(amount).toFixed(2)}
         </PSum>
         <Actions>
           <ActionsContainer>
             <PencilButton
-              type='button'
+              type="button"
               onClick={() => setIsEditTransactionForm(true)}
             >
               <LuPencil />
@@ -69,7 +72,10 @@ const TransactionItem = ({ data }) => {
       </ListTab>
       {isEditTransactionForm && (
         <ModalEditTransaction closeModal={setIsEditTransactionForm}>
-          <EditTransactionForm transaction={data} closeModal={setIsEditTransactionForm}/>
+          <EditTransactionForm
+            transaction={data}
+            closeModal={setIsEditTransactionForm}
+          />
         </ModalEditTransaction>
       )}
     </>

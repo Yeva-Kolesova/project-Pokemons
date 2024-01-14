@@ -26,7 +26,8 @@ const TransactionCardItem = ({ data }) => {
   const categories = useSelector(selectCategories);
 
   const handleDelete = (transactionId, amount) => {
-    dispatch(deleteTransactionThunk(transactionId)).unwrap()
+    dispatch(deleteTransactionThunk(transactionId))
+      .unwrap()
       .then(() => {
         dispatch(reduceBalanceValue(amount));
       });
