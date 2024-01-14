@@ -20,6 +20,7 @@ export const StyledBoxForm = styled.div`
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+    border-radius: 8px;
 
     &::before {
       /* background-color: rgba(255, 255, 255, 0.1); */
