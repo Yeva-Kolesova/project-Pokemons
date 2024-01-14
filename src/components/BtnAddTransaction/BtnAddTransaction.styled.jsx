@@ -20,4 +20,13 @@ export const BtnOpenModal = styled.button`
   );
   cursor: pointer;
   z-index: 10;
+
+  &:hover {
+    background: linear-gradient(
+      97deg,
+      #1f96ff -16.42%,
+      #7931cb 97.04%,
+      #e3a7fb 150.71%
+    );
+  }
 `;
