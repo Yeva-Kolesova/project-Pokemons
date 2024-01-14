@@ -23,10 +23,13 @@ function DashboardPage() {
       <Header />
       <Container>
         <DashboardContainer>
-          <GradientRightBottom/>
-          <GradientLeftBottom/>
-          <GradientLeftTop/>
-          <GradientRightTop/>
+          <GradientLeftTop />
+          <GradientLeftBottom />
+          {isTabletOrDesktop && (
+            <>
+              <GradientRightBottom />
+              <GradientRightTop />
+            </>)}
           <LeftContainer>
             <NavAndBalanceWrapper>
               <Navigation />
@@ -35,7 +38,7 @@ function DashboardPage() {
             </NavAndBalanceWrapper>
             {isTabletOrDesktop && <CurrencyPage />}
           </LeftContainer>
-          <Suspense fallback={<h2>Loading page suspense</h2>}>
+          <Suspense fallback={<p></p>}>
             <Outlet />
           </Suspense>
         </DashboardContainer>

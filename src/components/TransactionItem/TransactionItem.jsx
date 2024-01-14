@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteTransactionThunk } from 'reduxConfig/transactions/operations';
 import { selectCategories } from 'reduxConfig/transactions/selectors';
 import { LuPencil } from 'react-icons/lu';
+import { reduceBalanceValue } from '../../reduxConfig/auth/slice';
 
 const TransactionItem = ({ data }) => {
   const dispatch = useDispatch();
@@ -25,8 +26,11 @@ const TransactionItem = ({ data }) => {
 
   const categories = useSelector(selectCategories);
 
-  const handleDelete = transactionId => {
-    dispatch(deleteTransactionThunk(transactionId));
+  const handleDelete = (transactionId, amount) => {
+    dispatch(deleteTransactionThunk(transactionId)).unwrap()
+      .then(() => {
+        dispatch(reduceBalanceValue(amount));
+      });
   };
 
   return (
@@ -53,7 +57,7 @@ const TransactionItem = ({ data }) => {
           {isEditTransactionForm}
           <Button
             onClick={() => {
-              handleDelete(id);
+              handleDelete(id, amount);
             }}
           >
             Delete

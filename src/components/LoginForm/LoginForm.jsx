@@ -20,7 +20,6 @@ import {
   StyledPasswordIcon,
   StyledTitle,
 } from './LoginForm.styled';
-import { toast } from 'react-toastify';
 
 const userSchema = yup.object().shape({
   email: yup.string().email('Please enter a valid email!').required('Required'),
@@ -28,11 +27,6 @@ const userSchema = yup.object().shape({
 });
 
 const LoginForm = () => {
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   formState: { errors },
-  // } = useForm();
   const {
     register,
     handleSubmit,
@@ -43,13 +37,17 @@ const LoginForm = () => {
   });
   const dispatch = useDispatch();
   const submit = data => {
-    console.log(data);
     dispatch(logInThunk(data))
       .unwrap()
-      .then(res => toast.success(`Welcome ${res.user.username}!`))
-      .catch(err => toast.error(err));
+      .then(res => {
+        console.log(`Welcome ${res.user.username}!`);
+      })
+      .catch(err => {
+        console.error(err);
+      });
     reset();
   };
+
   return (
     <StyledBoxForm>
       <StyledForm onSubmit={handleSubmit(submit)}>
@@ -82,6 +80,7 @@ const LoginForm = () => {
           <StyledErr>{errors.password?.message}</StyledErr>
         </StyledLabel>
         <StyledLogin>Log in</StyledLogin>
+
         <StyledLink to="/register">Register</StyledLink>
       </StyledForm>
     </StyledBoxForm>

@@ -14,6 +14,7 @@ import { LuPencil } from 'react-icons/lu';
 import { useState } from 'react';
 import { deleteTransactionThunk } from 'reduxConfig/transactions/operations';
 import { selectCategories } from 'reduxConfig/transactions/selectors';
+import { reduceBalanceValue } from '../../reduxConfig/auth/slice';
 
 const TransactionCardItem = ({ data }) => {
   const dispatch = useDispatch();
@@ -22,8 +23,11 @@ const TransactionCardItem = ({ data }) => {
 
   const categories = useSelector(selectCategories);
 
-  const handleDelete = transactionId => {
-    dispatch(deleteTransactionThunk(transactionId));
+  const handleDelete = (transactionId, amount) => {
+    dispatch(deleteTransactionThunk(transactionId)).unwrap()
+      .then(() => {
+        dispatch(reduceBalanceValue(amount));
+      });
   };
 
   return (
@@ -60,7 +64,7 @@ const TransactionCardItem = ({ data }) => {
       <CardLine $plus={amount >= 0}>
         <CardLineButtonDelete
           onClick={() => {
-            handleDelete(id);
+            handleDelete(id, amount);
           }}
         >
           Delete

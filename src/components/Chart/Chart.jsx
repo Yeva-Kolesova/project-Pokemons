@@ -7,16 +7,16 @@ import { selectSummary } from 'reduxConfig/statistics/selectors';
 ChartJS.register(...registerables);
 
 export const coloredCategoriesMap = new Map([
-  ['Main expenses', 'rgba(254, 208, 87, 1)'],
-  ['Products', 'rgba(255, 216, 208, 1)'],
-  ['Car', 'rgba(253, 148, 152, 1)'],
-  ['Self care', 'rgba(197, 186, 255, 1)'],
-  ['Child care', 'rgba(110, 120, 232, 1)'],
-  ['Household products', 'rgba(74, 86, 226, 1)'],
-  ['Education', 'rgba(129, 225, 255, 1)'],
-  ['Leisure', 'rgba(36, 204, 167, 1)'],
-  ['Other expenses', 'rgba(0, 173, 132, 1)'],
-  ['Entertainment', 'rgb(255, 137, 212)'],
+  ['Entertainment', '#ff85d2'],
+  ['Car', 'rgb(255, 104, 109)'],
+  ['Products', 'rgb(255, 157, 137)'],
+  ['Main expenses', 'rgb(254, 208, 87)'],
+  ['Leisure', 'rgb(91, 255, 167)'],
+  ['Other expenses', 'rgb(0, 173, 95)'],
+  ['Education', 'rgb(115, 222, 255)'],
+  ['Self care', 'rgb(170, 154, 255)'],
+  ['Child care', 'rgb(87, 101, 255)'],
+  ['Household products', 'rgb(114, 61, 239)'],
 ]);
 
 export function Chart() {
@@ -35,13 +35,18 @@ export function Chart() {
   const data = {
     datasets: [
       {
-        data: periodSummary.length
-          ? periodSummary.map(expense => expense.total)
-          : [1],
-        backgroundColor: periodSummary.length
-          ? periodSummary.map(expense => expense.color)
-          : '#45454568',
+        data: periodSummary.map(expense => expense.total),
+        backgroundColor: periodSummary.map(expense => expense.color),
         boxShadow: '0px 0px 8px 0px #000 inset',
+      },
+    ],
+  };
+
+  const noData = {
+    datasets: [
+      {
+        data: [0.0000000001],
+        backgroundColor: ['rgba(111, 111, 111, 0.7)'],
       },
     ],
   };
@@ -72,7 +77,11 @@ export function Chart() {
         position: 'relative',
       }}
     >
-      <Doughnut data={data} options={options} />
+      {periodSummary.length ? (
+        <Doughnut data={data} options={options} />
+      ) : (
+        <Doughnut data={noData} options={options} />
+      )}
       <div
         style={{
           position: 'absolute',
