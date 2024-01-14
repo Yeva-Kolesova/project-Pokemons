@@ -7,6 +7,7 @@ import {
   StyledItem,
   StyledList,
   StyledListContainer,
+  StyledNoTransactions,
 } from './StatisticsTable.styled';
 import { selectSummary } from 'reduxConfig/statistics/selectors';
 import { fetchTransSumThunk } from 'reduxConfig/statistics/operations';
@@ -47,15 +48,21 @@ const StatisticsTable = () => {
       </StyledCategory>
       <StyledListContainer>
         <StyledList>
-          {periodSummary.map((category, index) => (
-            <StyledItem key={index}>
-              <div>
-                <span style={{ backgroundColor: category.color }} />
-                <p>{category.name}</p>
-              </div>
-              <p>{formatNumber(category.total)}</p>
-            </StyledItem>
-          ))}
+          {periodSummary.length ? (
+            periodSummary.map((category, index) => (
+              <StyledItem key={index}>
+                <div>
+                  <span style={{ backgroundColor: category.color }} />
+                  <p>{category.name}</p>
+                </div>
+                <p>{formatNumber(category.total)}</p>
+              </StyledItem>
+            ))
+          ) : (
+            <StyledNoTransactions>
+              You don't have any transactions in this period
+            </StyledNoTransactions>
+          )}
         </StyledList>
       </StyledListContainer>
       <StyledExpenses>
