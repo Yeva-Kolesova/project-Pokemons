@@ -5,6 +5,7 @@ import {
   refreshUser,
   registerThunk,
 } from './operations';
+import { addTransactionThunk, updatedTransactionThunk } from '../transactions/operations';
 
 const initialState = {
   user: {
@@ -27,6 +28,11 @@ function handleLogIn(state, { payload }) {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    reduceBalanceValue: (state, { payload }) => {
+      state.user.balance = state.user.balance - payload
+    }
+  },
   extraReducers: builder => {
     builder
       .addCase(registerThunk.fulfilled, handleLogIn)
@@ -48,8 +54,15 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
+      })
+      .addCase(addTransactionThunk.fulfilled, (state, { payload }) => {
+        state.user.balance = payload.balanceAfter;
+      })
+      .addCase(updatedTransactionThunk.fulfilled, (state, { payload }) => {
+        state.user.balance = payload.balanceAfter;
       });
   },
 });
 
 export const authReducer = authSlice.reducer;
+export const { reduceBalanceValue } = authSlice.actions
