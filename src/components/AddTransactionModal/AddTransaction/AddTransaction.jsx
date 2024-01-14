@@ -49,6 +49,7 @@ export const INCOME_CODE = '063f1132-ba5d-42b4-951d-44011ca46262';
 
 const schema = yup
   .object({
+    isExpense: yup.boolean(),
     amount: yup
       .number()
       .typeError('Please, enter the sum')
@@ -58,7 +59,10 @@ const schema = yup
     category: yup
       .string()
       .uuid('Incorrect format')
-      .required('Category is required'),
+      .when("isExpense", {
+        is: true,
+        then: (schema) => schema.required('Category is required')
+      })
   })
   .required();
 
