@@ -144,9 +144,7 @@ export const WrapSumCalendar = styled.div`
   }
 
   @media only screen and (min-width: 768px) {
-    width: 181px;
     outline: transparent;
-    padding-left: 73px;
   }
 
   input::placeholder {
