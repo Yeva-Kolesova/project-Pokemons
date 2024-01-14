@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useCallback, useState} from 'react';
 import image from '../../images/currency.png';
+import imageTab from '../../images/currencyTab.png'
 import {
   CurrencyWrapper,
   CurrencyTable,
@@ -8,66 +9,98 @@ import {
   CurrencyTableItem,
   CurrencyTableHeadItem,
   CurrencyTableBody,
-  CurrecnyDiagram
+  CurrecnyDiagram,
+  LowerNumber,
+  HigherNumber,
+  CurrencyHeadWrapper
 } from './Currency.styled';
+import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { useMediaQuery } from 'react-responsive';
 import { fetchCurrency } from 'reduxConfig/currency/operations';
 import { selectCurrency } from 'reduxConfig/currency/selectors';
+
+import { setLastUpdatedTime } from 'reduxConfig/currency/slice';
+import { selectLastUpdatedTime } from 'reduxConfig/currency/selectors';
 
 const Currency = () => {
   const [currency, setCurrency] = useState([]);
   const selectedCurrency = useSelector(selectCurrency);
+  const lastUpdatedTime = useSelector(selectLastUpdatedTime);
 
-  const token = useSelector(state => state.auth.token);
   const dispatch = useDispatch();
 
-  const updateLastUpdatedTime = () => {
-    const newTime = Date.now();
-    localStorage.setItem('lastUpdatedTime', newTime);
-  };
-
+  const isHourPassed = useCallback(() => {
+    const ONE_HOUR_IN_MS = 60 * 60 * 1000;
+    return Date.now() - lastUpdatedTime >= ONE_HOUR_IN_MS;
+  }, [lastUpdatedTime]);
 
   useEffect(() => {
-    const lastUpdatedTime = localStorage.getItem('lastUpdatedTime');
-    const isHourPassed = () => {
-      const ONE_HOUR_IN_MS = 60 * 60 * 1000;
-      return Date.now() - Number(lastUpdatedTime) >= ONE_HOUR_IN_MS;
-    };
-
     if (isHourPassed() || !lastUpdatedTime) {
       dispatch(fetchCurrency());
       setCurrency(selectedCurrency);
-      updateLastUpdatedTime();
     } else {
       setCurrency(selectedCurrency);
     }
-  }, [dispatch, selectedCurrency, token]);
 
+  }, [dispatch, lastUpdatedTime, isHourPassed, selectedCurrency]);
+
+  useEffect(() => {
+    dispatch(setLastUpdatedTime(Date.now()));
+  }, [dispatch]);
+
+
+
+  const isTablet = useMediaQuery({ maxWidth: 768 })
+  const isDesktop = useMediaQuery({ minWidth: 769 })
+  
   return (
     <CurrencyWrapper>
       <CurrencyTable>
-        <CurrencyTableHead>
-          <CurrencyTableHeadItem>Currency</CurrencyTableHeadItem>
-          <CurrencyTableHeadItem>Purchase</CurrencyTableHeadItem>
-          <CurrencyTableHeadItem>Sale</CurrencyTableHeadItem>
+        <CurrencyHeadWrapper>
+          <CurrencyTableHead>
+            <CurrencyTableHeadItem>Currency</CurrencyTableHeadItem>
+            <CurrencyTableHeadItem>Purchase</CurrencyTableHeadItem>
+            <CurrencyTableHeadItem>Sale</CurrencyTableHeadItem>
         </CurrencyTableHead>
+        </CurrencyHeadWrapper>
 
         <CurrencyTableBodyList>
           {currency?.length &&
             currency.map(el => {
-              console.log('el', el);
               return (
                 <CurrencyTableBody key={el.id}>
                   <CurrencyTableItem>{el.currencyName}</CurrencyTableItem>
-                  <CurrencyTableItem>{el.rateBuy.toString().slice(0, -2)}</CurrencyTableItem>
-                  <CurrencyTableItem>{el.rateSell.toString().slice(0, -2)}</CurrencyTableItem>
+                  <CurrencyTableItem>{el.rateBuy.toFixed(2)}</CurrencyTableItem>
+                  <CurrencyTableItem>{el.rateSell.toFixed(2)}</CurrencyTableItem>
                 </CurrencyTableBody>
               );
             })}
         </CurrencyTableBodyList>
       </CurrencyTable>
-      <CurrecnyDiagram src={image} alt="" />
+      <CurrecnyDiagram>
+        {currency?.map(item => {
+          if (item.currencyCodeA === 840) {
+            return (
+              <LowerNumber key={nanoid()}>{item.rateBuy}</LowerNumber>
+            );
+          }
+          return [];
+        })}
+
+        {currency?.map(item => {
+          if (item.currencyCodeA === 978) {
+            return (
+              <HigherNumber key={nanoid()}>{item.rateBuy}</HigherNumber>
+            );
+          }
+          return [];
+        })}
+        
+        {isDesktop && (<img src={image} alt="" />)}
+        {isTablet && (<img src={imageTab} alt="" />)}
+      </CurrecnyDiagram>
     </CurrencyWrapper>
   );
 };

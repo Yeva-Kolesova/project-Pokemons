@@ -24,8 +24,7 @@ const authPersistConfig = {
 
 const currencyPersistConfig = {
   key: 'currency',
-  storage,
-  whitelist: ['data']
+  storage
 }
 
 export const store = configureStore({
