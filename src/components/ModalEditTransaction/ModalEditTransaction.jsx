@@ -20,6 +20,12 @@ function ModalEditTransaction({ closeModal, children }) {
   }, []);
 
   useEffect(() => {
+    function handleEscPress(ev) {
+      if (ev.key === 'Escape') {
+        closeModal(false);
+      }
+    }
+
     document.addEventListener('keydown', handleEscPress);
     document.body.style.overflow = 'hidden';
 
@@ -27,7 +33,7 @@ function ModalEditTransaction({ closeModal, children }) {
       document.removeEventListener('keydown', handleEscPress);
       document.body.style.overflow = 'visible';
     };
-  }, [handleEscPress]);
+  }, []);
 
   const handleBackdropClick = e => {
     if (e.target === e.currentTarget) {
@@ -35,24 +41,18 @@ function ModalEditTransaction({ closeModal, children }) {
     }
   };
 
-  function handleEscPress(ev) {
-    if (ev.key === 'Escape') {
-      closeModal(false);
-    }
-  }
-
   useEffect(() => {
-    const handleEscape = e => {
+    function handleEscape(e) {
       if (e.key === 'Escape') {
         closeModal(false);
       }
-    };
+    }
 
     document.addEventListener('keydown', handleEscape);
     return () => {
       document.removeEventListener('keydown', handleEscape);
     };
-  }, [closeModal, handleEscPress]);
+  }, [closeModal]);
 
   return (
     <Backdrop onClick={handleBackdropClick} data-backdrop>
