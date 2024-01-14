@@ -50,7 +50,8 @@ export const CardLine = styled.div`
     top: 0;
     bottom: 0;
     width: 5px; // Ширина вертикальної лінії
-    background: var(--dashboard-text, #ff868d); // Колір вертикальної лінії
+    background-color: ${props =>
+      props.plus ? '#FFB627' : '#ff868d'}; // Колір вертикальної лінії
     border-top-right-radius: 10px; // Закруглення зверху праворуч
     border-bottom-right-radius: 10px; // Закруглення знизу праворуч
   }
@@ -74,7 +75,7 @@ export const CardLineP = styled.p`
 `;
 
 export const CardLinePSum = styled.p`
-  color: var(--dashboard-text, #ff868d);
+  color: ${props => (props.plus ? '#FFB627' : '#ff868d')};
   text-align: right;
   font-size: 16px;
   font-style: normal;
@@ -121,6 +122,12 @@ export const CardLineButtonEdit = styled.button`
   line-height: normal;
   letter-spacing: 0.32px;
   cursor: pointer;
+  transition: color 250ms ease-in-out;
+
+  color: var(--white);
+  &:hover {
+    color: var(--icon-violet);
+  }
 `;
 
 export const CardLinePEdit = styled.span`

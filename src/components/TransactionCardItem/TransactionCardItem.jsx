@@ -1,3 +1,4 @@
+import { useDispatch, useSelector } from 'react-redux';
 import {
   Card,
   CardLine,
@@ -10,33 +11,65 @@ import {
 } from './TransactionCardItem.styled';
 
 import { LuPencil } from 'react-icons/lu';
+import { useState } from 'react';
+import { deleteTransactionThunk } from 'reduxConfig/transactions/operations';
+import { selectCategories } from 'reduxConfig/transactions/selectors';
 
 const TransactionCardItem = ({ data }) => {
+  const dispatch = useDispatch();
+  const { id, transactionDate, type, categoryId, comment, amount } = data;
+  const [isEditTransactionForm, setIsEditTransactionForm] = useState(false);
+
+  const categories = useSelector(selectCategories);
+
+  const handleDelete = transactionId => {
+    dispatch(deleteTransactionThunk(transactionId));
+  };
+
   return (
     <Card>
-      <CardLine>
+      <CardLine $plus={amount >= 0}>
         <CardLineTitle>Date</CardLineTitle>
-        <CardLineP>04.01.23</CardLineP>
+        <CardLineP>{transactionDate}</CardLineP>
       </CardLine>
-      <CardLine>
+      <CardLine $plus={amount >= 0}>
         <CardLineTitle>Type</CardLineTitle>
-        <CardLineP>-</CardLineP>
+        <CardLineP>{type === 'EXPENSE' ? '-' : '+'}</CardLineP>
       </CardLine>
-      <CardLine>
+      <CardLine $plus={amount >= 0}>
         <CardLineTitle>Category</CardLineTitle>
-        <CardLineP>Other</CardLineP>
+        <CardLineP>
+          {categories?.filter(c => c?.value === categoryId)[0]?.label}
+        </CardLineP>
       </CardLine>
-      <CardLine>
+      <CardLine $plus={amount >= 0}>
         <CardLineTitle>Comment</CardLineTitle>
-        <CardLineP>Gift for your wife</CardLineP>
+        <CardLineP>{comment}</CardLineP>
       </CardLine>
-      <CardLine>
+      <CardLine $plus={amount >= 0}>
         <CardLineTitle>Sum</CardLineTitle>
-        <CardLinePSum>300.00</CardLinePSum>
+        <CardLinePSum
+          $plus={amount >= 0}
+          style={
+            type === 'EXPENSE' ? { color: '#FF868D' } : { color: '#FFB627' }
+          }
+        >
+          {Math.abs(amount).toFixed(2)}
+        </CardLinePSum>
       </CardLine>
-      <CardLine>
-        <CardLineButtonDelete>Delete</CardLineButtonDelete>
-        <CardLineButtonEdit>
+      <CardLine $plus={amount >= 0}>
+        <CardLineButtonDelete
+          onClick={() => {
+            handleDelete(id);
+          }}
+        >
+          Delete
+        </CardLineButtonDelete>
+        {isEditTransactionForm}
+        <CardLineButtonEdit
+          type="button"
+          onClick={() => setIsEditTransactionForm(true)}
+        >
           <LuPencil color={'rgba(255, 255, 255, 0.6)'} />
           <CardLinePEdit> Edit</CardLinePEdit>
         </CardLineButtonEdit>
@@ -46,5 +79,3 @@ const TransactionCardItem = ({ data }) => {
 };
 
 export default TransactionCardItem;
-
-// /* <TbPencil />  Іконка олівець */

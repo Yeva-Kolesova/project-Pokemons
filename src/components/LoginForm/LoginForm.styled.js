@@ -7,9 +7,28 @@ export const StyledBoxForm = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 23px 20px;
+  width: 100%;
+  max-height: 100vh;
+  box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
+  background-color: var(--Form-color, rgba(255, 255, 255, 0.1));
+
+  @media only screen and (min-width: 768px) {
+    width: 533px;
+    height: 624px;
+    padding: 40px 62px;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    backdrop-filter: blur(50px);
+
+    border-radius: 8px;
+  }
 `;
 
 export const StyledIcon = styled.svg`
+  font-size: 25px;
   @media only screen and (min-width: 768px) {
     width: 35px;
     height: 35px;
@@ -33,25 +52,7 @@ export const StyledForm = styled.form`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  padding: 98px 20px;
-  box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
-  width: 100%;
-  height: 100vh;
-  background-color: var(--Form-color, rgba(255, 255, 255, 0.1));
-
-  @media only screen and (min-width: 768px) {
-    width: 533px;
-    height: 570px;
-    padding: 80px 62px;
-    position: fixed;
-
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    backdrop-filter: blur(50px);
-    border-radius: 8px;
-  }
+  margin: 0 auto;
 `;
 
 export const StyledLabel = styled.label`
@@ -64,29 +65,26 @@ export const StyledLabel = styled.label`
   }
 `;
 
-export const StyledInput = styled.div`
+export const StyledInputBox = styled.div`
   position: relative;
-  width: 100%;
+  max-width: 280px;
   display: flex;
   align-items: center;
-  padding: 5px 11px;
+
   border-bottom: 1px solid rgba(55, 65, 81, 1);
+  @media only screen and (min-width: 768px) {
+    max-width: 409px;
+  }
 `;
 
 export const StyledEmailIcon = styled(MdEmail)`
   color: var(--white-60, rgba(255, 255, 255, 0.6));
   font-size: 24px;
-  margin-right: 8px;
-  width: 24px;
-  height: 24px;
 `;
 
 export const StyledPasswordIcon = styled(IoMdLock)`
   color: var(--white-60, rgba(255, 255, 255, 0.6));
   font-size: 24px;
-  margin-right: 8px;
-  width: 24px;
-  height: 24px;
 `;
 
 export const StyledInputField = styled.input`
@@ -97,6 +95,11 @@ export const StyledInputField = styled.input`
   font-size: 18px;
   font-weight: 400;
   color: var(--white-60, rgba(255, 255, 255, 0.6));
+  padding: 5px 11px;
+`;
+
+export const StyledErr = styled.p`
+  padding-top: 4px;
 `;
 
 export const StyledLogin = styled.button`

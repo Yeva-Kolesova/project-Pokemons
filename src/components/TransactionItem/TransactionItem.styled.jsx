@@ -9,10 +9,6 @@ export const ListTab = styled.tr`
       border-bottom: 1px solid rgba(255, 255, 255, 0.41);
     }
   }
-
-  @media only screen and (min-width: 1280px) {
-    /* width: 698px; */
-  }
 `;
 
 export const PData = styled.td`
@@ -85,6 +81,12 @@ export const PencilButton = styled.button`
   border: none;
   background-color: transparent;
   cursor: pointer;
+  transition: color 250ms ease-in-out;
+
+  color: var(--white);
+  &:hover {
+    color: var(--icon-violet);
+  }
 `;
 
 export const Button = styled.button`
@@ -120,4 +122,40 @@ export const Button = styled.button`
   @media only screen and (min-width: 1280px) {
     border-radius: 20px;
   }
+
+  &:hover {
+    background: linear-gradient(
+      97deg,
+      #1f96ff -16.42%,
+      #7931cb 97.04%,
+      #e3a7fb 150.71%
+    );
+  }
+
+  /* &:hover {
+    background: linear-gradient(
+      97deg,
+      #7000ff -16.42%,
+      #9e40ba 97.04%,
+      #ffc727 150.71%
+    );
+  } */
+
+  /* &:hover {
+    background: linear-gradient(
+      97deg,
+      #5900ff -16.42%,
+      #27ffd4 97.04%,
+      #0088ff 150.71%
+    );
+  } */
+
+  /* &:hover {
+    background: linear-gradient(
+      97deg,
+      #5900ff -16.42%,
+      #dab9ff 97.04%,
+      #fca6a6 150.71%
+    );
+  } */
 `;

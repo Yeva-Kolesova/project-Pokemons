@@ -15,6 +15,8 @@ const HomePage = () => {
 export default HomePage;
 
 const StaledSectionHome = styled.section`
+  position: relative;
+
   @media only screen and (min-width: 768px) {
     margin-top: 20px;
     width: 768px;

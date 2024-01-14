@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 export const StyledHeader = styled.header`
   display: flex;
   width: 100%;
-  height: 60px;
+  min-height: 60px;
   background: linear-gradient(270deg, #2e1746 3.2%, #2e225f 99.98%);
   box-shadow: 0 4px 40px 0 rgba(0, 0, 0, 0.25),
     0 -3px 2px 0 rgba(0, 0, 0, 0.1) inset;
@@ -25,6 +25,7 @@ export const LogoWrapper = styled(NavLink)`
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-decoration: none;
 
   p {
     font-size: 12.84px;
@@ -53,29 +54,34 @@ export const UserInfoWrapper = styled.div`
   font-size: 18px;
   line-height: 1.33;
 
-  span, p {
-    font-size: 18px;
-    position: relative;
-    line-height: 1.33;
-  }
-
   @media only screen and (min-width: 768px) {
     gap: 24px;
-
-    span {
-      &::after {
-        content: '';
-        height: 30px;
-        width: 1px;
-        position: absolute;
-        right: -12px;
-        top: 50%;
-        transform: translateY(-50%);
-        background-color: var(--transparency-60);
-        border-radius: 2px;
-      }
-    }
   }
+`;
+
+export const ExitText = styled.p`
+  font-size: 18px;
+  position: relative;
+  line-height: 1.33;
+`;
+
+export const UsernameText = styled.span`
+  font-size: 18px;
+  position: relative;
+  line-height: 1.33;
+
+  @media only screen and (min-width: 768px) {
+    &::after {
+      content: '';
+      height: 30px;
+      width: 1px;
+      position: absolute;
+      right: -12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: var(--transparency-60);
+      border-radius: 2px;
+    }
 `;
 
 export const StyledExit = styled.button`
@@ -86,6 +92,7 @@ export const StyledExit = styled.button`
   align-items: center;
   padding: 0;
   gap: 8px;
+  cursor: pointer;
 
   transition: color 250ms ease-in-out;
 

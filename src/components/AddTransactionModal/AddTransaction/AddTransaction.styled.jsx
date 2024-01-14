@@ -1,16 +1,17 @@
 import styled from 'styled-components';
-import { IoCloseOutline } from 'react-icons/io5';
+import minusIcon from '../../../images/minus.svg';
+import plusIcon from '../../../images/plus.svg';
+import { GrClose } from 'react-icons/gr';
 
 export const Backdrop = styled.div`
   position: fixed;
+  flex-direction: column;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
-  background-color: rgba(34, 13, 91, 0.23);
   z-index: 10;
 
   &::before {
@@ -21,24 +22,29 @@ export const Backdrop = styled.div`
     inset: 0;
     z-index: -1;
   }
+
+  @media only screen and (min-width: 768px) {
+    justify-content: center;
+  }
 `;
 
 export const Modal = styled.div`
-  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
   max-width: 320px;
   padding: 40px 20px;
-  background: rgba(255, 255, 255, 0.1);
   box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(50px);
   overflow: hidden;
+  height: 100%;
+
   @media only screen and (min-width: 768px) {
+    position: absolute;
     min-width: 540px;
-    min-height: 589px;
+    height: 589px;
     padding: 40px 73px;
     border-radius: 8px;
+    height: fit-content;
   }
   &::before {
     background-color: rgba(255, 255, 255, 0.1);
@@ -70,35 +76,10 @@ export const Form = styled.form`
   width: 100%;
 `;
 
-export const CloseModalBtn = styled.button`
-  display: none;
-  position: absolute;
-  fill: #fbfbfb;
-  width: 16px;
-  height: 16px;
-  position: absolute;
-  right: 20px;
-  top: 20px;
-  border: none;
-  outline: transparent;
-
-  @media only screen and (min-width: 768px) {
-    display: flex;
-  }
-`;
-
-export const TransactionToggleWrap = styled.div`
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  justify-content: center;
-`;
-
 export const Input = styled.input`
   padding-left: 20px;
   padding-bottom: 8px;
   width: 100%;
-  background: transparent;
   border: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   outline: none;
@@ -113,11 +94,117 @@ export const Input = styled.input`
 `;
 
 export const ButtonsWrap = styled.div`
+  margin-top: 40px;
   display: flex;
   align-items: center;
   flex-direction: column;
   gap: 20px;
 `;
+
+export const CommentInputStyled = styled.input`
+  padding-left: 20px;
+  padding-bottom: 52px;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  background-color: transparent;
+  color: #fbfbfb;
+  outline: transparent;
+  width: 280px;
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 18px;
+    font-weight: 400;
+  }
+  @media only screen and (min-width: 768px) {
+    padding-left: 8px;
+    padding-bottom: 8px;
+    width: 394px;
+  }
+`;
+
+export const WrapSumCalendar = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  @media only screen and (min-width: 768px) {
+    flex-direction: row;
+    gap: 32px;
+    margin-top: 0px;
+  }
+
+  input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    outline: none;
+    padding-left: 20px;
+    padding-bottom: 8px;
+    color: #fbfbfb;
+    font-size: 18px;
+    font-weight: 600;
+    width: 280px;
+    margin: 0;
+    @media only screen and (min-width: 768px) {
+      width: 181px;
+      outline: transparent;
+    }
+  }
+
+  input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+    text-align: start;
+    font-size: 18px;
+    font-weight: 700;
+    @media only screen and (min-width: 768px) {
+      text-align: center;
+    }
+  }
+`;
+
+export const DateWrapper = styled.div`
+  margin-top: 40px;
+  position: relative;
+  display: flex;
+
+  input {
+    color: #fbfbfb;
+    font-size: 18px;
+    font-weight: 400;
+    width: 280px;
+    padding-left: 20px;
+
+    @media only screen and (min-width: 768px) {
+      width: 181px;
+    }
+  }
+`;
+
+export const Gradient = styled.div`
+  z-index: -20;
+  position: absolute;
+  width: 454px;
+  height: 454px;
+  border-radius: 454px;
+  background: rgba(47, 21, 176, 0.73);
+  filter: blur(100px);
+  inset: 0;
+`;
+
+//==============BTNS
+
+export const CloseBtn = styled(GrClose)`
+  margin: 0;
+  padding: 0;
+  width: 16px;
+  height: 16px;
+  color: #fbfbfb;
+`;
+
 export const BtnAdd = styled.button`
   width: 280px;
   height: 50px;
@@ -164,69 +251,29 @@ export const BtnCancel = styled.button`
   }
 `;
 
-export const TextareaStyled = styled.textarea`
-  margin-bottom: 40px;
-  padding-left: 20px;
-  padding-bottom: 52px;
-  font-size: 18px;
-  font-weight: 400;
-  background-color: transparent;
+export const CloseModalBtn = styled.button`
+  display: none;
+  position: absolute;
+  right: 20px;
+  top: 20px;
   border: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-  color: #ffffff;
-  overflow: hidden;
-  outline: none;
+  outline: transparent;
+  background-color: transparent;
+
   @media only screen and (min-width: 768px) {
-    padding-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 `;
 
-export const ActiveExpense = styled.p`
-  color: #ff868d;
-  font-size: 16px;
-  font-weight: 600;
-`;
-export const NoActive = styled.p`
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 16px;
-  font-weight: 600;
-`;
-export const ActiveIncome = styled.p`
-  color: #ffb627;
-  font-size: 16px;
-  font-weight: 600;
-`;
-
-export const WrapSumCalendar = styled.div`
+// ===========TOGGLE
+export const TransactionToggleWrap = styled.div`
   display: flex;
-  flex-direction: column;
-  margin-top: 40px;
-  margin-bottom: 40px;
-  @media only screen and (min-width: 768px) {
-    flex-direction: row;
-    gap: 32px;
-    margin-top: 0px;
-  }
-
-  input {
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-    outline: none;
-    padding-left: 20px;
-    padding-bottom: 8px;
-    color: #fbfbfb;
-    font-size: 18px;
-    font-weight: 600;
-    margin: 0;
-  }
-  @media only screen and (min-width: 768px) {
-    /* flex-direction: row; */
-  }
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
 `;
-
-// toggle
-
 export const LabelToggle = styled.label`
   position: relative;
   display: inline-block;
@@ -234,11 +281,30 @@ export const LabelToggle = styled.label`
   height: 40px;
 `;
 export const InputToggle = styled.input`
-  display: none;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+
   &:checked + ::before {
     transform: translateX(40px);
     background-color: #ff868d;
+    box-shadow: 0 6px 15px 0 rgba(255, 134, 141, 0.5);
     content: '';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 50px;
+    background-image: url(${minusIcon});
+    background-repeat: no-repeat;
+    background-position: center;
   }
 `;
 
@@ -262,38 +328,37 @@ export const SpanToggle = styled.span`
     height: 44px;
     border-radius: 44px;
     background: #ffb627;
-    box-shadow: 0px 6px 15px 0px rgba(255, 199, 39, 0.5);
+    box-shadow: 0 6px 15px 0 rgba(255, 199, 39, 0.5);
     transition: transform 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 50px;
+    background-image: url(${plusIcon});
+    background-repeat: no-repeat;
+    background-position: center;
   }
 `;
+export const Expense = styled.p`
+  color: ${({ $active }) => ($active ? '#ff868d' : '#FFFFFF99')};
+  font-size: 16px;
+  font-weight: 600;
+`;
 
-export const DateWrapper = styled.div`
-  margin-top: 40px;
+export const Income = styled.p`
+  color: ${({ $active }) => ($active ? '#ffb627' : '#FFFFFF99')};
+  font-size: 16px;
+  font-weight: 600;
+`;
+
+// ==========ERROR
+export const InputErrorWrap = styled.div`
   position: relative;
-  display: flex;
-  /* align-items: center; */
-  input {
-    color: #fbfbfb;
-    font-size: 18px;
-    font-weight: 400;
-    width: 280px;
-    padding-left: 20px;
-
-    @media only screen and (min-width: 768px) {
-      width: 181px;
-    }
-  }
 `;
 
-export const CloseBtn = styled(IoCloseOutline)``;
-
-export const Gradient = styled.div`
-  z-index: -20;
-  position: absolute;
-  width: 454px;
-  height: 454px;
-  border-radius: 454px;
-  background: rgba(47, 21, 176, 0.73);
-  filter: blur(100px);
-  inset: 0;
+export const ErrorMessage = styled.p`
+  color: rgb(255, 134, 141);
+  font-size: 14px;
+  font-weight: 500;
 `;

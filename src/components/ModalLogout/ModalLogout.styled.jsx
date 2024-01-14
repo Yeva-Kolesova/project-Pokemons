@@ -4,16 +4,25 @@ import styled from 'styled-components';
 export const ModalWrapper = styled.div`
   position: fixed;
   inset: 0;
+  overflow: hidden;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: rgba(34, 13, 91, 0.23);
   width: 100%;
   height: 100vh;
-
   z-index: 100;
+
+  &::before {
+    background-color: rgba(34, 13, 91, 0.23);
+    content: '';
+    backdrop-filter: blur(3.5px);
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
 `;
-/* backdrop-filter: blur(3.5px);*/
+
 export const ModalContent = styled.div`
   position: relative;
   background: rgba(255, 255, 255, 0.1);
@@ -59,7 +68,7 @@ export const StyledTitle = styled.h3`
 `;
 export const Text = styled.p`
   color: #fff;
-  font-family: 'Poppins Regular';
+  font-family: 'Poppins', sans-serif;
   font-size: 18px;
   line-height: normal;
   //   margin: 12px auto;

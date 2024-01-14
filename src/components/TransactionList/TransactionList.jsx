@@ -1,6 +1,5 @@
 import TransactionItem from 'components/TransactionItem/TransactionItem';
-import { useSelector } from 'react-redux';
-import { selectTransactions } from 'reduxConfig/transactions/selectors';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   HomeHeader,
   HomeRow,
@@ -15,9 +14,20 @@ import {
   TransactionCardList,
 } from './TransactionList.styled';
 import TransactionCardItem from 'components/TransactionCardItem/TransactionCardItem';
+import { useEffect } from 'react';
+import {
+  allTransactionThunk,
+  getTransactionsCategoriesThunk,
+} from 'reduxConfig/transactions/operations';
 
 const TransactionList = () => {
-  const transactions = useSelector(selectTransactions);
+  const dispatch = useDispatch();
+  const transactions = useSelector(state => state.transactions.transactions);
+
+  useEffect(() => {
+    dispatch(allTransactionThunk());
+    dispatch(getTransactionsCategoriesThunk());
+  }, [dispatch]);
 
   return (
     <>

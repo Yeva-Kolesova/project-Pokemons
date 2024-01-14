@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
-import { HeaderWrapper, LogoWrapper, StyledExit, StyledHeader, UserInfoWrapper } from './Header.styled';
+import {
+  ExitText,
+  HeaderWrapper,
+  LogoWrapper,
+  StyledExit,
+  StyledHeader,
+  UserInfoWrapper,
+  UsernameText,
+} from './Header.styled';
 import Container from '../Container/Container';
 import { useSelector } from 'react-redux';
 import { selectUserName } from '../../reduxConfig/auth/selectors';
@@ -8,11 +16,15 @@ import { useMediaQuery } from 'react-responsive';
 import icons from '../../images/icons.svg'
 import ModalLogout from 'components/ModalLogout/ModalLogout';
 
-function Header() {
+function Header({closeModal = null}) {
   const userName = useSelector(selectUserName);
   const isTabletOrDesktop = useMediaQuery({ query: '(min-width: 768px)' });
 
 const [isModalOpen, setIsModalOpen] = useState(false);
+
+function handleExitClick() {
+  !closeModal ? setIsModalOpen(true) : closeModal(false)
+}
 
   return (
     <StyledHeader>
@@ -25,13 +37,13 @@ const [isModalOpen, setIsModalOpen] = useState(false);
             <p>Money Guard</p>
           </LogoWrapper>
           <UserInfoWrapper>
-            <span>{userName}</span>
-           
+            <UsernameText>{userName}</UsernameText>
+
             {isModalOpen && <ModalLogout closeModal={setIsModalOpen} />}
-            <StyledExit onClick={() => setIsModalOpen(true)}>
-            
+            <StyledExit onClick={handleExitClick}>
+
               <IoExitOutline size={18} />
-              {isTabletOrDesktop && <p>Exit</p>}
+              {isTabletOrDesktop && <ExitText>Exit</ExitText>}
             </StyledExit>
           </UserInfoWrapper>
         </HeaderWrapper>

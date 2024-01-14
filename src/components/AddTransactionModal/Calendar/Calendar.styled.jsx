@@ -5,6 +5,9 @@ export const DateWrapper = styled.div`
   margin-top: 40px;
   position: relative;
   display: flex;
+  @media only screen and (min-width: 768px) {
+    margin-top: 40px;
+  }
   input {
     color: #fbfbfb;
     font-size: 18px;
@@ -28,4 +31,5 @@ export const CalendarIcon = styled(FiCalendar)`
   width: 24px;
   height: 24px;
   color: var(--icon-violet, #734aef);
+  pointer-events: none;
 `;

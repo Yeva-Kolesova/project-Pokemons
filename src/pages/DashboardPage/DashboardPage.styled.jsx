@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const SectionContainer = styled.section`
   overflow: clip;
+  min-height: 100vh;
 
   @media only screen and (min-width: 768px) {
     height: 100vh;

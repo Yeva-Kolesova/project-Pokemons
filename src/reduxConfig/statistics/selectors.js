@@ -1,9 +1,5 @@
-export function selectStatistics(state) {
-  return state.statistics.statistics;
-}
-
-export function selectCategories(state) {
-  return state.statistics.categories;
+export function selectSummary(state) {
+  return state.statistics.summary;
 }
 
 export function selectIsLoading(state) {

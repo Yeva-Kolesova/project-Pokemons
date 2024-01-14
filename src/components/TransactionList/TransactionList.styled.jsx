@@ -101,7 +101,9 @@ export const TitleActions = styled.th`
 `;
 
 export const ListTransaction = styled.tbody`
-  height: 265px;
+  /* height: 265px; */
+  height: 600px;
+
   display: block;
 
   &::-webkit-scrollbar {
@@ -122,15 +124,14 @@ export const ListTransaction = styled.tbody`
   }
 
   @media only screen and (min-width: 768px) {
-    max-height: 265px;
+    max-height: 600px;
     overflow-y: scroll;
-  }
-  @media only screen and (min-width: 1280px) {
   }
 `;
 
 export const TransactionCardList = styled.ul`
   margin-top: 32px;
+  padding-bottom: 8px;
   display: flex;
   flex-direction: column;
   gap: 8px;

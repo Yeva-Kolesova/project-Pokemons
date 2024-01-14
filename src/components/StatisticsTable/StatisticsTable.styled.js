@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 
-export const StyledCategorySelect = styled.select`
-  width: -webkit-fill-available;
+export const StyledCategory = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
   height: 56px;
   padding: 16px 28px;
   border: none;
@@ -9,11 +12,12 @@ export const StyledCategorySelect = styled.select`
   background-color: rgba(82, 59, 126, 0.6);
   box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(50px);
-
-  color: #fbfbfb;
-  font-size: 16px;
-  font-family: Poppins;
-  font-weight: 600;
+  p {
+    color: var(--white);
+    font-size: 16px;
+    font-family: Poppins;
+    font-weight: 600;
+  }
 `;
 
 export const StyledListContainer = styled.div`
@@ -22,7 +26,8 @@ export const StyledListContainer = styled.div`
 
   @media only screen and (min-width: 768px) {
     overflow-y: auto;
-    height: 305px;
+    height: auto;
+    max-height: 235px;
   }
 
   @media only screen and (min-width: 1280px) {
@@ -52,11 +57,11 @@ export const StyledItem = styled.li`
   span {
     width: 24px;
     height: 24px;
-    background-color: #fed057;
     border-radius: 2px;
   }
 
   p {
+    color: var(--white);
     font-size: 14px;
     font-weight: 400;
     font-family: Poppins;
@@ -69,6 +74,7 @@ export const StyledExpenses = styled.div`
   align-items: center;
   padding: 16px 28px 3px;
 
+  color: var(--white);
   font-size: 14px;
   font-weight: 600;
   font-family: Poppins;
@@ -82,8 +88,9 @@ export const StyledIncome = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 28px 0;
+  padding: 16px 28px 45px;
 
+  color: var(--white);
   font-size: 14px;
   font-weight: 600;
   font-family: Poppins;
