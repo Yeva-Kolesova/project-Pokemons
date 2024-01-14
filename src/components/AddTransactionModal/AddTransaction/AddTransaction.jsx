@@ -6,6 +6,7 @@ import {
   Expense,
   Income,
   InputErrorWrap,
+  StyledSelect,
 } from './AddTransaction.styled';
 import {
   Backdrop,
@@ -29,7 +30,7 @@ import {
   addTransactionThunk,
   getTransactionsCategoriesThunk,
 } from '../../../reduxConfig/transactions/operations';
-import Select, { components } from 'react-select';
+import { components } from 'react-select';
 import { SlArrowDown, SlArrowUp } from 'react-icons/sl';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -53,16 +54,15 @@ const schema = yup
     amount: yup
       .number()
       .typeError('Please, enter the sum')
-      .min(1, 'Sum value must be at least 1 character')
       .required('Sum is required'),
     date: date().required('Date is required'),
     category: yup
       .string()
       .uuid('Incorrect format')
-      .when("isExpense", {
+      .when('isExpense', {
         is: true,
-        then: (schema) => schema.required('Category is required')
-      })
+        then: schema => schema.required('Category is required'),
+      }),
   })
   .required();
 
@@ -171,11 +171,13 @@ export const AddTransaction = ({ closeModal }) => {
       ...styles,
       color: '#FBFBFB',
       fontSize: '18px',
+      paddingLeft: isTabletOrDesktop ? '0' : '12px',
     }),
     placeholder: styles => ({
       ...styles,
       color: 'rgba(255, 255, 255, 0.6)',
       fontSize: '18px',
+      paddingLeft: isTabletOrDesktop ? '0' : '12px',
     }),
     menu: styles => ({
       ...styles,
@@ -269,7 +271,7 @@ export const AddTransaction = ({ closeModal }) => {
               rules={{ required: true }}
               render={({ field, value }) => (
                 <InputErrorWrap>
-                  <Select
+                  <StyledSelect
                     id="category"
                     options={transactionCategories}
                     components={{

@@ -22,7 +22,6 @@ export const StyledCategory = styled.div`
 
 export const StyledListContainer = styled.div`
   width: 100%;
-  height: auto;
 
   &::-webkit-scrollbar {
     width: 8px;
@@ -43,12 +42,12 @@ export const StyledListContainer = styled.div`
 
   @media only screen and (min-width: 768px) {
     overflow-y: auto;
-    height: auto;
-    max-height: 265px;
+    height: calc(100vh - 622px);
   }
 
   @media only screen and (min-width: 1280px) {
-    height: auto;
+    height: 100%;
+    max-height: calc(100vh - 396px);
   }
 `;
 
@@ -61,7 +60,7 @@ export const StyledItem = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 14px 28px;
+  padding: 14px 20px 14px 28px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.41);
 
   div {

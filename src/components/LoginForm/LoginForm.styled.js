@@ -9,9 +9,7 @@ export const StyledBoxForm = styled.div`
   align-items: center;
   height: 100vh;
   padding: 23px 20px;
-
-  box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
-  background-color: var(--Form-color, rgba(255, 255, 255, 0.1));
+  background: var(--Form-color, rgba(255, 255, 255, 0.1));
 
   @media only screen and (min-width: 768px) {
     width: 533px;
@@ -21,9 +19,31 @@ export const StyledBoxForm = styled.div`
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    backdrop-filter: blur(50px);
-
     border-radius: 8px;
+
+    &::before {
+      /* background-color: rgba(255, 255, 255, 0.1); */
+      content: '';
+      backdrop-filter: blur(50px);
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      border-radius: 8px;
+      box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
+    }
+  }
+`;
+
+export const Gradient = styled.div`
+  @media only screen and (min-width: 768px) {
+    z-index: -20;
+    position: absolute;
+    width: 454px;
+    height: 454px;
+    border-radius: 454px;
+    background: rgba(47, 21, 176, 0.73);
+    filter: blur(100px);
+    inset: 0;
   }
 `;
 
@@ -69,9 +89,8 @@ export const StyledInputBox = styled.div`
   display: flex;
   align-items: center;
 
-  border-bottom: 2px solid rgba(55, 65, 81, 1);
-  fill: var(--white-40, rgba(255, 255, 255, 0.4));
-  stroke: var(--white-40, rgba(255, 255, 255, 0.4));
+  border-bottom: 1px solid var(--white-40, rgba(255, 255, 255, 0.4));
+
   max-width: 100%;
   width: 280px;
 
@@ -95,8 +114,8 @@ export const StyledPasswordIcon = styled(IoMdLock)`
 export const StyledInputField = styled.input`
   width: 100%;
   border: none;
-  outline: 0;
-  background-color: transparent;
+  outline: transparent;
+  background: transparent;
   font-size: 18px;
   font-weight: 400;
   color: var(--white-60, rgba(255, 255, 255, 0.6));

@@ -8,14 +8,14 @@ export const HomeTab = styled.table`
 
   @media only screen and (min-width: 768px) {
     width: 704px;
-    height: 312px;
-
-    display: block;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
   }
 
   @media only screen and (min-width: 1280px) {
     width: 715px;
-    height: 308px;
+    height: 100%;
   }
 `;
 
