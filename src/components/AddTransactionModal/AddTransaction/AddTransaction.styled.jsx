@@ -88,7 +88,6 @@ export const Form = styled.form`
 `;
 
 export const Input = styled.input`
-  padding-left: 20px;
   padding-bottom: 8px;
   width: 280px;
   border: none;
@@ -98,6 +97,14 @@ export const Input = styled.input`
   color: #fbfbfb;
   font-size: 18px;
   font-weight: 600;
+  text-align: center;
+
+  &::placeholder{
+    width: 280px;
+    transform: translateX(25%);
+    color: #FFFFFF99;
+  }
+
   @media only screen and (min-width: 768px) {
     width: 181px;
   }
