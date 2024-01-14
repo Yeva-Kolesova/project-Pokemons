@@ -44,6 +44,7 @@ export const Modal = styled.div`
     min-height: 589px;
     padding: 40px 73px;
     border-radius: 8px;
+    height: fit-content;
   }
   &::before {
     background-color: rgba(255, 255, 255, 0.1);
