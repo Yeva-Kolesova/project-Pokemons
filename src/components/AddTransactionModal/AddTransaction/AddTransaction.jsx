@@ -1,6 +1,7 @@
 import { selectFilteredCategories } from 'reduxConfig/transactions/selectors';
 import {
   CloseBtn,
+  CommentInputStyled,
   ErrorMessage,
   Expense,
   Income,
@@ -16,7 +17,6 @@ import {
   Form,
   Input,
   Modal,
-  TextareaStyled,
   Title,
   TransactionToggleWrap,
   WrapSumCalendar,
@@ -45,14 +45,14 @@ const schema = yup
   .object({
     amount: yup
       .number()
-      .typeError('Please, enter the sum of transaction')
+      .typeError('Please, enter the sum')
       .min(1, 'Sum value must be at least 1 character')
       .required('Sum is required'),
 
     comment: yup
       .string()
       .min(3, 'Comment must be at least 3 characters')
-      .max(30)
+      .max(30, 'The maximum length of a comment is 20 characters')
       .required('Comment is required'),
   })
   .required();
@@ -112,10 +112,6 @@ export const AddTransaction = ({ closeModal }) => {
     const year = startDate.getFullYear();
     const month = String(startDate.getMonth() + 1).padStart(2, '0');
     const day = String(startDate.getDate()).padStart(2, '0');
-    // const hours = String(startDate.getHours()).padStart(2, '0');
-    // const minutes = String(startDate.getMinutes()).padStart(2, '0');
-    // const seconds = String(startDate.getSeconds()).padStart(2, '0');
-    // const transformedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
     const transformedDate = `${year}-${month}-${day}`;
     return transformedDate;
   };
@@ -123,11 +119,9 @@ export const AddTransaction = ({ closeModal }) => {
   function onSubmit(formData) {
     const transaction = {};
     transaction.comment = formData.comment;
-    const amountValue = Number(formData.amount).toFixed(2)
+    const amountValue = Number(formData.amount).toFixed(2);
     transaction.amount =
-      formData.isExpense && amountValue > 0
-        ? -amountValue
-        : amountValue;
+      formData.isExpense && amountValue > 0 ? -amountValue : amountValue;
     transaction.type = formData.isExpense ? 'EXPENSE' : 'INCOME';
     transaction.categoryId = formData.isExpense
       ? formData.category
@@ -285,13 +279,20 @@ export const AddTransaction = ({ closeModal }) => {
                 {...register('amount')}
                 autoComplete="off"
               />
-              {errors.amount && <p>{errors.amount.message}</p>}
+              {errors.amount && (
+                <ErrorMessage>{errors.amount.message}</ErrorMessage>
+              )}
             </InputErrorWrap>
-            <Calendar register={register} />
+            <Calendar />
           </WrapSumCalendar>
 
           <InputErrorWrap>
-            <TextareaStyled placeholder="Comment" {...register('comment')} />
+            <CommentInputStyled
+              type="text"
+              placeholder="Comment"
+              autoComplete="off"
+              {...register('comment')}
+            />
             {errors.comment && (
               <ErrorMessage>{errors.comment.message}</ErrorMessage>
             )}
