@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   Actions,
   ActionsContainer,
   Button,
-  HoverablePencil,
   ListTab,
   PCategory,
   PComment,
