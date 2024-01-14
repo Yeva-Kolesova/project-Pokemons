@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import image from '../../images/currency.png';
-import { nanoid } from 'nanoid';
+import imageTab from '../../images/currencyTab.png'
 import {
   CurrencyWrapper,
   CurrencyTable,
@@ -14,8 +14,10 @@ import {
   HigherNumber,
   CurrencyHeadWrapper
 } from './Currency.styled';
+import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { useMediaQuery } from 'react-responsive';
 import { fetchCurrency } from 'reduxConfig/currency/operations';
 import { selectCurrency } from 'reduxConfig/currency/selectors';
 
@@ -48,6 +50,10 @@ const Currency = () => {
     }
   }, [dispatch, selectedCurrency, token]);
 
+
+  const isTablet = useMediaQuery({ maxWidth: 768 })
+  const isDesktop = useMediaQuery({ minWidth: 769 })
+  
   return (
     <CurrencyWrapper>
       <CurrencyTable>
@@ -90,7 +96,9 @@ const Currency = () => {
           }
           return [];
         })}
-       <img src={image} alt="" />
+        
+        {isDesktop && (<img src={image} alt="" />)}
+        {isTablet && (<img src={imageTab} alt="" />)}
       </CurrecnyDiagram>
     </CurrencyWrapper>
   );

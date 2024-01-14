@@ -10,9 +10,10 @@ const currencySlice = createSlice({
     initialState,
     extraReducers: (builder) =>
         builder
-          .addCase(fetchCurrency.fulfilled, (state, { payload }) => {
-              state.data = payload;
-          })
+            .addCase(fetchCurrency.fulfilled, (state, { payload }) => {
+                state.data = payload;
+            })
 });
 
 export const currencyReducer = currencySlice.reducer;
+
