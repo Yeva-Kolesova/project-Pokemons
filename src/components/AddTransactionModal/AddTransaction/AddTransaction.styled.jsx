@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import minusIcon from '../../../images/minus.svg'
-import plusIcon from '../../../images/plus.svg'
+import minusIcon from '../../../images/minus.svg';
+import plusIcon from '../../../images/plus.svg';
 import { GrClose } from 'react-icons/gr';
 
 export const Backdrop = styled.div`
@@ -41,7 +41,7 @@ export const Modal = styled.div`
   @media only screen and (min-width: 768px) {
     position: absolute;
     min-width: 540px;
-    min-height: 589px;
+    height: 589px;
     padding: 40px 73px;
     border-radius: 8px;
   }
@@ -75,29 +75,6 @@ export const Form = styled.form`
   width: 100%;
 `;
 
-export const CloseModalBtn = styled.button`
-  display: none;
-  position: absolute;
-  right: 20px;
-  top: 20px;
-  border: none;
-  outline: transparent;
-  background-color: transparent;
-
-  @media only screen and (min-width: 768px) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-`;
-
-export const TransactionToggleWrap = styled.div`
-  display: flex;
-  gap: 20px;
-  align-items: center;
-  justify-content: center;
-`;
-
 export const Input = styled.input`
   padding-left: 20px;
   padding-bottom: 8px;
@@ -116,11 +93,117 @@ export const Input = styled.input`
 `;
 
 export const ButtonsWrap = styled.div`
+  margin-top: 40px;
   display: flex;
   align-items: center;
   flex-direction: column;
   gap: 20px;
 `;
+
+export const CommentInputStyled = styled.input`
+  padding-left: 20px;
+  padding-bottom: 52px;
+  font-size: 18px;
+  font-weight: 600;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  background-color: transparent;
+  color: #fbfbfb;
+  outline: transparent;
+  width: 280px;
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 18px;
+    font-weight: 400;
+  }
+  @media only screen and (min-width: 768px) {
+    padding-left: 8px;
+    padding-bottom: 8px;
+    width: 394px;
+  }
+`;
+
+export const WrapSumCalendar = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  @media only screen and (min-width: 768px) {
+    flex-direction: row;
+    gap: 32px;
+    margin-top: 0px;
+  }
+
+  input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    outline: none;
+    padding-left: 20px;
+    padding-bottom: 8px;
+    color: #fbfbfb;
+    font-size: 18px;
+    font-weight: 600;
+    width: 280px;
+    margin: 0;
+    @media only screen and (min-width: 768px) {
+      width: 181px;
+      outline: transparent;
+    }
+  }
+
+  input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+    text-align: start;
+    font-size: 18px;
+    font-weight: 700;
+    @media only screen and (min-width: 768px) {
+      text-align: center;
+    }
+  }
+`;
+
+export const DateWrapper = styled.div`
+  margin-top: 40px;
+  position: relative;
+  display: flex;
+
+  input {
+    color: #fbfbfb;
+    font-size: 18px;
+    font-weight: 400;
+    width: 280px;
+    padding-left: 20px;
+
+    @media only screen and (min-width: 768px) {
+      width: 181px;
+    }
+  }
+`;
+
+export const Gradient = styled.div`
+  z-index: -20;
+  position: absolute;
+  width: 454px;
+  height: 454px;
+  border-radius: 454px;
+  background: rgba(47, 21, 176, 0.73);
+  filter: blur(100px);
+  inset: 0;
+`;
+
+//==============BTNS
+
+export const CloseBtn = styled(GrClose)`
+  margin: 0;
+  padding: 0;
+  width: 16px;
+  height: 16px;
+  color: #fbfbfb;
+`;
+
 export const BtnAdd = styled.button`
   width: 280px;
   height: 50px;
@@ -167,65 +250,29 @@ export const BtnCancel = styled.button`
   }
 `;
 
-export const TextareaStyled = styled.textarea`
-  margin-bottom: 40px;
-  padding-left: 20px;
-  padding-bottom: 52px;
-  font-size: 18px;
-  font-weight: 400;
-  background-color: transparent;
+export const CloseModalBtn = styled.button`
+  display: none;
+  position: absolute;
+  right: 20px;
+  top: 20px;
   border: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-  color: #ffffff;
-  overflow: hidden;
-  outline: none;
+  outline: transparent;
+  background-color: transparent;
+
   @media only screen and (min-width: 768px) {
-    padding-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 `;
 
-export const Expense = styled.p`
-  color: ${({ $active }) => ($active ? '#ff868d' : '#FFFFFF99')};
-  font-size: 16px;
-  font-weight: 600;
-`;
-
-export const Income = styled.p`
-  color: ${({ $active }) => ($active ? '#ffb627' : '#FFFFFF99')};
-  font-size: 16px;
-  font-weight: 600;
-`;
-
-export const WrapSumCalendar = styled.div`
+// ===========TOGGLE
+export const TransactionToggleWrap = styled.div`
   display: flex;
-  flex-direction: column;
-  margin-top: 40px;
-  margin-bottom: 40px;
-  @media only screen and (min-width: 768px) {
-    flex-direction: row;
-    gap: 32px;
-    margin-top: 0px;
-  }
-
-  input {
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-    outline: none;
-    padding-left: 20px;
-    padding-bottom: 8px;
-    color: #fbfbfb;
-    font-size: 18px;
-    font-weight: 600;
-    margin: 0;
-  }
-  @media only screen and (min-width: 768px) {
-    /* flex-direction: row; */
-  }
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
 `;
-
-// toggle
-
 export const LabelToggle = styled.label`
   position: relative;
   display: inline-block;
@@ -292,48 +339,25 @@ export const SpanToggle = styled.span`
     background-position: center;
   }
 `;
-
-export const DateWrapper = styled.div`
-  margin-top: 40px;
-  position: relative;
-  display: flex;
-  /* align-items: center; */
-  input {
-    color: #fbfbfb;
-    font-size: 18px;
-    font-weight: 400;
-    width: 280px;
-    padding-left: 20px;
-
-    @media only screen and (min-width: 768px) {
-      width: 181px;
-    }
-  }
+export const Expense = styled.p`
+  color: ${({ $active }) => ($active ? '#ff868d' : '#FFFFFF99')};
+  font-size: 16px;
+  font-weight: 600;
 `;
 
-export const CloseBtn = styled(GrClose )`
-  margin: 0;
-  padding: 0;
-  width: 16px;
-  height: 16px;
-  color: #fbfbfb;
+export const Income = styled.p`
+  color: ${({ $active }) => ($active ? '#ffb627' : '#FFFFFF99')};
+  font-size: 16px;
+  font-weight: 600;
 `;
 
-export const Gradient = styled.div`
-  z-index: -20;
-  position: absolute;
-  width: 454px;
-  height: 454px;
-  border-radius: 454px;
-  background: rgba(47, 21, 176, 0.73);
-  filter: blur(100px);
-  inset: 0;
-`;
-
+// ==========ERROR
 export const InputErrorWrap = styled.div`
   position: relative;
 `;
 
 export const ErrorMessage = styled.p`
-  color: #bd4248;
+  color: rgb(255, 134, 141);
+  font-size: 14px;
+  font-weight: 500;
 `;
