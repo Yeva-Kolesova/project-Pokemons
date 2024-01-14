@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useCallback, useState} from 'react';
 import image from '../../images/currency.png';
 import imageTab from '../../images/currencyTab.png'
 import {
@@ -21,34 +21,35 @@ import { useMediaQuery } from 'react-responsive';
 import { fetchCurrency } from 'reduxConfig/currency/operations';
 import { selectCurrency } from 'reduxConfig/currency/selectors';
 
+import { setLastUpdatedTime } from 'reduxConfig/currency/slice';
+import { selectLastUpdatedTime } from 'reduxConfig/currency/selectors';
+
 const Currency = () => {
   const [currency, setCurrency] = useState([]);
   const selectedCurrency = useSelector(selectCurrency);
+  const lastUpdatedTime = useSelector(selectLastUpdatedTime);
 
-  const token = useSelector(state => state.auth.token);
   const dispatch = useDispatch();
 
-  const updateLastUpdatedTime = () => {
-    const newTime = Date.now();
-    localStorage.setItem('lastUpdatedTime', newTime);
-  };
-
+  const isHourPassed = useCallback(() => {
+    const ONE_HOUR_IN_MS = 60 * 60 * 1000;
+    return Date.now() - lastUpdatedTime >= ONE_HOUR_IN_MS;
+  }, [lastUpdatedTime]);
 
   useEffect(() => {
-    const lastUpdatedTime = localStorage.getItem('lastUpdatedTime');
-    const isHourPassed = () => {
-      const ONE_HOUR_IN_MS = 60 * 60 * 1000;
-      return Date.now() - Number(lastUpdatedTime) >= ONE_HOUR_IN_MS;
-    };
-
     if (isHourPassed() || !lastUpdatedTime) {
       dispatch(fetchCurrency());
       setCurrency(selectedCurrency);
-      updateLastUpdatedTime();
     } else {
       setCurrency(selectedCurrency);
     }
-  }, [dispatch, selectedCurrency, token]);
+
+  }, [dispatch, lastUpdatedTime, isHourPassed, selectedCurrency]);
+
+  useEffect(() => {
+    dispatch(setLastUpdatedTime(Date.now()));
+  }, [dispatch]);
+
 
 
   const isTablet = useMediaQuery({ maxWidth: 768 })
