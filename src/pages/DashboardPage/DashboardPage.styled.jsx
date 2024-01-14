@@ -1,11 +1,15 @@
 import styled from 'styled-components';
+import bcg from '../../images/gradient.webp'
 
 export const SectionContainer = styled.section`
   overflow: clip;
   min-height: 100vh;
+  background-image: url(${bcg});
+  background-position: top;
 
   @media only screen and (min-width: 768px) {
     height: 100vh;
+    background-image:none;
   }
 `;
 
