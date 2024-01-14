@@ -90,11 +90,10 @@ export const Form = styled.form`
 export const Input = styled.input`
   padding-left: 20px;
   padding-bottom: 8px;
-  width: 100%;
+  width: 280px;
   border: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
   outline: none;
-  margin-bottom: 40px;
   background: transparent;
   color: #fbfbfb;
   font-size: 18px;
@@ -102,14 +101,6 @@ export const Input = styled.input`
   @media only screen and (min-width: 768px) {
     width: 181px;
   }
-`;
-
-export const ButtonsWrap = styled.div`
-  margin-top: 40px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 20px;
 `;
 
 export const CommentInputStyled = styled.input`
@@ -123,6 +114,9 @@ export const CommentInputStyled = styled.input`
   color: #fbfbfb;
   outline: transparent;
   width: 280px;
+  @media only screen and (min-width: 768px) {
+  }
+
   &::placeholder {
     color: rgba(255, 255, 255, 1);
     font-size: 18px;
@@ -141,32 +135,18 @@ export const WrapSumCalendar = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: 40px;
-  margin-bottom: 40px;
 
   @media only screen and (min-width: 768px) {
     flex-direction: row;
     gap: 32px;
-    align-items: baseline;
-    margin-top: 0px;
+    justify-content: center;
+    align-items: center;
   }
 
-  input {
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-    outline: none;
-    padding-left: 20px;
-    padding-bottom: 8px;
-    color: #fbfbfb;
-    font-size: 18px;
-    font-weight: 600;
-    width: 280px;
-    margin: 0;
-    @media only screen and (min-width: 768px) {
-      width: 181px;
-      outline: transparent;
-      padding-left: 73px;
-    }
+  @media only screen and (min-width: 768px) {
+    width: 181px;
+    outline: transparent;
+    padding-left: 73px;
   }
 
   input::placeholder {
@@ -179,25 +159,33 @@ export const WrapSumCalendar = styled.div`
   }
 `;
 
-export const DateWrapper = styled.div`
-  margin-top: 40px;
-  position: relative;
-  display: flex;
+// ==========ERROR
+export const InputErrorWrap = styled.div`
+  height: 45px;
+  margin-bottom: 24px;
+  @media only screen and (min-width: 768px) {
+  }
+`;
 
-  input {
-    color: #fbfbfb;
-    font-size: 18px;
-    font-weight: 400;
-    width: 280px;
-    padding-left: 20px;
+export const ErrorMessage = styled.p`
+  color: rgb(255, 134, 141);
+  font-size: 14px;
+  font-weight: 500;
+  padding-left: 20px;
 
-    @media only screen and (min-width: 768px) {
-      width: 181px;
-    }
+  @media only screen and (min-width: 768px) {
+    padding-left: 12px;
   }
 `;
 
 //==============BTNS
+export const ButtonsWrap = styled.div`
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+`;
 
 export const CloseBtn = styled(GrClose)`
   margin: 0;
@@ -352,22 +340,4 @@ export const Income = styled.p`
   color: ${({ $active }) => ($active ? '#ffb627' : '#FFFFFF99')};
   font-size: 16px;
   font-weight: 600;
-`;
-
-// ==========ERROR
-export const InputErrorWrap = styled.div`
-  position: relative;
-  height: 47px;
-`;
-
-export const ErrorMessage = styled.p`
-  color: rgb(255, 134, 141);
-  font-size: 14px;
-  font-weight: 500;
-  padding-left: 20px;
-
-  @media only screen and (min-width: 768px) {
-    padding-left: 0px;
-    text-align: center;
-  }
 `;

@@ -55,7 +55,10 @@ const schema = yup
       .min(1, 'Sum value must be at least 1 character')
       .required('Sum is required'),
     date: date().required('Date is required'),
-    category:yup.string().uuid('Incorrect format').required('Category is required'),
+    category: yup
+      .string()
+      .uuid('Incorrect format')
+      .required('Category is required'),
   })
   .required();
 
@@ -71,7 +74,7 @@ export const AddTransaction = ({ closeModal }) => {
     handleSubmit,
     control,
     formState: { errors },
-    setValue
+    setValue,
   } = useForm({
     mode: 'onChange',
     resolver: yupResolver(schema),
@@ -146,7 +149,7 @@ export const AddTransaction = ({ closeModal }) => {
     control: styles => ({
       ...styles,
       backgroundColor: 'transparent',
-      marginBottom: '-2px',
+      // marginBottom: '-2px',
       marginTop: '40px',
       border: 'none',
       borderBottom: '1px solid rgba(255, 255, 255, 0.4)',
@@ -225,8 +228,8 @@ export const AddTransaction = ({ closeModal }) => {
   };
 
   function handleDateChange(dateChange) {
-    setValue("date", dateChange, {
-      shouldDirty: true
+    setValue('date', dateChange, {
+      shouldDirty: true,
     });
     setStartDate(dateChange);
   }
@@ -261,21 +264,26 @@ export const AddTransaction = ({ closeModal }) => {
               control={control}
               rules={{ required: true }}
               render={({ field, value }) => (
-                <Select
-                  id="category"
-                  options={transactionCategories}
-                  components={{
-                    DropdownIndicator,
-                    IndicatorSeparator: () => null,
-                  }}
-                  placeholder="Select a category"
-                  styles={selectStyle}
-                  isSearchable={false}
-                  value={transactionCategories.find(
-                    category => category.value === value
+                <InputErrorWrap>
+                  <Select
+                    id="category"
+                    options={transactionCategories}
+                    components={{
+                      DropdownIndicator,
+                      IndicatorSeparator: () => null,
+                    }}
+                    placeholder="Select a category"
+                    styles={selectStyle}
+                    isSearchable={false}
+                    value={transactionCategories.find(
+                      category => category.value === value
+                    )}
+                    onChange={option => field.onChange(option.value)}
+                  />{' '}
+                  {errors.category && (
+                    <ErrorMessage>{errors.category.message}</ErrorMessage>
                   )}
-                  onChange={option => field.onChange(option.value)}
-                />
+                </InputErrorWrap>
               )}
             />
           )}
@@ -293,23 +301,28 @@ export const AddTransaction = ({ closeModal }) => {
                 <ErrorMessage>{errors.amount.message}</ErrorMessage>
               )}
             </InputErrorWrap>
-            <DateWrapper>
-              <Controller
-                name="date"
-                control={control}
-                defaultValue={startDate}
-                render={() => (
-                  <ReactDatePicker
-                    selected={startDate}
-                    onChange={handleDateChange}
-                    dateFormat="dd.MM.yyyy"
-                    maxDate={new Date()}
-                    calendarContainer={CalendarContainer}
-                  />
-                )}
-              />
-              <CalendarIcon />
-            </DateWrapper>
+            <InputErrorWrap>
+              <DateWrapper>
+                <Controller
+                  name="date"
+                  control={control}
+                  defaultValue={startDate}
+                  render={() => (
+                    <ReactDatePicker
+                      selected={startDate}
+                      onChange={handleDateChange}
+                      dateFormat="dd.MM.yyyy"
+                      maxDate={new Date()}
+                      calendarContainer={CalendarContainer}
+                    />
+                  )}
+                />
+                <CalendarIcon />
+              </DateWrapper>
+              {errors.date && (
+                <ErrorMessage>{errors.date.message}</ErrorMessage>
+              )}
+            </InputErrorWrap>
           </WrapSumCalendar>
 
           <CommentInputStyled
