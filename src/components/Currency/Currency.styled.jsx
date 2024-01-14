@@ -17,9 +17,9 @@ export const CurrencyWrapper = styled.div`
     background: rgba(74, 86, 226, 0.10);
   }
 
-  @media only screen and (max-width: 320px) {
-    width: 307px;
-    margin-top: 24px;
+  @media only screen and (max-width: 425px) {
+    width: 312px;
+    margin-top: 0;
   }
 `;
 
@@ -27,10 +27,19 @@ export const CurrencyTable = styled.div`
   max-height: 170px;
   width: 100%;
   margin-bottom: 24px;
+
+  @media only screen and (max-width: 768px) {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  @media only screen and (max-width: 320px) {
+    width: 312px;
+  }
 `;
 
 export const CurrencyHeadWrapper = styled.div`
-  background-color: rgba(93, 78, 161, 0.6);
+  background: rgba(103, 77, 166, 0.7);
 `
 
 export const CurrencyTableHead = styled.ul`
@@ -43,8 +52,8 @@ export const CurrencyTableHead = styled.ul`
   width: 480px;
   margin-left: 39px;
 
-  @media only screen and (max-width: 320px) {
-    margin-left: 16px;
+  @media only screen and (max-width: 768px) {
+    margin: 0 0 8px 10px;
   }
 `;
 
@@ -58,11 +67,13 @@ export const CurrencyTableBodyList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
-  margin-bottom: 14px;
-    margin-left: 41px
+  margin-bottom: 14px ;
+  margin-left: 41px;
   
-  @media only screen and (max-width: 320px) {
+  @media only screen and (max-width: 768px) {
     margin-left: 15px;
+    margin-bottom: 0;
+    gap: 12px;
   }
 `;
 
@@ -104,7 +115,8 @@ export const CurrecnyDiagram = styled.div`
   img {
 
      @media only screen and (max-width: 1281px) {
-      width:496px;
+      width:480px;
+      max-height:167px;
     }
   }
 
@@ -120,6 +132,10 @@ export const LowerNumber = styled.p`
   font-family: "Poppins", sans-serif;
   font-size: 12px;
   font-weight: 400;
+
+  @media only screen and (max-width: 768px) {
+    display:none;
+  }
 `
 
 export const HigherNumber = styled.p`
@@ -131,4 +147,8 @@ export const HigherNumber = styled.p`
   font-family: "Poppins", sans-serif;
   font-size: 12px;
   font-weight: 400;
+
+  @media only screen and (max-width: 768px) {
+    display:none;
+  }
 `

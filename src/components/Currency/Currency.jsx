@@ -62,7 +62,6 @@ const Currency = () => {
         <CurrencyTableBodyList>
           {currency?.length &&
             currency.map(el => {
-              console.log('el', el);
               return (
                 <CurrencyTableBody key={el.id}>
                   <CurrencyTableItem>{el.currencyName}</CurrencyTableItem>
@@ -77,7 +76,7 @@ const Currency = () => {
         {currency?.map(item => {
           if (item.currencyCodeA === 840) {
             return (
-              <LowerNumber key={crypto.randomUUID()}>{item.rateBuy}</LowerNumber>
+              <LowerNumber key={nanoid()}>{item.rateBuy}</LowerNumber>
             );
           }
           return [];
@@ -91,31 +90,9 @@ const Currency = () => {
           }
           return [];
         })}
-        {/* <LowerNumber>27</LowerNumber>
-        <HigherNumber>32</HigherNumber> */}
        <img src={image} alt="" />
       </CurrecnyDiagram>
     </CurrencyWrapper>
-
-    //  <StyledGraphBox>
-    //     {currency?.map(item => {
-    //       if (item.currencyCodeA === 840) {
-    //         return (
-    //           <LowerRate key={crypto.randomUUID()}>{item.rateBuy}</LowerRate>
-    //         );
-    //       }
-    //       return [];
-    //     })}
-
-    //     {currency?.map(item => {
-    //       if (item.currencyCodeA === 978) {
-    //         return (
-    //           <HigherRate key={crypto.randomUUID()}>{item.rateBuy}</HigherRate>
-    //         );
-    //       }
-    //       return [];
-    //     })}
-    //   </StyledGraphBox>
   );
 };
 
