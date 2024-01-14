@@ -130,7 +130,7 @@ export const StyledPasswordIcon = styled(IoMdLock)`
 export const StyledInputField = styled.input`
   width: 100%;
   border: none;
-  outline: transparent;
+  outline: none;
   background: transparent;
   font-size: 18px;
   font-weight: 400;
