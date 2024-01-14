@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 
 export function SharedLayout() {
   return (
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<p></p>}>
         <Outlet />
       </Suspense>
   );

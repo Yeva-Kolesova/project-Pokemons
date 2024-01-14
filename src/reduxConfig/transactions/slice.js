@@ -9,63 +9,30 @@ import {
 const initialState = {
   categories: [],
   transactions: [],
-  isLoading: false,
-  error: null,
 };
-
-function handlePending(state) {
-  state.isLoading = true;
-}
-
-const handleAddTransaction = (state, { payload }) => {
-  state.transactions.push(payload);
-  state.isLoading = false;
-};
-
-const handleAllTransaction = (state, { payload }) => {
-  state.transactions = payload;
-  state.isLoading = false;
-};
-
-const handleDeleteTransaction = (state, { payload }) => {
-  state.transactions = state.transactions.filter(t => t.id !== payload);
-  state.isLoading = false;
-};
-
-function handleRejected(state, action) {
-  state.isLoading = false;
-  state.error = action.payload;
-}
 
 const slice = createSlice({
   name: 'transactions',
   initialState,
-  reducers: {},
   extraReducers: builder => {
     builder
-      .addCase(getTransactionsCategoriesThunk.pending, handlePending)
       .addCase(
         getTransactionsCategoriesThunk.fulfilled,
         (state, { payload }) => {
           state.categories = payload.map(category => {
             return { value: category.id, label: category.name };
           });
-          state.isLoading = false;
         }
       )
-      .addCase(getTransactionsCategoriesThunk.rejected, handleRejected)
-
-      .addCase(addTransactionThunk.pending, handlePending)
-      .addCase(addTransactionThunk.fulfilled, handleAddTransaction)
-      .addCase(addTransactionThunk.rejected, handleRejected)
-
-      .addCase(allTransactionThunk.pending, handlePending)
-      .addCase(allTransactionThunk.fulfilled, handleAllTransaction)
-      .addCase(allTransactionThunk.rejected, handleRejected)
-
-      .addCase(deleteTransactionThunk.pending, handlePending)
-      .addCase(deleteTransactionThunk.fulfilled, handleDeleteTransaction)
-      .addCase(deleteTransactionThunk.rejected, handleRejected);
+      .addCase(addTransactionThunk.fulfilled, (state, { payload }) => {
+        state.transactions.push(payload);
+      })
+      .addCase(allTransactionThunk.fulfilled, (state, { payload }) => {
+        state.transactions = payload;
+      })
+      .addCase(deleteTransactionThunk.fulfilled, (state, { payload }) => {
+        state.transactions = state.transactions.filter(t => t.id !== payload);
+      })
   },
 });
 
