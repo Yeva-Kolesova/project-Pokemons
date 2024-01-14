@@ -106,8 +106,8 @@ export const Input = styled.input`
     padding-left: 0;
   }
 
-  &::placeholder{
-    color: #FFFFFF99;
+  &::placeholder {
+    color: #ffffff99;
     @media only screen and (min-width: 768px) {
       transform: translateX(40%);
     }
@@ -231,6 +231,14 @@ export const BtnAdd = styled.button`
   @media only screen and (min-width: 768px) {
     width: 300px;
   }
+  &:hover {
+    background: linear-gradient(
+      97deg,
+      #7000ff -16.42%,
+      #9e40ba 97.04%,
+      #ffc727 150.71%
+    );
+  }
 `;
 
 export const BtnCancel = styled.button`
@@ -251,6 +259,15 @@ export const BtnCancel = styled.button`
 
   @media only screen and (min-width: 768px) {
     width: 300px;
+  }
+  &:hover {
+    background: linear-gradient(
+      97deg,
+      #7000ff -16.42%,
+      #9e40ba 97.04%,
+      #ffc727 150.71%
+    );
+    color: #fbfbfb;
   }
 `;
 
