@@ -22,7 +22,7 @@ export const HomeTab = styled.table`
 export const HomeHeader = styled.thead`
   height: 56px;
   border-radius: 8px;
-  background: rgba(82, 59, 126, 0.6);
+  background: #332055;
 
   box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
   backdrop-filter: blur(50px);
