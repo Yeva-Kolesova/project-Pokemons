@@ -10,7 +10,7 @@ export const Backdrop = styled.div`
   width: 100vw;
   height: 100vh;
   align-items: center;
-  z-index: 10;
+  z-index: 20;
 
   &::before {
     background-color: rgba(34, 13, 91, 0.23);
@@ -24,14 +24,13 @@ export const Backdrop = styled.div`
   @media only screen and (min-width: 768px) {
     justify-content: center;
   }
-
 `;
 
 export const StyledModal = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 320px;
+  width: 100%;
   padding: 40px 20px;
   box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
   overflow: hidden;
@@ -39,7 +38,7 @@ export const StyledModal = styled.div`
 
   @media only screen and (min-width: 768px) {
     position: absolute;
-    min-width: 540px;
+    width: 540px;
     padding: 40px 73px;
     border-radius: 8px;
     height: fit-content;

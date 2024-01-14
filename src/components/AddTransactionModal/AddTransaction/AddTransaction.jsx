@@ -5,7 +5,7 @@ import {
   ErrorMessage,
   Expense,
   Income,
-  InputErrorWrap,
+  InputErrorWrap, StyledSelect,
 } from './AddTransaction.styled';
 import {
   Backdrop,
@@ -29,7 +29,7 @@ import {
   addTransactionThunk,
   getTransactionsCategoriesThunk,
 } from '../../../reduxConfig/transactions/operations';
-import Select, { components } from 'react-select';
+import { components } from 'react-select';
 import { SlArrowDown, SlArrowUp } from 'react-icons/sl';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -171,11 +171,13 @@ export const AddTransaction = ({ closeModal }) => {
       ...styles,
       color: '#FBFBFB',
       fontSize: '18px',
+      paddingLeft: isTabletOrDesktop ? '0' : '12px'
     }),
     placeholder: styles => ({
       ...styles,
       color: 'rgba(255, 255, 255, 0.6)',
       fontSize: '18px',
+      paddingLeft: isTabletOrDesktop ? '0' : '12px'
     }),
     menu: styles => ({
       ...styles,
@@ -269,7 +271,7 @@ export const AddTransaction = ({ closeModal }) => {
               rules={{ required: true }}
               render={({ field, value }) => (
                 <InputErrorWrap>
-                  <Select
+                  <StyledSelect
                     id="category"
                     options={transactionCategories}
                     components={{

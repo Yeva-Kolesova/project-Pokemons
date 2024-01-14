@@ -16,11 +16,13 @@ export const Title = styled.h2`
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
 `;
 
 export const Input = styled.input`
-  padding:0 0 8px;
+  padding-left: 20px;
+  padding-bottom: 8px;
   width: 280px;
   border: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
@@ -29,12 +31,17 @@ export const Input = styled.input`
   color: var(--white);
   font-size: 18px;
   font-weight: 600;
-  text-align: center;
+
+  @media only screen and (min-width: 768px) {
+    text-align: center;
+    padding-left: 0;
+  }
 
   &::placeholder{
-    width: 280px;
-    transform: translateX(25%);
     color: #FFFFFF99;
+    @media only screen and (min-width: 768px) {
+      transform: translateX(40%);
+    }
   }
 
   @media only screen and (min-width: 768px) {
