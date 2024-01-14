@@ -51,7 +51,7 @@ export const CardLine = styled.div`
     bottom: 0;
     width: 5px; // Ширина вертикальної лінії
     background-color: ${props =>
-      props.plus ? '#FFB627' : '#ff868d'}; // Колір вертикальної лінії
+      props.$plus ? '#FFB627' : '#ff868d'}; // Колір вертикальної лінії
     border-top-right-radius: 10px; // Закруглення зверху праворуч
     border-bottom-right-radius: 10px; // Закруглення знизу праворуч
   }
@@ -109,7 +109,17 @@ export const CardLineButtonDelete = styled.button`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+
+  &:hover {
+    background: linear-gradient(
+      97deg,
+      #7000ff -16.42%,
+      #9e40ba 97.04%,
+      #ffc727 150.71%
+    );
+  }
 `;
+
 export const CardLineButtonEdit = styled.button`
   background-color: transparent;
   border: none;
@@ -124,7 +134,6 @@ export const CardLineButtonEdit = styled.button`
   cursor: pointer;
   transition: color 250ms ease-in-out;
 
-  color: var(--white);
   &:hover {
     color: var(--icon-violet);
   }
@@ -139,4 +148,8 @@ export const CardLinePEdit = styled.span`
   line-height: normal;
   letter-spacing: 0.32px;
   cursor: pointer;
+
+  &:hover {
+    color: var(--icon-violet);
+  }
 `;

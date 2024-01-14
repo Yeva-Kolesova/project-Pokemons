@@ -24,9 +24,9 @@ export const BtnOpenModal = styled.button`
   &:hover {
     background: linear-gradient(
       97deg,
-      #1f96ff -16.42%,
-      #7931cb 97.04%,
-      #e3a7fb 150.71%
+      #7000ff -16.42%,
+      #9e40ba 97.04%,
+      #ffc727 150.71%
     );
   }
 `;
