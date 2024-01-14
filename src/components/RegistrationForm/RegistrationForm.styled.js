@@ -9,8 +9,8 @@ export const StyledBoxForm = styled.div`
   justify-content: center;
   align-items: center;
   padding: 23px 20px;
-  width: 100%;
   min-height: 100vh;
+
   box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
   background-color: var(--Form-color, rgba(255, 255, 255, 0.1));
   @media only screen and (min-width: 768px) {
@@ -47,61 +47,47 @@ export const StyledTitle = styled.p`
     font-size: 26.963px;
   }
 `;
+
 export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
+  min-width: 100%;
+  height: 100%;
 `;
 
-// export const StyledForm = styled.form`
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   margin: 0 auto;
-
-//   padding: 23px 20px;
-//   width: 100%;
-//   height: 100vh;
-//   box-shadow: 0px 4px 60px 0px rgba(0, 0, 0, 0.25);
-//   background-color: var(--Form-color, rgba(255, 255, 255, 0.1));
-
-//   @media only screen and (min-width: 768px) {
-//     width: 533px;
-//     height: 624px;
-//     padding: 40px 62px;
-//     position: fixed;
-//     left: 50%;
-//     top: 50%;
-//     transform: translate(-50%, -50%);
-//     backdrop-filter: blur(50px);
-
-//     border-radius: 8px;
-//   }
-// `;
+export const StyledLabelBox = styled.div`
+  max-width: 100%;
+  /* margin: 0 auto;
+  margin-bottom: 40px; */
+  position: relative;
+  height: 47px;
+  margin-bottom: 22px;
+`;
 
 export const StyledLabel = styled.label`
   display: block;
   color: rgba(156, 163, 175, 1);
-  margin-bottom: 40px;
-
-  @media only screen and (min-width: 768px) {
-    min-width: 100%;
-  }
+  max-width: 100%;
 `;
 
 export const StyledInputBox = styled.div`
   position: relative;
-  max-width: 280px;
 
   display: flex;
   align-items: center;
 
-  border-bottom: 1px solid rgba(55, 65, 81, 1);
+  border-bottom: 2px solid rgba(55, 65, 81, 1);
+  fill: var(--white-40, rgba(255, 255, 255, 0.4));
+  stroke: var(--white-40, rgba(255, 255, 255, 0.4));
+
+  max-width: 100%;
+  width: 280px;
+
   @media only screen and (min-width: 768px) {
-    max-width: 409px;
+    width: 409px;
   }
 `;
 
@@ -109,16 +95,19 @@ export const StyledUserIcon = styled(FaUser)`
   color: var(--white-60, rgba(255, 255, 255, 0.6));
   width: 18px;
   height: 16px;
+  margin-left: 12px;
 `;
 
 export const StyledEmailIcon = styled(MdEmail)`
   color: var(--white-60, rgba(255, 255, 255, 0.6));
   font-size: 24px;
+  margin-left: 12px;
 `;
 
 export const StyledPasswordIcon = styled(IoMdLock)`
   color: var(--white-60, rgba(255, 255, 255, 0.6));
   font-size: 24px;
+  margin-left: 12px;
 `;
 
 export const StyledInputField = styled.input`
@@ -133,7 +122,12 @@ export const StyledInputField = styled.input`
 `;
 
 export const StyledErr = styled.p`
-  padding-top: 4px;
+  margin-left: 12px;
+  padding-top: 6px;
+  color: rgb(255, 134, 141);
+  font-size: 14px;
+  font-weight: 500;
+  /* padding-left: 20px; */
 `;
 
 export const StyledSpan = styled.span`
