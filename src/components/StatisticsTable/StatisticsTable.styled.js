@@ -24,10 +24,27 @@ export const StyledListContainer = styled.div`
   width: 100%;
   height: auto;
 
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #7d31a0;
+    border-radius: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #942cc5;
+  }
+
   @media only screen and (min-width: 768px) {
     overflow-y: auto;
     height: auto;
-    max-height: 235px;
+    max-height: 265px;
   }
 
   @media only screen and (min-width: 1280px) {
@@ -66,6 +83,13 @@ export const StyledItem = styled.li`
     font-weight: 400;
     font-family: Poppins;
   }
+`;
+
+export const StyledNoTransactions = styled.p`
+  color: var(--white);
+  font-weight: 600;
+  font-family: Poppins;
+  padding: 20px 28px 8px;
 `;
 
 export const StyledExpenses = styled.div`
