@@ -99,6 +99,14 @@ export const ModalButton = styled.button`
   color: #fff;
   background: var(--button-gradient);
   margin-bottom: 20px;
+
+  &:hover {
+    background: linear-gradient(
+      97deg,
+      #7000ff -16.42%,
+      #9e40ba 97.04%,
+      #ffc727 150.71%
+    );
   @media only screen and (min-width: 768px) {
     width: 300px;
   }
@@ -121,6 +129,16 @@ export const ModalButtonCancel = styled.button`
   text-transform: uppercase;
   cursor: pointer;
   color: var(--text-button, #623f8b);
+
+  &:hover {
+    background: linear-gradient(
+      97deg,
+      #7000ff -16.42%,
+      #9e40ba 97.04%,
+      #ffc727 150.71%
+    );
+    color: #fbfbfb;
+
   //   background: var(--button-gradient);
   @media only screen and (min-width: 768px) {
     width: 300px;
