@@ -11,6 +11,12 @@ export const CurrencyWrapper = styled.div`
   box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
 
 
+  @media only screen and (max-width: 1024px) {
+    margin-left: 0;
+    width: 336px;
+  }
+
+
   @media only screen and (max-width: 769px) {
     width: 336px;
     border-radius: 0px 0px 8px 8px;
@@ -18,8 +24,9 @@ export const CurrencyWrapper = styled.div`
   }
 
   @media only screen and (max-width: 425px) {
-    width: 312px;
+    width: 320px;
     margin-top: 0;
+    margin-left:-20px;
   }
 `;
 
@@ -28,13 +35,13 @@ export const CurrencyTable = styled.div`
   width: 100%;
   margin-bottom: 24px;
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1024px) {
     margin-top: 0;
     margin-bottom: 0;
   }
 
   @media only screen and (max-width: 320px) {
-    width: 312px;
+    width: 320px;
   }
 `;
 
@@ -45,22 +52,41 @@ export const CurrencyHeadWrapper = styled.div`
 export const CurrencyTableHead = styled.ul`
   display: flex;
   flex-direction: row;
-  // justify-content: center;
-  gap: 50px;
-  padding: 16px 0;
+  gap: 55px;
+  padding: 19px 0;
   margin: 0 auto 24px;
   width: 480px;
-  margin-left: 39px;
+  margin-left: 58px;
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1024px) {
+    padding: 15px 0;
+    gap: 58px;
+    width:336px;
+  }
+
+  @media only screen and (max-width: 1024px) {
     margin: 0 0 8px 10px;
   }
+
+  @media only screen and (max-width: 320px) {
+    gap: 52px;
+  }
+  
 `;
 
 export const CurrencyTableBody = styled.ul`
   display: flex;
   flex-direction: row;
-  gap: 50px;
+  gap: 60px;
+
+  @media only screen and (max-width: 1024px) {
+    gap: 65px;
+  }
+
+  @media only screen and (max-width: 320px) {
+    gap: 57px;
+  }
+
 `;
 
 export const CurrencyTableBodyList = styled.div`
@@ -68,9 +94,9 @@ export const CurrencyTableBodyList = styled.div`
   flex-direction: column;
   gap: 24px;
   margin-bottom: 14px ;
-  margin-left: 41px;
+  margin-left: 68px;
   
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1024px) {
     margin-left: 15px;
     margin-bottom: 0;
     gap: 12px;
@@ -106,7 +132,7 @@ export const CurrecnyDiagram = styled.div`
   position: relative;
   display: block;
   height: auto;
-  max-height: 167px;
+  max-height: 185px;
   
    @media only screen and (max-width: 1281px) {
       max-width:480px;
@@ -133,7 +159,7 @@ export const LowerNumber = styled.p`
   font-size: 12px;
   font-weight: 400;
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1024px) {
     display:none;
   }
 `
@@ -148,7 +174,7 @@ export const HigherNumber = styled.p`
   font-size: 12px;
   font-weight: 400;
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1024px) {
     display:none;
   }
 `
