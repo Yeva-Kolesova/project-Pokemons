@@ -12,7 +12,7 @@ import {
   CurrecnyDiagram,
   LowerNumber,
   HigherNumber,
-  CurrencyHeadWrapper
+  CurrencyHeadWrapper, Gradient,
 } from './Currency.styled';
 import { nanoid } from 'nanoid';
 import { useDispatch, useSelector } from 'react-redux';
@@ -54,9 +54,10 @@ const Currency = () => {
 
   const isTablet = useMediaQuery({ query: '(max-width: 1279px' })
   const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' })
-  
+
   return (
     <CurrencyWrapper>
+      <Gradient />
       <CurrencyTable>
         <CurrencyHeadWrapper>
           <CurrencyTableHead>
@@ -97,7 +98,7 @@ const Currency = () => {
           }
           return [];
         })}
-        
+
         {isDesktop && (<img src={image} alt="" />)}
         {isTablet && (<img src={imageTab} alt="" />)}
       </CurrecnyDiagram>

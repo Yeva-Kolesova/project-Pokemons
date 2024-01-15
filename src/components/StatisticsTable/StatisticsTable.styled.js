@@ -87,6 +87,7 @@ export const StyledNoTransactions = styled.p`
   color: var(--white);
   font-weight: 600;
   padding: 20px 28px 8px;
+  text-align: center;
 `;
 
 export const StyledExpenses = styled.div`
@@ -98,7 +99,6 @@ export const StyledExpenses = styled.div`
   color: var(--white);
   font-size: 14px;
   font-weight: 600;
-  font-family: Poppins;
 
   p {
     color: #ff868d;
