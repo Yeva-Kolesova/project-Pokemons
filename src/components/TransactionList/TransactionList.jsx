@@ -1,5 +1,5 @@
 import TransactionItem from 'components/TransactionItem/TransactionItem';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
   HomeHeader,
   HomeRow,
@@ -25,10 +25,6 @@ const TransactionList = () => {
 
   const [isEditTransactionForm, setIsEditTransactionForm] = useState(false);
   const [transactionEditData, setTransactionEditData] = useState({});
-
-/*  useEffect(() => {
-    dispatch(allTransactionThunk());
-  }, [dispatch]);*/
 
   return (
     <>
