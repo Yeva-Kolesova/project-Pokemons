@@ -1,6 +1,6 @@
 import { Navigate, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectIsLoggedIn, selectIsRefreshing, selectToken } from '../reduxConfig/auth/selectors';
+import { selectIsLoggedIn, selectIsRefreshing } from '../reduxConfig/auth/selectors';
 
 export const PrivateRoute = ({ component, redirectTo = '/dashboard' }) => {
   const location = useLocation()
