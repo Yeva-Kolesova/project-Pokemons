@@ -13,7 +13,7 @@ import {
 import { LuPencil } from 'react-icons/lu';
 import { deleteTransactionThunk } from 'reduxConfig/transactions/operations';
 import { selectCategories } from 'reduxConfig/transactions/selectors';
-import { reduceBalanceValue } from '../../reduxConfig/auth/slice';
+import { changeBalanceValue } from '../../reduxConfig/auth/slice';
 
 const TransactionCardItem = ({ data, handleModal, setData }) => {
   const dispatch = useDispatch();
@@ -25,7 +25,7 @@ const TransactionCardItem = ({ data, handleModal, setData }) => {
     dispatch(deleteTransactionThunk(transactionId))
       .unwrap()
       .then(() => {
-        dispatch(reduceBalanceValue(amount));
+        dispatch(changeBalanceValue(amount));
       });
   };
 
