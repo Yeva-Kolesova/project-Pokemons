@@ -20,12 +20,13 @@ import {
   allTransactionThunk,
   getTransactionsCategoriesThunk,
 } from 'reduxConfig/transactions/operations';
+import { selectSortedTransactios } from 'reduxConfig/transactions/selectors';
 import ModalEditTransaction from '../ModalEditTransaction/ModalEditTransaction';
 import { EditTransactionForm } from '../EditTransactionForm/EditTransactionForm';
 
 const TransactionList = () => {
   const dispatch = useDispatch();
-  const transactions = useSelector(state => state.transactions.transactions);
+  const transactions = useSelector(selectSortedTransactios);
 
   const [isEditTransactionForm, setIsEditTransactionForm] = useState(false);
   const [transactionEditData, setTransactionEditData] = useState({});
@@ -49,47 +50,41 @@ const TransactionList = () => {
           </HomeRow>
         </HomeHeader>
         <ListTransaction>
-          {transactions.length > 0 ? (
-            transactions.map(transaction => (
-              <TransactionItem
-                  key={transaction.id}
-                  data={transaction}
-                  handleModal={setIsEditTransactionForm}
-                  setData={setTransactionEditData}
-              />
-            ))
-          ) : (
-            <NoTransactionStyled>
-              You don't have any transactions in this period
-            </NoTransactionStyled>
-          )}
+          {transactions.map(transaction => (
+            <TransactionItem
+              key={transaction.id}
+              data={transaction}
+              handleModal={setIsEditTransactionForm}
+              setData={setTransactionEditData}
+            />
+          ))}
         </ListTransaction>
       </HomeTab>
 
       <TransactionCardList>
-        {transactions.length > 0 ? (
-          transactions.map(transaction => (
-            <TransactionCardItem
-                key={transaction.id}
-                data={transaction}
-                handleModal={setIsEditTransactionForm}
-                setData={setTransactionEditData}
-            />
-          ))
-        ) : (
-          <NoTransactionStyled>
-            You don't have any transactions in this period
-          </NoTransactionStyled>
-        )}
+        {transactions.map(transaction => (
+          <TransactionCardItem
+            key={transaction.id}
+            data={transaction}
+            handleModal={setIsEditTransactionForm}
+            setData={setTransactionEditData}
+          />
+        ))}
       </TransactionCardList>
 
+      {transactions.length === 0 && (
+        <NoTransactionStyled>
+          You don't have any transactions in this period
+        </NoTransactionStyled>
+      )}
+
       {isEditTransactionForm && (
-          <ModalEditTransaction closeModal={setIsEditTransactionForm}>
-            <EditTransactionForm
-                transaction={transactionEditData}
-                closeModal={setIsEditTransactionForm}
-            />
-          </ModalEditTransaction>
+        <ModalEditTransaction closeModal={setIsEditTransactionForm}>
+          <EditTransactionForm
+            transaction={transactionEditData}
+            closeModal={setIsEditTransactionForm}
+          />
+        </ModalEditTransaction>
       )}
     </>
   );
