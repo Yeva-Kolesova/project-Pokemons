@@ -199,14 +199,6 @@ export const ButtonsWrap = styled.div`
   gap: 20px;
 `;
 
-export const CloseBtn = styled(GrClose)`
-  margin: 0;
-  padding: 0;
-  width: 16px;
-  height: 16px;
-  color: #fbfbfb;
-`;
-
 export const BtnAdd = styled.button`
   width: 280px;
   height: 50px;
@@ -230,13 +222,11 @@ export const BtnAdd = styled.button`
   @media only screen and (min-width: 768px) {
     width: 300px;
   }
-  &:hover {
-    background: linear-gradient(
-      97deg,
-      #7000ff -16.42%,
-      #9e40ba 97.04%,
-      #ffc727 150.71%
-    );
+
+  &:hover,
+  &:focus {
+    scale: 0.99;
+    box-shadow: 3px 5px 8px 3px rgba(0, 0, 0, 0.5);
   }
 `;
 
@@ -259,14 +249,11 @@ export const BtnCancel = styled.button`
   @media only screen and (min-width: 768px) {
     width: 300px;
   }
-  &:hover {
-    background: linear-gradient(
-      97deg,
-      #7000ff -16.42%,
-      #9e40ba 97.04%,
-      #ffc727 150.71%
-    );
-    color: #fbfbfb;
+
+  &:hover,
+  &:focus {
+    scale: 0.99;
+    box-shadow: 3px 5px 8px 3px rgba(0, 0, 0, 0.5);
   }
 `;
 
@@ -278,14 +265,27 @@ export const CloseModalBtn = styled.button`
   border: none;
   outline: transparent;
   background-color: transparent;
-
+  color: var(--white);
+  transition: color 250ms ease-in-out;
   @media only screen and (min-width: 768px) {
     display: flex;
     align-items: center;
     justify-content: center;
   }
+  &:hover,
+  &:focus {
+    color: var(--icon-violet);
+  }
 `;
 
+export const CloseBtn = styled(GrClose)`
+  margin: 0;
+  padding: 0;
+  width: 16px;
+  height: 16px;
+  color: currentColor;
+  pointer-events: none;
+`;
 export const StyledSelect = styled(Select)`
   width: 280px;
 
