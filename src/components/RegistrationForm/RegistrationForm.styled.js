@@ -142,10 +142,12 @@ export const StyledInputField = styled.input`
 
 export const StyledErr = styled.p`
   margin-left: 12px;
-  padding-top: 7px;
+  margin-top: 7px;
   color: rgba(255, 255, 255, 0.4);
   font-size: 14px;
   font-weight: 500;
+  width: 100%;
+  /* margin-top: 8px; */
 `;
 
 export const StyledSpan = styled.span`
@@ -158,8 +160,23 @@ export const StyledSpan = styled.span`
 `;
 
 export const StyledPasswordStrengthBar = styled(PasswordStrengthBar)`
-  height: 4px;
-  margin-top: 5px;
+  div {
+    height: 4px !important;
+    stroke: #ffc727;
+    filter: ${({ active }) =>
+      active ? 'drop-shadow(0px 1px 8px rgba(255, 199, 39, 0.5))' : 'none'};
+    :first-child {
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+    }
+    :last-child {
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+    :nth-child(even) {
+      width: 0 !important;
+    }
+  }
 `;
 
 export const StyledRegister = styled.button`
