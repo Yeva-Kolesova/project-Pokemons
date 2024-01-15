@@ -52,8 +52,8 @@ const Currency = () => {
 
 
 
-  const isTablet = useMediaQuery({ maxWidth: 768 })
-  const isDesktop = useMediaQuery({ minWidth: 769 })
+  const isTablet = useMediaQuery({ query: '(max-width: 1024px' })
+  const isDesktop = useMediaQuery({ query: '(min-width:1025px)' })
   
   return (
     <CurrencyWrapper>
@@ -70,7 +70,7 @@ const Currency = () => {
           {currency?.length &&
             currency.map(el => {
               return (
-                <CurrencyTableBody key={el.id}>
+                <CurrencyTableBody key={nanoid()}>
                   <CurrencyTableItem>{el.currencyName}</CurrencyTableItem>
                   <CurrencyTableItem>{el.rateBuy.toFixed(2)}</CurrencyTableItem>
                   <CurrencyTableItem>{el.rateSell.toFixed(2)}</CurrencyTableItem>
