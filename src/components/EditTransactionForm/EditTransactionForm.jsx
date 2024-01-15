@@ -34,7 +34,6 @@ const schema = yup
     amount: yup
       .number()
       .typeError('Please, enter the sum')
-      .min(1, 'Sum value must be at least 1 character')
       .required('Sum is required'),
     date: date().required('Date is required'),
   })

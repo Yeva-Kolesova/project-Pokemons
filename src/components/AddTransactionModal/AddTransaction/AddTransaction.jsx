@@ -219,6 +219,19 @@ export const AddTransaction = ({ closeModal }) => {
         };
       }
     },
+      menuList: (base) => ({
+      ...base,
+      "&::-webkit-scrollbar": {
+        width: '6px',
+      },
+      "&::-webkit-scrollbar-track": {
+        background: 'transparent',
+      },
+      "&::-webkit-scrollbar-thumb": {
+        background: '#BFB4DD',
+        borderRadius: '12px',
+      },
+    })
   };
 
   const DropdownIndicator = props => {

@@ -4,7 +4,6 @@ export const StaledSectionHome = styled.section`
   position: relative;
 
   @media only screen and (min-width: 768px) {
-    margin-top: 20px;
     width: 768px;
     height: calc(100vh - 470px);
   }
