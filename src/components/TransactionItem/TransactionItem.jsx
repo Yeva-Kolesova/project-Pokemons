@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import {
   Actions,
   ActionsContainer,
@@ -16,15 +15,11 @@ import { deleteTransactionThunk } from 'reduxConfig/transactions/operations';
 import { selectCategories } from 'reduxConfig/transactions/selectors';
 import { LuPencil } from 'react-icons/lu';
 import { reduceBalanceValue } from '../../reduxConfig/auth/slice';
-import ModalEditTransaction from '../ModalEditTransaction/ModalEditTransaction';
-import { EditTransactionForm } from '../EditTransactionForm/EditTransactionForm';
 
-const TransactionItem = ({ data }) => {
+const TransactionItem = ({ data, handleModal, setData }) => {
   const dispatch = useDispatch();
 
   const { id, transactionDate, type, categoryId, comment, amount } = data;
-
-  const [isEditTransactionForm, setIsEditTransactionForm] = useState(false);
 
   const categories = useSelector(selectCategories);
 
@@ -35,6 +30,11 @@ const TransactionItem = ({ data }) => {
         dispatch(reduceBalanceValue(amount));
       });
   };
+
+  function handleEditClick() {
+    setData(data);
+    handleModal(true);
+  }
 
   return (
     <>
@@ -56,7 +56,7 @@ const TransactionItem = ({ data }) => {
           <ActionsContainer>
             <PencilButton
               type="button"
-              onClick={() => setIsEditTransactionForm(true)}
+              onClick={handleEditClick}
             >
               <LuPencil />
             </PencilButton>
@@ -70,14 +70,6 @@ const TransactionItem = ({ data }) => {
           </ActionsContainer>
         </Actions>
       </ListTab>
-      {isEditTransactionForm && (
-        <ModalEditTransaction closeModal={setIsEditTransactionForm}>
-          <EditTransactionForm
-            transaction={data}
-            closeModal={setIsEditTransactionForm}
-          />
-        </ModalEditTransaction>
-      )}
     </>
   );
 };
