@@ -83,7 +83,8 @@ export const CloseModalBtn = styled.button`
     justify-content: center;
   }
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     color: var(--icon-violet);
   }
 `;
@@ -117,6 +118,10 @@ export const BtnCancel = styled.button`
   @media only screen and (min-width: 768px) {
     width: 300px;
   }
+  &:hover {
+    scale: 0.99;
+    box-shadow: 3px 5px 8px 3px rgba(0, 0, 0, 0.5);
+  }
 `;
 
 export const BtnSubmit = styled.button`
@@ -143,5 +148,9 @@ export const BtnSubmit = styled.button`
 
   @media only screen and (min-width: 768px) {
     width: 300px;
+  }
+  &:hover {
+    scale: 0.99;
+    box-shadow: 3px 5px 8px 3px rgba(0, 0, 0, 0.5);
   }
 `;
