@@ -45,7 +45,7 @@ const RegistrationForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
     reset,
   } = useForm({
     mode: 'onChange',
@@ -57,10 +57,14 @@ const RegistrationForm = () => {
   const [pass, setPass] = useState('');
 
   const submit = data => {
+    if (!isValid) {
+      toast.error('Please fill in all required fields correctly.');
+      return;
+    }
     dispatch(registerThunk(data))
       .unwrap()
       .then(res => {
-        toast.error(`Welcome ${res.user.username}!`);
+        toast.success(`Welcome ${res.user.username}!`);
       })
       .catch(err => {
         toast.error(err);
@@ -72,6 +76,9 @@ const RegistrationForm = () => {
     <StyledBoxForm>
       <Gradient />
       <StyledForm onSubmit={handleSubmit(submit)}>
+        {/* {Object.values(errors).map((error, index) => (
+          <StyledErr key={index}>{error?.message}</StyledErr>
+        ))} */}
         <StyledIcon width={25} height={25}>
           <use href={`${icons}#icon-Logo`} />
         </StyledIcon>
@@ -143,10 +150,13 @@ const RegistrationForm = () => {
             scoreWordStyle={{
               display: 'none',
             }}
+            isRequired={'true'}
             max={userSchema.fields.password.max}
           />
         </StyledSpan>
-        <StyledRegister>Register</StyledRegister>
+        <StyledRegister type="submit" disabled={!isValid}>
+          Register
+        </StyledRegister>
 
         <StyledLink to="/login">Log in</StyledLink>
       </StyledForm>
