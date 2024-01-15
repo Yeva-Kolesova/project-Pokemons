@@ -5,7 +5,6 @@ import {
   CardLineButtonDelete,
   CardLineButtonEdit,
   CardLineP,
-  CardLinePEdit,
   CardLinePSum,
   CardLineTitle,
 } from './TransactionCardItem.styled';
@@ -80,8 +79,9 @@ const TransactionCardItem = ({ data, handleModal, setData }) => {
           Delete
         </CardLineButtonDelete>
         <CardLineButtonEdit type="button" onClick={handleEditClick}>
-          <LuPencil color={'rgba(255, 255, 255, 0.6)'} />
-          <CardLinePEdit> Edit</CardLinePEdit>
+          <LuPencil style={{ fontSize: '13px', marginRight: '5px' }} />
+          Edit
+          {/* <CardLinePEdit> Edit</CardLinePEdit> */}
         </CardLineButtonEdit>
       </CardLine>
     </Card>
