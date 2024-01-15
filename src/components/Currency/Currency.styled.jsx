@@ -37,7 +37,7 @@ export const CurrencyTable = styled.div`
   width: 100%;
   margin-bottom: 24px;
 
-  @media only screen and (max-width: 1024px) {
+  @media only screen and (max-width: 1280px) {
     margin-top: 0;
     margin-bottom: 0;
   }
