@@ -5,7 +5,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { registerThunk } from '../../reduxConfig/auth/operations';
 import icons from '../../images/icons.svg';
-import PasswordStrengthBar from 'react-password-strength-bar-with-style-item';
+// import PasswordStrengthBar from 'react-password-strength-bar-with-style-item';
 // import PasswordStrengthBar from 'react-password-strength-bar';
 import {
   Gradient,
@@ -20,6 +20,7 @@ import {
   StyledLabelBox,
   StyledLink,
   StyledPasswordIcon,
+  StyledPasswordStrengthBar,
   StyledRegister,
   StyledSpan,
   StyledTitle,
@@ -45,7 +46,7 @@ const RegistrationForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
     reset,
   } = useForm({
     mode: 'onChange',
@@ -57,10 +58,6 @@ const RegistrationForm = () => {
   const [pass, setPass] = useState('');
 
   const submit = data => {
-    if (!isValid) {
-      toast.error('Please fill in all required fields correctly.');
-      return;
-    }
     dispatch(registerThunk(data))
       .unwrap()
       .then(res => {
@@ -76,9 +73,6 @@ const RegistrationForm = () => {
     <StyledBoxForm>
       <Gradient />
       <StyledForm onSubmit={handleSubmit(submit)}>
-        {/* {Object.values(errors).map((error, index) => (
-          <StyledErr key={index}>{error?.message}</StyledErr>
-        ))} */}
         <StyledIcon width={25} height={25}>
           <use href={`${icons}#icon-Logo`} />
         </StyledIcon>
@@ -142,21 +136,20 @@ const RegistrationForm = () => {
         </StyledLabelBox>
 
         <StyledSpan>
-          <PasswordStrengthBar
+          <StyledPasswordStrengthBar
             password={pass}
-            style={{
-              marginTop: '8px',
-            }}
+            // style={{
+            //   flexGrow: '1',
+            // }}
             scoreWordStyle={{
               display: 'none',
             }}
+            barColors={['#ddd', '#f6b44d', '#f6b44d', '#25c281', '#25c281']}
             isRequired={'true'}
             max={userSchema.fields.password.max}
           />
         </StyledSpan>
-        <StyledRegister type="submit" disabled={!isValid}>
-          Register
-        </StyledRegister>
+        <StyledRegister type="submit">Register</StyledRegister>
 
         <StyledLink to="/login">Log in</StyledLink>
       </StyledForm>

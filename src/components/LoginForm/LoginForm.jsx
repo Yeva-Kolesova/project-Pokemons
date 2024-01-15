@@ -31,11 +31,12 @@ const userSchema = yup.object().shape({
     .max(12, 'Password must be at most 12 characters')
     .required('Required'),
 });
+
 const LoginForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
     reset,
   } = useForm({
     mode: 'onChange',
@@ -43,16 +44,13 @@ const LoginForm = () => {
   });
   const dispatch = useDispatch();
   const submit = data => {
-    if (!isValid) {
-      toast.error('Please fill in all required fields correctly.');
-      return;
-    }
     dispatch(logInThunk(data))
       .unwrap()
       .then(res => {
         toast.success(`Welcome ${res.user.username}!`);
       })
       .catch(err => {
+        console.error('Login failed:', err);
         toast.error('Login failed. Please check your credentials.');
       });
     reset();
@@ -62,9 +60,6 @@ const LoginForm = () => {
     <StyledBoxForm>
       <Gradient />
       <StyledForm onSubmit={handleSubmit(submit)}>
-        {/* {Object.values(errors).map((error, index) => (
-          <StyledErr key={index}>{error?.message}</StyledErr>
-        ))} */}
         <StyledIcon width={25} height={25}>
           <use href={`${icons}#icon-Logo`} />
         </StyledIcon>
@@ -93,9 +88,7 @@ const LoginForm = () => {
           </StyledInputBox>
           <StyledErr>{errors.password?.message}</StyledErr>
         </StyledLabel>
-        <StyledLogin type="submit" disabled={!isValid}>
-          Log in
-        </StyledLogin>
+        <StyledLogin type="submit">Log in</StyledLogin>
 
         <StyledLink to="/register">Register</StyledLink>
       </StyledForm>
