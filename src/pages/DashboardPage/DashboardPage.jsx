@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Header from '../../components/Header/Header';
 import Navigation from '../../components/Navigation/Navigation';
 import { Outlet, useLocation } from 'react-router-dom';
@@ -54,9 +54,9 @@ function DashboardPage() {
             </NavAndBalanceWrapper>
             {isTabletOrDesktop && <CurrencyPage />}
           </LeftContainer>
-          <Suspense fallback={<p></p>}>
+          {/*<Suspense fallback={<p></p>}>*/}
             <Outlet />
-          </Suspense>
+        {/*  </Suspense>*/}
         </DashboardContainer>
       </Container>
     </SectionContainer>

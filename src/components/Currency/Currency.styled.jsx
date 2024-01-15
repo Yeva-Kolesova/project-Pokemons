@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const CurrencyWrapper = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -9,6 +10,7 @@ export const CurrencyWrapper = styled.div`
   margin-left: -16px;
   color: #fbfbfb;
   box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
+  overflow: clip;
 
 
   @media only screen and (max-width: 1279px) {
@@ -74,7 +76,7 @@ export const CurrencyTableHead = styled.ul`
   @media only screen and (max-width: 320px) {
     gap: 52px;
   }
-  
+
 `;
 
 export const CurrencyTableBody = styled.ul`
@@ -98,7 +100,7 @@ export const CurrencyTableBodyList = styled.div`
   gap: 24px;
   margin-bottom: 14px ;
   margin-left: 68px;
-  
+
   @media only screen and (max-width: 1279px) {
     margin-left: 15px;
     margin-bottom: 0;
@@ -136,7 +138,7 @@ export const CurrecnyDiagram = styled.div`
   display: block;
   height: auto;
   max-height: 185px;
-  
+
    @media only screen and (max-width: 1281px) {
       max-width:480px;
     }
@@ -149,7 +151,7 @@ export const CurrecnyDiagram = styled.div`
     }
   }
 
-  
+
 `
 
 export const LowerNumber = styled.p`
@@ -181,3 +183,13 @@ export const HigherNumber = styled.p`
     display:none;
   }
 `
+
+export const Gradient = styled.div`
+  z-index: -20;
+  position: absolute;
+  width: 454px;
+  height: 454px;
+  border-radius: 454px;
+  background: rgba(47, 21, 176, 0.73);
+  filter: blur(100px);
+`;

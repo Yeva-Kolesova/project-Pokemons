@@ -76,8 +76,8 @@ export const GradientRightTop = styled.div`
     border-radius: 554px;
     background: linear-gradient(211deg, #652392 39.99%, #341FA0 59.67%);
     filter: blur(150px);
-    top: 681px;
-    right: 118px;
+    top: -246px;
+    left: 314px;
   }
 
   @media only screen and (min-width: 1280px) {
