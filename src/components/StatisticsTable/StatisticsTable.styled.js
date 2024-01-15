@@ -60,7 +60,7 @@ export const StyledItem = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 14px 20px 14px 28px;
+  padding: 14px 28px 14px 28px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.41);
 
   div {
