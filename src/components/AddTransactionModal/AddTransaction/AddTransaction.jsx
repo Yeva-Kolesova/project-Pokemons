@@ -39,11 +39,7 @@ import {
   TransactionToggleWrap,
 } from './ToggleSwitch.styled';
 import { addTransactionThunk } from '../../../reduxConfig/transactions/operations';
-import {
-  CalendarContainer,
-  CalendarIcon,
-  DateWrapper,
-} from './Calendar.styled';
+import { CalendarIcon, DateWrapper } from './Calendar.styled';
 
 export const INCOME_CODE = '063f1132-ba5d-42b4-951d-44011ca46262';
 
@@ -330,7 +326,6 @@ export const AddTransaction = ({ closeModal }) => {
                       onChange={handleDateChange}
                       dateFormat="dd.MM.yyyy"
                       maxDate={new Date()}
-                      calendarContainer={CalendarContainer}
                     />
                   )}
                 />

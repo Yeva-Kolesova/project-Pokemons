@@ -1,15 +1,12 @@
 import 'react-datepicker/dist/react-datepicker.css';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {
-  updatedTransactionThunk,
-} from '../../reduxConfig/transactions/operations';
+import { updatedTransactionThunk } from '../../reduxConfig/transactions/operations';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useForm, Controller } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import {
-  CalendarContainer,
   CalendarIcon,
   DateWrapper,
 } from '../AddTransactionModal/AddTransaction/Calendar.styled';
@@ -21,7 +18,8 @@ import {
   ErrorMessage,
   Expense,
   Form,
-  Income, Input,
+  Income,
+  Input,
   InputErrorWrap,
   Title,
   TypeWrapper,
@@ -44,7 +42,7 @@ export function EditTransactionForm({ closeModal, transaction }) {
   const { id, transactionDate, type, comment, amount } = transaction;
   const [date, setDate] = useState(new Date(transactionDate));
   const dispatch = useDispatch();
-  const isExpense = type === 'EXPENSE'
+  const isExpense = type === 'EXPENSE';
 
   const {
     register,
@@ -68,10 +66,11 @@ export function EditTransactionForm({ closeModal, transaction }) {
     const transactionData = {};
     transactionData.comment = formData.comment;
     const newValue = Number(formData.amount).toFixed(2);
-    transactionData.amount =
-      Number(isExpense && newValue > 0 ? -newValue : newValue);
+    transactionData.amount = Number(
+      isExpense && newValue > 0 ? -newValue : newValue
+    );
     transactionData.transactionDate = getFormattedDate();
-    dispatch(updatedTransactionThunk({id, transactionData}))
+    dispatch(updatedTransactionThunk({ id, transactionData }))
       .unwrap()
       .then(() => {
         dispatch(changeBalanceValue(Number(amount) - transactionData.amount));
@@ -103,11 +102,11 @@ export function EditTransactionForm({ closeModal, transaction }) {
         <WrapSumCalendar>
           <InputErrorWrap>
             <Input
-              type='text'
-              name='amount'
-              placeholder='0.00'
+              type="text"
+              name="amount"
+              placeholder="0.00"
               {...register('amount')}
-              autoComplete='off'
+              autoComplete="off"
               defaultValue={amount.toFixed(2)}
             />
             {errors.amount && (
@@ -117,31 +116,28 @@ export function EditTransactionForm({ closeModal, transaction }) {
           <InputErrorWrap>
             <DateWrapper>
               <Controller
-                name='date'
+                name="date"
                 control={control}
                 defaultValue={date}
                 render={() => (
                   <ReactDatePicker
                     selected={date}
                     onChange={handleDateChange}
-                    dateFormat='dd.MM.yyyy'
+                    dateFormat="dd.MM.yyyy"
                     maxDate={new Date()}
-                    calendarContainer={CalendarContainer}
                   />
                 )}
               />
               <CalendarIcon />
             </DateWrapper>
-            {errors.date && (
-              <ErrorMessage>{errors.date.message}</ErrorMessage>
-            )}
+            {errors.date && <ErrorMessage>{errors.date.message}</ErrorMessage>}
           </InputErrorWrap>
         </WrapSumCalendar>
 
         <CommentInputStyled
-          type='text'
-          placeholder='Comment'
-          autoComplete='off'
+          type="text"
+          placeholder="Comment"
+          autoComplete="off"
           defaultValue={comment}
           {...register('comment')}
         />
