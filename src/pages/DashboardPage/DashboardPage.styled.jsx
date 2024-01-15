@@ -156,7 +156,7 @@ export const NavAndBalanceWrapper = styled.div`
   @media only screen and (min-width: 768px) {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: calc(50% - 16px);
   }
 
   @media only screen and (min-width: 1280px) {
