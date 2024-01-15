@@ -1,14 +1,23 @@
+import 'react-datepicker/dist/react-datepicker.css';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectFilteredCategories } from 'reduxConfig/transactions/selectors';
+import { components } from 'react-select';
+import { SlArrowDown, SlArrowUp } from 'react-icons/sl';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { useForm, Controller } from 'react-hook-form';
+import { toast } from 'react-toastify';
+import { useMediaQuery } from 'react-responsive';
+import ReactDatePicker from 'react-datepicker';
+import { date } from 'yup';
+import Header from '../../Header/Header';
 import {
   CloseBtn,
   CommentInputStyled,
   ErrorMessage,
-  Expense,
-  Income,
   InputErrorWrap,
   StyledSelect,
-} from './AddTransaction.styled';
-import {
   Backdrop,
   BtnAdd,
   BtnCancel,
@@ -19,32 +28,25 @@ import {
   Input,
   Modal,
   Title,
-  TransactionToggleWrap,
   WrapSumCalendar,
 } from './AddTransaction.styled';
-import 'react-datepicker/dist/react-datepicker.css';
-import React, { useEffect, useState } from 'react';
-import { InputToggle, LabelToggle, SpanToggle } from './AddTransaction.styled';
-import { useDispatch, useSelector } from 'react-redux';
+import {
+  Income,
+  InputToggle,
+  LabelToggle,
+  Expense,
+  SpanToggle,
+  TransactionToggleWrap,
+} from './ToggleSwitch.styled';
 import {
   addTransactionThunk,
   getTransactionsCategoriesThunk,
 } from '../../../reduxConfig/transactions/operations';
-import { components } from 'react-select';
-import { SlArrowDown, SlArrowUp } from 'react-icons/sl';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
-import { useForm, Controller } from 'react-hook-form';
-import { toast } from 'react-toastify';
-import { useMediaQuery } from 'react-responsive';
-import Header from '../../Header/Header';
 import {
   CalendarContainer,
   CalendarIcon,
   DateWrapper,
 } from './Calendar.styled';
-import ReactDatePicker from 'react-datepicker';
-import { date } from 'yup';
 
 export const INCOME_CODE = '063f1132-ba5d-42b4-951d-44011ca46262';
 
@@ -153,7 +155,6 @@ export const AddTransaction = ({ closeModal }) => {
     control: styles => ({
       ...styles,
       backgroundColor: 'transparent',
-      // marginBottom: '-2px',
       marginTop: '40px',
       border: 'none',
       borderBottom: '1px solid rgba(255, 255, 255, 0.4)',
