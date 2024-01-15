@@ -16,10 +16,7 @@ import {
 } from './TransactionList.styled';
 import TransactionCardItem from 'components/TransactionCardItem/TransactionCardItem';
 import React, { useEffect, useState } from 'react';
-import {
-  allTransactionThunk,
-  getTransactionsCategoriesThunk,
-} from 'reduxConfig/transactions/operations';
+import { allTransactionThunk } from 'reduxConfig/transactions/operations';
 import { selectSortedTransactios } from 'reduxConfig/transactions/selectors';
 import ModalEditTransaction from '../ModalEditTransaction/ModalEditTransaction';
 import { EditTransactionForm } from '../EditTransactionForm/EditTransactionForm';
@@ -33,7 +30,7 @@ const TransactionList = () => {
 
   useEffect(() => {
     dispatch(allTransactionThunk());
-    dispatch(getTransactionsCategoriesThunk());
+    // dispatch(getTransactionsCategoriesThunk());
   }, [dispatch]);
 
   return (

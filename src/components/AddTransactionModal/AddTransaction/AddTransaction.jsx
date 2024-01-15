@@ -38,10 +38,7 @@ import {
   SpanToggle,
   TransactionToggleWrap,
 } from './ToggleSwitch.styled';
-import {
-  addTransactionThunk,
-  getTransactionsCategoriesThunk,
-} from '../../../reduxConfig/transactions/operations';
+import { addTransactionThunk } from '../../../reduxConfig/transactions/operations';
 import {
   CalendarContainer,
   CalendarIcon,
@@ -86,9 +83,9 @@ export const AddTransaction = ({ closeModal }) => {
     resolver: yupResolver(schema),
   });
 
-  useEffect(() => {
-    dispatch(getTransactionsCategoriesThunk());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(getTransactionsCategoriesThunk());
+  // }, [dispatch]);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -220,19 +217,19 @@ export const AddTransaction = ({ closeModal }) => {
         };
       }
     },
-      menuList: (base) => ({
+    menuList: base => ({
       ...base,
-      "&::-webkit-scrollbar": {
+      '&::-webkit-scrollbar': {
         width: '6px',
       },
-      "&::-webkit-scrollbar-track": {
+      '&::-webkit-scrollbar-track': {
         background: 'transparent',
       },
-      "&::-webkit-scrollbar-thumb": {
+      '&::-webkit-scrollbar-thumb': {
         background: '#BFB4DD',
         borderRadius: '12px',
       },
-    })
+    }),
   };
 
   const DropdownIndicator = props => {
