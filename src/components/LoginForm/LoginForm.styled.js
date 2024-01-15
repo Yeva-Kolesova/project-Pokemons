@@ -44,6 +44,7 @@ export const Gradient = styled.div`
     background: rgba(47, 21, 176, 0.73);
     filter: blur(100px);
     inset: 0;
+    margin: 0 auto;
   }
 `;
 
@@ -77,10 +78,15 @@ export const StyledForm = styled.form`
 `;
 
 export const StyledLabel = styled.label`
-  display: block;
+  /* /* display: block; */
   color: rgba(156, 163, 175, 1);
   margin-bottom: 40px;
   max-width: 100%;
+  /* margin: 0 auto;
+  margin-bottom: 40px; */
+  position: relative;
+  height: 45px;
+  margin-bottom: 40px;
 `;
 
 export const StyledInputBox = styled.div`

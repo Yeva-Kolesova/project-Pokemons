@@ -3,6 +3,7 @@ import { IoMdLock } from 'react-icons/io';
 import { FaUser } from 'react-icons/fa6';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import PasswordStrengthBar from 'react-password-strength-bar-with-style-item';
 
 export const StyledBoxForm = styled.div`
   display: flex;
@@ -44,6 +45,7 @@ export const Gradient = styled.div`
     background: rgba(47, 21, 176, 0.73);
     filter: blur(100px);
     inset: 0;
+    margin: 0 auto;
   }
 `;
 export const StyledIcon = styled.svg`
@@ -82,8 +84,8 @@ export const StyledLabelBox = styled.div`
   /* margin: 0 auto;
   margin-bottom: 40px; */
   position: relative;
-  height: 47px;
-  margin-bottom: 22px;
+  height: 45px;
+  margin-bottom: 25px;
 `;
 
 export const StyledLabel = styled.label`
@@ -153,6 +155,11 @@ export const StyledSpan = styled.span`
   @media only screen and (min-width: 768px) {
     width: 409px;
   }
+`;
+
+export const StyledPasswordStrengthBar = styled(PasswordStrengthBar)`
+  height: 4px;
+  margin-top: 5px;
 `;
 
 export const StyledRegister = styled.button`
