@@ -135,4 +135,19 @@ export const TransactionCardList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 8px;
+
+  @media only screen and (min-width: 768px) {
+    display: none;
+  }
+`;
+
+export const NoTransactionStyled = styled.p`
+  color: var(--white);
+  font-weight: 600;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-align: center;
+  padding: 20px 28px 8px;
 `;

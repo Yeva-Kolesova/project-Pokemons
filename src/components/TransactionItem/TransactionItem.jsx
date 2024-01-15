@@ -39,7 +39,7 @@ const TransactionItem = ({ data }) => {
   return (
     <>
       <ListTab>
-        <PData>{transactionDate}</PData>
+        <PData>{transactionDate.replaceAll('-', '.')}</PData>
         <PType>{type === 'EXPENSE' ? '-' : '+'}</PType>
         <PCategory>
           {categories?.filter(c => c?.value === categoryId)[0]?.label}
