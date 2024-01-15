@@ -149,5 +149,14 @@ export const NoTransactionStyled = styled.p`
   font-weight: 600;
   line-height: normal;
   text-align: center;
-  padding: 20px 28px 8px;
+  /* padding: 20px 28px 8px; */
+
+  text-align: center;
+  width: 100%;
+
+  @media only screen and (min-width: 768px) {
+    position: absolute;
+    top: 80px;
+    /* left: 130px; */
+  }
 `;

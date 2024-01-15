@@ -31,6 +31,17 @@ const TransactionItem = ({ data, handleModal, setData }) => {
       });
   };
 
+  function formatNumber(number) {
+    return Math.abs(number)
+      .toFixed(2)
+      .replace(/\d(?=(\d{3})+\.)/g, '$& ');
+  }
+
+  const formatDate = dateString => {
+    const [year, month, day] = dateString.split('-');
+    return `${day}.${month}.${year}`;
+  };
+
   function handleEditClick() {
     setData(data);
     handleModal(true);
@@ -39,7 +50,7 @@ const TransactionItem = ({ data, handleModal, setData }) => {
   return (
     <>
       <ListTab>
-        <PData>{transactionDate.replaceAll('-', '.')}</PData>
+        <PData>{formatDate(transactionDate)}</PData>
         <PType>{type === 'EXPENSE' ? '-' : '+'}</PType>
         <PCategory>
           {categories?.filter(c => c?.value === categoryId)[0]?.label}
@@ -50,14 +61,11 @@ const TransactionItem = ({ data, handleModal, setData }) => {
             type === 'EXPENSE' ? { color: '#FF868D' } : { color: '#FFB627' }
           }
         >
-          {Math.abs(amount).toFixed(2)}
+          {formatNumber(Number(amount))}
         </PSum>
         <Actions>
           <ActionsContainer>
-            <PencilButton
-              type="button"
-              onClick={handleEditClick}
-            >
+            <PencilButton type="button" onClick={handleEditClick}>
               <LuPencil />
             </PencilButton>
             <Button
