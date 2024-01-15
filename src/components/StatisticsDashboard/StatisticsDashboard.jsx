@@ -33,11 +33,11 @@ const StatisticsDashboard = () => {
 
   const dispatch = useDispatch();
 
-  const [selectedMonthIndex, setSelectedMonthIndex] = useState(0);
+  const [selectedMonth, setSelectedMonth] = useState(0);
   const [selectedYear, setSelectedYear] = useState(years[4]);
 
   const handleMonthChange = selectData => {
-    setSelectedMonthIndex(selectData.value);
+    setSelectedMonth(selectData.value);
     dispatch(
       fetchTransSumThunk({ month: selectData.value, year: selectedYear })
     );
@@ -46,18 +46,18 @@ const StatisticsDashboard = () => {
   const handleYearChange = selectData => {
     setSelectedYear(selectData.value);
     dispatch(
-      fetchTransSumThunk({ month: selectedMonthIndex, year: selectData.value })
+      fetchTransSumThunk({ month: selectedMonth, year: selectData.value })
     );
   };
 
   useEffect(() => {
-    fetchTransSumThunk({ month: selectedMonthIndex, year: selectedYear });
-  }, [dispatch, selectedMonthIndex, selectedYear]);
+    fetchTransSumThunk({ month: selectedMonth, year: selectedYear });
+  }, [dispatch, selectedMonth, selectedYear]);
 
   const selectStyle = {
     container: styles => ({
       ...styles,
-      fontFamily: 'Poppins',
+      fontFamily: "'Poppins', sans-serif",
       width: isTabletOrDesktop ? '50%' : '100%',
     }),
     control: styles => ({
@@ -96,7 +96,7 @@ const StatisticsDashboard = () => {
       backdropFilter: 'blur(50px)',
       overflow: 'hidden',
       color: '#FBFBFB',
-      fontFamily: 'Poppins',
+      fontFamily: "'Poppins', sans-serif",
       fontSize: '16px',
       fontWeight: '400',
     }),

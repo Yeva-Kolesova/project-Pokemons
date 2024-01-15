@@ -13,6 +13,9 @@ const slice = createSlice({
       .addCase(fetchTransSumThunk.fulfilled, (state, { payload }) => {
         state.summary = payload;
       })
+      .addCase(fetchTransSumThunk.rejected, state => {
+        state.summary = [];
+      });
   },
 });
 
