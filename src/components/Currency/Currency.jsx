@@ -52,8 +52,8 @@ const Currency = () => {
 
 
 
-  const isTablet = useMediaQuery({ query: '(max-width: 1280px' })
-  const isDesktop = useMediaQuery({ query: '(min-width:1281px)' })
+  const isTablet = useMediaQuery({ query: '(max-width: 1279px' })
+  const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' })
   
   return (
     <CurrencyWrapper>
