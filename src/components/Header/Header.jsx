@@ -30,7 +30,7 @@ function handleExitClick() {
     <StyledHeader>
       <Container>
         <HeaderWrapper>
-          <LogoWrapper to={'/'} >
+          <LogoWrapper to={'/dashboard'} >
             <svg width={17} height={17}>
               <use href={`${icons}#icon-Logo`}/>
             </svg>
