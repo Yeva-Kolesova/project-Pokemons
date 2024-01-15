@@ -58,10 +58,13 @@ export const CurrencyTableHead = styled.ul`
   width: 480px;
   margin-left: 58px;
 
+  @media only screen and (max-width: 1280px) {
+    width:336px;
+  }
+
   @media only screen and (max-width: 1024px) {
     padding: 15px 0;
     gap: 58px;
-    width:336px;
   }
 
   @media only screen and (max-width: 1024px) {
