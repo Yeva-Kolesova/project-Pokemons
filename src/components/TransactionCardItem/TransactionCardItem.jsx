@@ -11,17 +11,13 @@ import {
 } from './TransactionCardItem.styled';
 
 import { LuPencil } from 'react-icons/lu';
-import React, { useState } from 'react';
 import { deleteTransactionThunk } from 'reduxConfig/transactions/operations';
 import { selectCategories } from 'reduxConfig/transactions/selectors';
 import { reduceBalanceValue } from '../../reduxConfig/auth/slice';
-import ModalEditTransaction from '../ModalEditTransaction/ModalEditTransaction';
-import { EditTransactionForm } from '../EditTransactionForm/EditTransactionForm';
 
-const TransactionCardItem = ({ data }) => {
+const TransactionCardItem = ({ data, handleModal, setData }) => {
   const dispatch = useDispatch();
   const { id, transactionDate, type, categoryId, comment, amount } = data;
-  const [isEditTransactionForm, setIsEditTransactionForm] = useState(false);
 
   const categories = useSelector(selectCategories);
 
@@ -33,12 +29,16 @@ const TransactionCardItem = ({ data }) => {
       });
   };
 
+    function handleEditClick() {
+        setData(data);
+        handleModal(true);
+    }
+
   return (
-    <>
       <Card>
         <CardLine $plus={amount >= 0}>
           <CardLineTitle>Date</CardLineTitle>
-          <CardLineP>{transactionDate}</CardLineP>
+          <CardLineP>{transactionDate.replaceAll('-', '.')}</CardLineP>
         </CardLine>
         <CardLine $plus={amount >= 0}>
           <CardLineTitle>Type</CardLineTitle>
@@ -75,19 +75,13 @@ const TransactionCardItem = ({ data }) => {
           </CardLineButtonDelete>
           <CardLineButtonEdit
             type="button"
-            onClick={() => setIsEditTransactionForm(true)}
+            onClick={handleEditClick}
           >
             <LuPencil color={'rgba(255, 255, 255, 0.6)'} />
             <CardLinePEdit> Edit</CardLinePEdit>
           </CardLineButtonEdit>
         </CardLine>
       </Card>
-      {isEditTransactionForm && (
-        <ModalEditTransaction closeModal={setIsEditTransactionForm}>
-          <EditTransactionForm transaction={data} closeModal={setIsEditTransactionForm}/>
-        </ModalEditTransaction>
-      )}
-    </>
   )
 };
 
