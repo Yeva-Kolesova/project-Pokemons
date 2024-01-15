@@ -4,6 +4,7 @@ import { FiCalendar } from 'react-icons/fi';
 export const DateWrapper = styled.div`
   position: relative;
   display: flex;
+
   @media only screen and (min-width: 768px) {
   }
   input {
