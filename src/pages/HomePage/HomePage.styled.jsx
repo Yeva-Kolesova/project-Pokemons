@@ -11,7 +11,7 @@ export const StaledSectionHome = styled.section`
   @media only screen and (min-width: 1280px) {
     margin-top: 46px;
     padding-left: 69px;
-    width: 750px;
+    width: 785px;
     height: calc(100vh - 220px);
   }
 `;
