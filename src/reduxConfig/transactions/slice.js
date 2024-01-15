@@ -32,7 +32,7 @@ const slice = createSlice({
       })
       .addCase(deleteTransactionThunk.fulfilled, (state, { payload }) => {
         state.transactions = state.transactions.filter(t => t.id !== payload);
-      })
+      });
   },
 });
 

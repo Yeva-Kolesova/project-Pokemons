@@ -5,6 +5,7 @@ import {
   HomeRow,
   HomeTab,
   ListTransaction,
+  NoTransactionStyled,
   TitleActions,
   TitleCategory,
   TitleComment,
@@ -43,21 +44,31 @@ const TransactionList = () => {
           </HomeRow>
         </HomeHeader>
         <ListTransaction>
-          {transactions.map(transaction => (
-            <TransactionItem key={transaction.id} data={transaction} />
-          ))}
+          {transactions.length > 0 ? (
+            transactions.map(transaction => (
+              <TransactionItem key={transaction.id} data={transaction} />
+            ))
+          ) : (
+            <NoTransactionStyled>
+              You don't have any transactions in this period
+            </NoTransactionStyled>
+          )}
         </ListTransaction>
       </HomeTab>
 
       <TransactionCardList>
-        {transactions.map(transaction => (
-          <TransactionCardItem key={transaction.id} data={transaction} />
-        ))}
+        {transactions.length > 0 ? (
+          transactions.map(transaction => (
+            <TransactionCardItem key={transaction.id} data={transaction} />
+          ))
+        ) : (
+          <NoTransactionStyled>
+            You don't have any transactions in this period
+          </NoTransactionStyled>
+        )}
       </TransactionCardList>
     </>
   );
 };
 
 export default TransactionList;
-
-//  You don't have any transactions in this period

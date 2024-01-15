@@ -38,7 +38,7 @@ const TransactionCardItem = ({ data }) => {
       <Card>
         <CardLine $plus={amount >= 0}>
           <CardLineTitle>Date</CardLineTitle>
-          <CardLineP>{transactionDate}</CardLineP>
+          <CardLineP>{transactionDate.replaceAll('-', '.')}</CardLineP>
         </CardLine>
         <CardLine $plus={amount >= 0}>
           <CardLineTitle>Type</CardLineTitle>
@@ -84,11 +84,14 @@ const TransactionCardItem = ({ data }) => {
       </Card>
       {isEditTransactionForm && (
         <ModalEditTransaction closeModal={setIsEditTransactionForm}>
-          <EditTransactionForm transaction={data} closeModal={setIsEditTransactionForm}/>
+          <EditTransactionForm
+            transaction={data}
+            closeModal={setIsEditTransactionForm}
+          />
         </ModalEditTransaction>
       )}
     </>
-  )
+  );
 };
 
 export default TransactionCardItem;
