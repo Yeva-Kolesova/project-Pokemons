@@ -34,7 +34,7 @@ const slice = createSlice({
         state.transactions = state.transactions.filter(t => t.id !== payload);
       })
       .addCase(updatedTransactionThunk.fulfilled, (state, { payload }) => {
-        const transactionIndex = state.transactions.indexOf(t => t.id === payload.id)
+        const transactionIndex = state.transactions.findIndex(t => t.id === payload.id)
         state.transactions[transactionIndex] = payload
       });
   },

@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
-import React, { lazy, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { PrivateRoute } from '../routesConfig/PrivateRoute';
 import { RestrictedRoute } from '../routesConfig/RestrictedRoute';
 import { SharedLayout } from './SharedLayout/SharedLayout';
@@ -9,6 +9,12 @@ import { refreshUser } from '../reduxConfig/auth/operations';
 import { useMediaQuery } from 'react-responsive';
 import Loader from './Loader/Loader';
 import { selectIsLoading } from '../reduxConfig/global/selectors';
+import LoginPage from '../pages/LoginPage';
+import RegistrationPage from '../pages/RegistrationPage';
+import DashboardPage from '../pages/DashboardPage/DashboardPage';
+import HomePage from '../pages/HomePage/HomePage';
+import StatisticsPage from '../pages/StatisticPage/StatisticsPage';
+import CurrencyPage from '../pages/CurrencyPage';
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -20,7 +26,7 @@ export const App = () => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
+  /*const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
   const CurrencyPage = lazy(() => import('../pages/CurrencyPage'));
   const DashboardPage = lazy(() =>
     import('../pages/DashboardPage/DashboardPage')
@@ -29,7 +35,7 @@ export const App = () => {
   const RegistrationPage = lazy(() => import('../pages/RegistrationPage'));
   const StatisticsPage = lazy(() =>
     import('../pages/StatisticPage/StatisticsPage')
-  );
+  );*/
   return isRefreshing ? (
     <p></p>
   ) : (

@@ -24,6 +24,7 @@ const StatisticsDashboard = () => {
     { value: 12, label: 'December' },
   ];
 
+  const currentMonth = new Date().getMonth() + 1;
   const startingYear = 2020;
   new Date().getFullYear();
   const years = [];
@@ -33,8 +34,8 @@ const StatisticsDashboard = () => {
 
   const dispatch = useDispatch();
 
-  const [selectedMonth, setSelectedMonth] = useState(0);
-  const [selectedYear, setSelectedYear] = useState(years[4]);
+  const [selectedMonth, setSelectedMonth] = useState(currentMonth);
+  const [selectedYear, setSelectedYear] = useState(years[0].value);
 
   const handleMonthChange = selectData => {
     setSelectedMonth(selectData.value);
@@ -142,7 +143,7 @@ const StatisticsDashboard = () => {
         styles={selectStyle}
         isSearchable={false}
         onChange={handleMonthChange}
-        defaultValue={months[0]}
+        defaultValue={months[selectedMonth - 1]}
       />
       <Select
         required
@@ -152,7 +153,7 @@ const StatisticsDashboard = () => {
         styles={selectStyle}
         isSearchable={false}
         onChange={handleYearChange}
-        defaultValue={years[0]}
+        defaultValue={years.find(year => year.value === selectedYear)}
       />
     </StyledDashboard>
   );
