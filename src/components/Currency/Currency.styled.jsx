@@ -11,7 +11,7 @@ export const CurrencyWrapper = styled.div`
   box-shadow: 0 4px 60px 0 rgba(0, 0, 0, 0.25);
 
 
-  @media only screen and (max-width: 1024px) {
+  @media only screen and (max-width: 1279px) {
     margin-left: 0;
     width: 336px;
   }
@@ -62,12 +62,12 @@ export const CurrencyTableHead = styled.ul`
     width:336px;
   }
 
-  @media only screen and (max-width: 1024px) {
+  @media only screen and (max-width: 1279px) {
     padding: 15px 0;
     gap: 58px;
   }
 
-  @media only screen and (max-width: 1024px) {
+  @media only screen and (max-width: 1279px) {
     margin: 0 0 8px 10px;
   }
 
@@ -82,7 +82,7 @@ export const CurrencyTableBody = styled.ul`
   flex-direction: row;
   gap: 60px;
 
-  @media only screen and (max-width: 1024px) {
+  @media only screen and (max-width: 1279px) {
     gap: 65px;
   }
 
@@ -99,7 +99,7 @@ export const CurrencyTableBodyList = styled.div`
   margin-bottom: 14px ;
   margin-left: 68px;
   
-  @media only screen and (max-width: 1024px) {
+  @media only screen and (max-width: 1279px) {
     margin-left: 15px;
     margin-bottom: 0;
     gap: 12px;
@@ -162,7 +162,7 @@ export const LowerNumber = styled.p`
   font-size: 12px;
   font-weight: 400;
 
-  @media only screen and (max-width: 1024px) {
+  @media only screen and (max-width: 1279px) {
     display:none;
   }
 `
@@ -177,7 +177,7 @@ export const HigherNumber = styled.p`
   font-size: 12px;
   font-weight: 400;
 
-  @media only screen and (max-width: 1024px) {
+  @media only screen and (max-width: 1279px) {
     display:none;
   }
 `
