@@ -84,7 +84,7 @@ const Currency = () => {
         {currency?.map(item => {
           if (item.currencyCodeA === 840) {
             return (
-              <LowerNumber key={nanoid()}>{item.rateBuy}</LowerNumber>
+              <LowerNumber key={nanoid()}>{Number(item.rateBuy).toFixed(2)}</LowerNumber>
             );
           }
           return [];
@@ -93,7 +93,7 @@ const Currency = () => {
         {currency?.map(item => {
           if (item.currencyCodeA === 978) {
             return (
-              <HigherNumber key={nanoid()}>{item.rateBuy}</HigherNumber>
+              <HigherNumber key={nanoid()}>{Number(item.rateBuy).toFixed(2)}</HigherNumber>
             );
           }
           return [];
