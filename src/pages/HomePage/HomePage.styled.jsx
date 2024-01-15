@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const StaledSectionHome = styled.section`
   position: relative;
+  display: flex;
+  flex-direction: column;
 
   @media only screen and (min-width: 768px) {
     width: 715px;

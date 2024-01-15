@@ -28,10 +28,9 @@ const TransactionList = () => {
   const [isEditTransactionForm, setIsEditTransactionForm] = useState(false);
   const [transactionEditData, setTransactionEditData] = useState({});
 
-  useEffect(() => {
+/*  useEffect(() => {
     dispatch(allTransactionThunk());
-    // dispatch(getTransactionsCategoriesThunk());
-  }, [dispatch]);
+  }, [dispatch]);*/
 
   return (
     <>

@@ -17,7 +17,7 @@ import {
 import { useMediaQuery } from 'react-responsive';
 import CurrencyPage from '../CurrencyPage';
 import { useDispatch } from 'react-redux';
-import { getTransactionsCategoriesThunk } from 'reduxConfig/transactions/operations';
+import { allTransactionThunk, getTransactionsCategoriesThunk } from 'reduxConfig/transactions/operations';
 
 function DashboardPage() {
   const dispatch = useDispatch();
@@ -30,6 +30,7 @@ function DashboardPage() {
 
   useEffect(() => {
     dispatch(getTransactionsCategoriesThunk());
+    dispatch(allTransactionThunk());
   }, [dispatch]);
 
   return (
@@ -54,9 +55,9 @@ function DashboardPage() {
             </NavAndBalanceWrapper>
             {isTabletOrDesktop && <CurrencyPage />}
           </LeftContainer>
-          {/*<Suspense fallback={<p></p>}>*/}
+   {/*       <Suspense fallback={<Loader/>}>*/}
             <Outlet />
-        {/*  </Suspense>*/}
+       {/*   </Suspense>*/}
         </DashboardContainer>
       </Container>
     </SectionContainer>

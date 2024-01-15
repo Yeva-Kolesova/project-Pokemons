@@ -26,7 +26,7 @@ export const App = () => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  /*const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
+/*  const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
   const CurrencyPage = lazy(() => import('../pages/CurrencyPage'));
   const DashboardPage = lazy(() =>
     import('../pages/DashboardPage/DashboardPage')
@@ -37,7 +37,7 @@ export const App = () => {
     import('../pages/StatisticPage/StatisticsPage')
   );*/
   return isRefreshing ? (
-    <p></p>
+      <Loader visible={isLoading} />
   ) : (
     <>
       <Routes>
@@ -90,5 +90,5 @@ export const App = () => {
       </Routes>
       <Loader visible={isLoading} />
     </>
-  );
+  )
 };
