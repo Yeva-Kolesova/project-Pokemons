@@ -13,7 +13,7 @@ import {
 import { LuPencil } from 'react-icons/lu';
 import { deleteTransactionThunk } from 'reduxConfig/transactions/operations';
 import { selectCategories } from 'reduxConfig/transactions/selectors';
-import { reduceBalanceValue } from '../../reduxConfig/auth/slice';
+import { changeBalanceValue } from '../../reduxConfig/auth/slice';
 
 const TransactionCardItem = ({ data, handleModal, setData }) => {
   const dispatch = useDispatch();
@@ -25,64 +25,67 @@ const TransactionCardItem = ({ data, handleModal, setData }) => {
     dispatch(deleteTransactionThunk(transactionId))
       .unwrap()
       .then(() => {
-        dispatch(reduceBalanceValue(amount));
+        dispatch(changeBalanceValue(amount));
       });
   };
 
-    function handleEditClick() {
-        setData(data);
-        handleModal(true);
-    }
+  function formatNumber(number) {
+    return Math.abs(number)
+      .toFixed(2)
+      .replace(/\d(?=(\d{3})+\.)/g, '$& ');
+  }
+
+  function handleEditClick() {
+    setData(data);
+    handleModal(true);
+  }
 
   return (
-      <Card>
-        <CardLine $plus={amount >= 0}>
-          <CardLineTitle>Date</CardLineTitle>
-          <CardLineP>{transactionDate.replaceAll('-', '.')}</CardLineP>
-        </CardLine>
-        <CardLine $plus={amount >= 0}>
-          <CardLineTitle>Type</CardLineTitle>
-          <CardLineP>{type === 'EXPENSE' ? '-' : '+'}</CardLineP>
-        </CardLine>
-        <CardLine $plus={amount >= 0}>
-          <CardLineTitle>Category</CardLineTitle>
-          <CardLineP>
-            {categories?.filter(c => c?.value === categoryId)[0]?.label}
-          </CardLineP>
-        </CardLine>
-        <CardLine $plus={amount >= 0}>
-          <CardLineTitle>Comment</CardLineTitle>
-          <CardLineP>{comment}</CardLineP>
-        </CardLine>
-        <CardLine $plus={amount >= 0}>
-          <CardLineTitle>Sum</CardLineTitle>
-          <CardLinePSum
-            $plus={amount >= 0}
-            style={
-              type === 'EXPENSE' ? { color: '#FF868D' } : { color: '#FFB627' }
-            }
-          >
-            {Math.abs(amount).toFixed(2)}
-          </CardLinePSum>
-        </CardLine>
-        <CardLine $plus={amount >= 0}>
-          <CardLineButtonDelete
-            onClick={() => {
-              handleDelete(id, amount);
-            }}
-          >
-            Delete
-          </CardLineButtonDelete>
-          <CardLineButtonEdit
-            type="button"
-            onClick={handleEditClick}
-          >
-            <LuPencil color={'rgba(255, 255, 255, 0.6)'} />
-            <CardLinePEdit> Edit</CardLinePEdit>
-          </CardLineButtonEdit>
-        </CardLine>
-      </Card>
-  )
+    <Card>
+      <CardLine $plus={amount >= 0}>
+        <CardLineTitle>Date</CardLineTitle>
+        <CardLineP>{transactionDate.replaceAll('-', '.')}</CardLineP>
+      </CardLine>
+      <CardLine $plus={amount >= 0}>
+        <CardLineTitle>Type</CardLineTitle>
+        <CardLineP>{type === 'EXPENSE' ? '-' : '+'}</CardLineP>
+      </CardLine>
+      <CardLine $plus={amount >= 0}>
+        <CardLineTitle>Category</CardLineTitle>
+        <CardLineP>
+          {categories?.filter(c => c?.value === categoryId)[0]?.label}
+        </CardLineP>
+      </CardLine>
+      <CardLine $plus={amount >= 0}>
+        <CardLineTitle>Comment</CardLineTitle>
+        <CardLineP>{comment}</CardLineP>
+      </CardLine>
+      <CardLine $plus={amount >= 0}>
+        <CardLineTitle>Sum</CardLineTitle>
+        <CardLinePSum
+          $plus={amount >= 0}
+          style={
+            type === 'EXPENSE' ? { color: '#FF868D' } : { color: '#FFB627' }
+          }
+        >
+          {formatNumber(Number(amount))}
+        </CardLinePSum>
+      </CardLine>
+      <CardLine $plus={amount >= 0}>
+        <CardLineButtonDelete
+          onClick={() => {
+            handleDelete(id, amount);
+          }}
+        >
+          Delete
+        </CardLineButtonDelete>
+        <CardLineButtonEdit type="button" onClick={handleEditClick}>
+          <LuPencil color={'rgba(255, 255, 255, 0.6)'} />
+          <CardLinePEdit> Edit</CardLinePEdit>
+        </CardLineButtonEdit>
+      </CardLine>
+    </Card>
+  );
 };
 
 export default TransactionCardItem;

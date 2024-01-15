@@ -3,7 +3,7 @@ import {
   addTransactionThunk,
   allTransactionThunk,
   deleteTransactionThunk,
-  getTransactionsCategoriesThunk,
+  getTransactionsCategoriesThunk, updatedTransactionThunk,
 } from './operations';
 
 const initialState = {
@@ -32,6 +32,10 @@ const slice = createSlice({
       })
       .addCase(deleteTransactionThunk.fulfilled, (state, { payload }) => {
         state.transactions = state.transactions.filter(t => t.id !== payload);
+      })
+      .addCase(updatedTransactionThunk.fulfilled, (state, { payload }) => {
+        const transactionIndex = state.transactions.indexOf(t => t.id === payload.id)
+        state.transactions[transactionIndex] = payload
       });
   },
 });

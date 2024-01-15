@@ -2,6 +2,7 @@ import { Chart as ChartJS, registerables } from 'chart.js';
 import { formatNumber } from 'components/StatisticsTable/StatisticsTable';
 import { Doughnut } from 'react-chartjs-2';
 import { useSelector } from 'react-redux';
+import { useMediaQuery } from 'react-responsive';
 import { selectSummary } from 'reduxConfig/statistics/selectors';
 
 ChartJS.register(...registerables);
@@ -20,6 +21,19 @@ export const coloredCategoriesMap = new Map([
 ]);
 
 export function Chart() {
+  const isDekstop = useMediaQuery({ minWidth: 1280 });
+  const isTablet = useMediaQuery({ minWidth: 768 });
+  const isMobile = useMediaQuery({ minWidth: 320 });
+
+  let doughnutSize = 288;
+  if (isDekstop) {
+    doughnutSize = 288;
+  } else if (isTablet) {
+    doughnutSize = 336;
+  } else if (isMobile) {
+    doughnutSize = 280;
+  }
+
   const summary = useSelector(selectSummary);
 
   const periodSummary = summary.categoriesSummary
@@ -65,15 +79,15 @@ export function Chart() {
     },
     maintainAspectRatio: false,
     responsive: true,
-    width: 288,
-    height: 288,
+    width: { doughnutSize },
+    height: { doughnutSize },
   };
 
   return (
     <div
       style={{
-        width: '288px',
-        height: '288px',
+        width: `${doughnutSize}px`,
+        height: `${doughnutSize}px`,
         position: 'relative',
       }}
     >
@@ -95,7 +109,6 @@ export function Chart() {
           style={{
             fontSize: '18px',
             fontWeight: 'bold',
-            fontFamily: 'Poppins',
             color: 'var(--white)',
           }}
         >

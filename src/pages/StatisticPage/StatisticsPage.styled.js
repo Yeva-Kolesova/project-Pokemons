@@ -5,7 +5,6 @@ export const StyledContainer = styled.div`
   h2 {
     padding-bottom: 8px;
     color: #fbfbfb;
-    font-family: Poppins;
     font-size: 30px;
     font-weight: 400;
   }

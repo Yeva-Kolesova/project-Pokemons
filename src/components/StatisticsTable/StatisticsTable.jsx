@@ -40,6 +40,8 @@ const StatisticsTable = () => {
         }))
         .sort((a, b) => a.total - b.total)
     : [];
+
+  console.log(periodSummary);
   return (
     <>
       <StyledCategory>

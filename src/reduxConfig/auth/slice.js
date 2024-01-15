@@ -5,7 +5,7 @@ import {
   refreshUser,
   registerThunk,
 } from './operations';
-import { addTransactionThunk, updatedTransactionThunk } from '../transactions/operations';
+import { addTransactionThunk } from '../transactions/operations';
 
 const initialState = {
   user: {
@@ -29,7 +29,7 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    reduceBalanceValue: (state, { payload }) => {
+    changeBalanceValue: (state, { payload }) => {
       state.user.balance = state.user.balance - payload
     }
   },
@@ -57,12 +57,9 @@ const authSlice = createSlice({
       })
       .addCase(addTransactionThunk.fulfilled, (state, { payload }) => {
         state.user.balance = payload.balanceAfter;
-      })
-      .addCase(updatedTransactionThunk.fulfilled, (state, { payload }) => {
-        state.user.balance = payload.balanceAfter;
       });
   },
 });
 
 export const authReducer = authSlice.reducer;
-export const { reduceBalanceValue } = authSlice.actions
+export const { changeBalanceValue } = authSlice.actions

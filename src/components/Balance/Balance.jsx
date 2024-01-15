@@ -5,7 +5,7 @@ import { selectBalance } from '../../reduxConfig/auth/selectors';
 
 function Balance() {
     function formatNumber(number) {
-        return Math.abs(number)
+        return number
             .toFixed(2)
             .replace(/\d(?=(\d{3})+\.)/g, '$& ');
     }

@@ -28,6 +28,7 @@ import {
   WrapSumCalendar,
 } from './EditTransactionForm.styled';
 import { RxSlash } from 'react-icons/rx';
+import { changeBalanceValue } from '../../reduxConfig/auth/slice';
 
 const schema = yup
   .object({
@@ -64,16 +65,16 @@ export function EditTransactionForm({ closeModal, transaction }) {
   }
 
   function onSubmit(formData) {
-    const transaction = {};
-    transaction.comment = formData.comment;
-    const amountValue = Number(formData.amount).toFixed(2);
-    transaction.amount =
-      isExpense && amountValue > 0 ? -amountValue : amountValue;
-    transaction.transactionDate = getFormattedDate();
-    transaction.id = id;
-    dispatch(updatedTransactionThunk(transaction))
+    const transactionData = {};
+    transactionData.comment = formData.comment;
+    const newValue = Number(formData.amount).toFixed(2);
+    transactionData.amount =
+      Number(isExpense && newValue > 0 ? -newValue : newValue);
+    transactionData.transactionDate = getFormattedDate();
+    dispatch(updatedTransactionThunk({id, transactionData}))
       .unwrap()
       .then(() => {
+        dispatch(changeBalanceValue(Number(amount) - transactionData.amount));
         toast.success('Transaction successfully edited');
       })
       .catch(() => {
