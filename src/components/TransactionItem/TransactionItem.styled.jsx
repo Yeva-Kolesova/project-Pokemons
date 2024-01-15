@@ -84,6 +84,7 @@ export const PencilButton = styled.button`
   transition: color 250ms ease-in-out;
 
   color: var(--white);
+
   &:hover {
     color: var(--icon-violet);
   }
