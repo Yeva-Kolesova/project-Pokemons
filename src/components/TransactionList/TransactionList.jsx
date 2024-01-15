@@ -15,15 +15,20 @@ import {
   TransactionCardList,
 } from './TransactionList.styled';
 import TransactionCardItem from 'components/TransactionCardItem/TransactionCardItem';
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   allTransactionThunk,
   getTransactionsCategoriesThunk,
 } from 'reduxConfig/transactions/operations';
+import ModalEditTransaction from '../ModalEditTransaction/ModalEditTransaction';
+import { EditTransactionForm } from '../EditTransactionForm/EditTransactionForm';
 
 const TransactionList = () => {
   const dispatch = useDispatch();
   const transactions = useSelector(state => state.transactions.transactions);
+
+  const [isEditTransactionForm, setIsEditTransactionForm] = useState(false);
+  const [transactionEditData, setTransactionEditData] = useState({});
 
   useEffect(() => {
     dispatch(allTransactionThunk());
@@ -46,7 +51,12 @@ const TransactionList = () => {
         <ListTransaction>
           {transactions.length > 0 ? (
             transactions.map(transaction => (
-              <TransactionItem key={transaction.id} data={transaction} />
+              <TransactionItem
+                  key={transaction.id}
+                  data={transaction}
+                  handleModal={setIsEditTransactionForm}
+                  setData={setTransactionEditData}
+              />
             ))
           ) : (
             <NoTransactionStyled>
@@ -59,7 +69,12 @@ const TransactionList = () => {
       <TransactionCardList>
         {transactions.length > 0 ? (
           transactions.map(transaction => (
-            <TransactionCardItem key={transaction.id} data={transaction} />
+            <TransactionCardItem
+                key={transaction.id}
+                data={transaction}
+                handleModal={setIsEditTransactionForm}
+                setData={setTransactionEditData}
+            />
           ))
         ) : (
           <NoTransactionStyled>
@@ -67,6 +82,15 @@ const TransactionList = () => {
           </NoTransactionStyled>
         )}
       </TransactionCardList>
+
+      {isEditTransactionForm && (
+          <ModalEditTransaction closeModal={setIsEditTransactionForm}>
+            <EditTransactionForm
+                transaction={transactionEditData}
+                closeModal={setIsEditTransactionForm}
+            />
+          </ModalEditTransaction>
+      )}
     </>
   );
 };
