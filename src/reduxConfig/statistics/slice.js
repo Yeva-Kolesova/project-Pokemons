@@ -9,13 +9,9 @@ const slice = createSlice({
   name: 'statistics',
   initialState,
   extraReducers: builder => {
-    builder
-      .addCase(fetchTransSumThunk.fulfilled, (state, { payload }) => {
-        state.summary = payload;
-      })
-      .addCase(fetchTransSumThunk.rejected, state => {
-        state.summary = [];
-      });
+    builder.addCase(fetchTransSumThunk.fulfilled, (state, { payload }) => {
+      state.summary = payload;
+    });
   },
 });
 
