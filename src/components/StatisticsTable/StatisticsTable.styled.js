@@ -41,7 +41,8 @@ export const StyledListContainer = styled.div`
 
   @media only screen and (min-width: 768px) {
     overflow-y: auto;
-    height: calc(100vh - 534px);
+    height: 100%;
+    max-height: calc(100vh - 534px);
   }
 
   @media only screen and (min-width: 1280px) {
