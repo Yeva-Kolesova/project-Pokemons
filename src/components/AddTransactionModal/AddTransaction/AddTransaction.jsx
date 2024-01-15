@@ -325,13 +325,14 @@ export const AddTransaction = ({ closeModal }) => {
                   control={control}
                   defaultValue={startDate}
                   render={() => (
-                    <ReactDatePicker
-                      selected={startDate}
-                      onChange={handleDateChange}
-                      dateFormat="dd.MM.yyyy"
-                      maxDate={new Date()}
-                      calendarContainer={CalendarContainer}
-                    />
+                    <CalendarContainer>
+                      <ReactDatePicker
+                        selected={startDate}
+                        onChange={handleDateChange}
+                        dateFormat="dd.MM.yyyy"
+                        maxDate={new Date()}
+                      />
+                    </CalendarContainer>
                   )}
                 />
                 <CalendarIcon />
