@@ -99,6 +99,7 @@ export const Input = styled.input`
   color: var(--white);
   font-size: 18px;
   font-family: 'Poppins-SemiBold', sans-serif;
+  font-weight: 600;
 
   @media only screen and (min-width: 768px) {
     text-align: center;
@@ -107,8 +108,7 @@ export const Input = styled.input`
 
   &::placeholder {
     color: var(--transparency-60);
-    font-style: normal;
-    font-weight: 400;
+    font-family: 'Poppins-SemiBold', sans-serif;
     @media only screen and (min-width: 768px) {
       transform: translateX(40%);
     }

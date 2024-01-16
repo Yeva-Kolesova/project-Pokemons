@@ -28,12 +28,14 @@ export const DateWrapper = styled.div`
 `;
 
 export const CalendarContainer = styled.div`
+  position: relative;
   overflow: hidden;
+  padding-top: 6px;
 `;
 
 export const CalendarIcon = styled(FiCalendar)`
   position: absolute;
-  top: -2.5px;
+  top: 2.5px;
   right: 17px;
   width: 24px;
   height: 24px;
