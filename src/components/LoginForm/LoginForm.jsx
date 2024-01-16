@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { logInThunk } from 'reduxConfig/auth/operations';
@@ -11,6 +11,8 @@ import {
   StyledBoxForm,
   StyledEmailIcon,
   StyledErr,
+  StyledEye,
+  StyledEyeIcon,
   StyledForm,
   StyledIcon,
   StyledInputBox,
@@ -18,6 +20,7 @@ import {
   StyledLabel,
   StyledLink,
   StyledLogin,
+  StyledNoEyeIcon,
   StyledPasswordIcon,
   StyledTitle,
 } from './LoginForm.styled';
@@ -56,6 +59,10 @@ const LoginForm = () => {
     reset();
   };
 
+  const [showPass, setShowPass] = useState(false);
+  const togglePassVisibility = () => setShowPass(!showPass);
+  const thisEye = !showPass ? { type: 'password' } : { type: 'text' };
+
   return (
     <StyledBoxForm>
       <Gradient />
@@ -79,12 +86,16 @@ const LoginForm = () => {
         <StyledLabel>
           <StyledInputBox>
             <StyledPasswordIcon width={24} height={24} />
+
             <StyledInputField
               {...register('password')}
               placeholder="Password"
-              type="password"
               name="password"
+              {...thisEye}
             />
+            <StyledEye type="button" onClick={togglePassVisibility}>
+              {!showPass ? <StyledEyeIcon /> : <StyledNoEyeIcon />}
+            </StyledEye>
           </StyledInputBox>
           <StyledErr>{errors.password?.message}</StyledErr>
         </StyledLabel>

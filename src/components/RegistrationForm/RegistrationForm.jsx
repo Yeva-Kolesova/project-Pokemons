@@ -12,6 +12,8 @@ import {
   StyledBoxForm,
   StyledEmailIcon,
   StyledErr,
+  StyledEye,
+  StyledEyeIcon,
   StyledForm,
   StyledIcon,
   StyledInputBox,
@@ -19,6 +21,7 @@ import {
   StyledLabel,
   StyledLabelBox,
   StyledLink,
+  StyledNoEyeIcon,
   StyledPasswordIcon,
   StyledPasswordStrengthBar,
   StyledRegister,
@@ -69,7 +72,18 @@ const RegistrationForm = () => {
     reset();
   };
 
-  // const isFilterActive = pass.length >= 6;
+  const [confirmPass, setConfirmPass] = useState('');
+  const [showPass, setShowPass] = useState(false);
+  const [showConfirmPass, setShowConfirmPass] = useState(false);
+
+  const togglePassVisibility = () => setShowPass(!showPass);
+  const toggleConfirmPassVisibility = () =>
+    setShowConfirmPass(!showConfirmPass);
+
+  const thisEye = !showPass ? { type: 'password' } : { type: 'text' };
+  const thisConfirmEye = !showConfirmPass
+    ? { type: 'password' }
+    : { type: 'text' };
 
   const isFilterActive = pass.length >= 6;
 
@@ -116,11 +130,15 @@ const RegistrationForm = () => {
               <StyledInputField
                 {...register('password')}
                 placeholder="Password"
-                type="password"
                 name="password"
                 onChange={e => setPass(e.target.value)}
                 value={pass}
+                {...thisEye}
               />
+
+              <StyledEye type="button" onClick={togglePassVisibility}>
+                {!showPass ? <StyledEyeIcon /> : <StyledNoEyeIcon />}
+              </StyledEye>
             </StyledInputBox>
             <StyledErr>{errors.password?.message}</StyledErr>
           </StyledLabel>
@@ -132,9 +150,15 @@ const RegistrationForm = () => {
               <StyledInputField
                 {...register('confirmPassword')}
                 placeholder="Confirm password"
-                type="password"
                 name="confirmPassword"
+                onChange={e => setConfirmPass(e.target.value)}
+                value={confirmPass}
+                {...thisConfirmEye}
               />
+
+              <StyledEye type="button" onClick={toggleConfirmPassVisibility}>
+                {!showConfirmPass ? <StyledEyeIcon /> : <StyledNoEyeIcon />}
+              </StyledEye>
             </StyledInputBox>
             <StyledErr>{errors.confirmPassword?.message}</StyledErr>
           </StyledLabel>

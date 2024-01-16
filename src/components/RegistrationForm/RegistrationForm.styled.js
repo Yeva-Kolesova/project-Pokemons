@@ -4,6 +4,7 @@ import { FaUser } from 'react-icons/fa6';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import PasswordStrengthBar from 'react-password-strength-bar-with-style-item';
+import { VscEye, VscEyeClosed } from 'react-icons/vsc';
 
 export const StyledBoxForm = styled.div`
   display: flex;
@@ -138,6 +139,26 @@ export const StyledInputField = styled.input`
   font-weight: 400;
   color: var(--white-60, rgba(255, 255, 255, 0.6));
   padding: 5px 11px;
+  position: relative;
+`;
+
+export const StyledEye = styled.button`
+  position: absolute;
+  top: 2px;
+  right: 6px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+`;
+
+export const StyledNoEyeIcon = styled(VscEyeClosed)`
+  color: var(--white-60, rgba(255, 255, 255, 0.6));
+  font-size: 25px;
+`;
+
+export const StyledEyeIcon = styled(VscEye)`
+  color: var(--white-60, rgba(255, 255, 255, 0.6));
+  font-size: 27px;
 `;
 
 export const StyledErr = styled.p`
