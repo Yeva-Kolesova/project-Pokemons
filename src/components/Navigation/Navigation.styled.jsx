@@ -44,6 +44,7 @@ export const StyledLink = styled(NavLink)`
       margin-left: 23px;
       color: var(--white);
       font-size: 18px;
+      font-weight: ${({ $current }) => $current ? 700 : 400};;
     }
 
     &::after {
