@@ -25,7 +25,7 @@ export const Input = styled.input`
   padding-bottom: 8px;
   width: 280px;
   border: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  border-bottom: 1px solid var(--transparency-40);
   outline: none;
   background: transparent;
   color: var(--white);
@@ -37,8 +37,8 @@ export const Input = styled.input`
     padding-left: 0;
   }
 
-  &::placeholder{
-    color: #FFFFFF99;
+  &::placeholder {
+    color: var(--transparency-60);
     @media only screen and (min-width: 768px) {
       transform: translateX(40%);
     }
@@ -55,17 +55,16 @@ export const CommentInputStyled = styled.input`
   font-size: 18px;
   font-weight: 600;
   border: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  border-bottom: 1px solid var(--transparency-40);
   background-color: transparent;
   color: var(--white);
   outline: transparent;
   width: 280px;
 
   &::placeholder {
-    color: rgba(255, 255, 255, 1);
+    color: var(--transparency-60);
     font-size: 18px;
     font-weight: 400;
-    color: #FFFFFF99;
   }
 
   @media only screen and (min-width: 768px) {
@@ -94,7 +93,7 @@ export const WrapSumCalendar = styled.div`
   }
 
   input::placeholder {
-    color: #FFFFFF99;
+    color: var(--transparency-60);
     text-align: start;
     font-size: 18px;
     font-weight: 700;
@@ -120,14 +119,13 @@ export const ErrorMessage = styled.p`
   }
 `;
 
-
 // ===========TYPE==========
 export const TypeWrapper = styled.div`
   display: flex;
   gap: 12px;
   align-items: center;
   justify-content: center;
-  color: #E0E0E0;
+  color: #e0e0e0;
 `;
 
 export const Expense = styled.p`

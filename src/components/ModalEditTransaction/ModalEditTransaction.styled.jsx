@@ -45,7 +45,7 @@ export const StyledModal = styled.div`
   }
 
   &::before {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--transparency-10);
     content: '';
     backdrop-filter: blur(50px);
     position: absolute;
@@ -107,7 +107,7 @@ export const BtnCancel = styled.button`
   outline: none;
   padding: 13px 10px;
   font-size: 18px;
-  color: #623f8b;
+  color: var(--button-text-color);
   box-shadow: 1px 9px 15px 0 rgba(0, 0, 0, 0.2);
   background-color: var(--white);
   text-align: center;

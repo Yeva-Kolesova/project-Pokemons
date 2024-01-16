@@ -83,10 +83,6 @@ export const AddTransaction = ({ closeModal }) => {
     resolver: yupResolver(schema),
   });
 
-  // useEffect(() => {
-  //   dispatch(getTransactionsCategoriesThunk());
-  // }, [dispatch]);
-
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => {
@@ -159,6 +155,7 @@ export const AddTransaction = ({ closeModal }) => {
       borderRadius: '0',
       boxShadow: 'none',
       cursor: 'pointer',
+      paddingRight: isTabletOrDesktop ? '4px' : '10px',
 
       '&:hover': {
         border: 'none',
@@ -169,13 +166,13 @@ export const AddTransaction = ({ closeModal }) => {
       ...styles,
       color: '#FBFBFB',
       fontSize: '18px',
-      paddingLeft: isTabletOrDesktop ? '0' : '12px',
+      paddingLeft: isTabletOrDesktop ? '0' : '10px',
     }),
     placeholder: styles => ({
       ...styles,
       color: 'rgba(255, 255, 255, 0.6)',
       fontSize: '18px',
-      paddingLeft: isTabletOrDesktop ? '0' : '12px',
+      paddingLeft: isTabletOrDesktop ? '0' : '10px',
     }),
     menu: styles => ({
       ...styles,
