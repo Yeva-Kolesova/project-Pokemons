@@ -29,7 +29,7 @@ export const InputToggle = styled.input`
 
   &:checked + ::before {
     transform: translateX(40px);
-    background-color: #ff868d;
+    background-color: var(--dashboard-text);
     box-shadow: 0 6px 15px 0 rgba(255, 134, 141, 0.5);
     content: '';
     display: flex;
@@ -62,7 +62,7 @@ export const SpanToggle = styled.span`
     width: 44px;
     height: 44px;
     border-radius: 44px;
-    background: #ffb627;
+    background: var(--yellow);
     box-shadow: 0 6px 15px 0 rgba(255, 199, 39, 0.5);
     transition: transform 0.3s ease;
     display: flex;

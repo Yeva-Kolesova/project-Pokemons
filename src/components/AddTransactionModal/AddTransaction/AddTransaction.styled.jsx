@@ -47,7 +47,7 @@ export const Modal = styled.div`
     height: fit-content;
   }
   &::before {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--transparency-10);
     content: '';
     backdrop-filter: blur(50px);
     position: absolute;
@@ -69,7 +69,7 @@ export const Gradient = styled.div`
 
 export const Title = styled.h1`
   margin-bottom: 34px;
-  color: #fbfbfb;
+  color: var(--white);
   font-size: 24px;
   font-weight: 400;
   text-align: center;
@@ -93,7 +93,7 @@ export const Input = styled.input`
   padding-bottom: 8px;
   width: 280px;
   border: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  border-bottom: 1px solid var(--transparency-40);
   outline: none;
   background: transparent;
   color: var(--white);
@@ -106,7 +106,9 @@ export const Input = styled.input`
   }
 
   &::placeholder {
-    color: #ffffff99;
+    color: var(--transparency-60);
+    font-style: normal;
+    font-weight: 400;
     @media only screen and (min-width: 768px) {
       transform: translateX(40%);
     }
@@ -124,15 +126,15 @@ export const CommentInputStyled = styled.input`
   font-weight: 600;
   width: 280px;
   border: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  border-bottom: 1px solid var(--transparency-40);
   background-color: transparent;
-  color: #fbfbfb;
+  color: var(--white);
   outline: transparent;
   @media only screen and (min-width: 768px) {
   }
 
   &::placeholder {
-    color: rgba(255, 255, 255, 1);
+    color: var(--transparency-60);
     font-size: 18px;
     font-weight: 400;
   }
@@ -162,7 +164,7 @@ export const WrapSumCalendar = styled.div`
   }
 
   input::placeholder {
-    color: rgba(255, 255, 255, 1);
+    color: var(--transparency-60);
     text-align: start;
     font-size: 18px;
     font-weight: 700;
@@ -190,7 +192,7 @@ export const ErrorMessage = styled.p`
   }
 `;
 
-//==============BTNS
+//==============BUTTONS
 export const ButtonsWrap = styled.div`
   margin-top: 40px;
   display: flex;
@@ -208,7 +210,7 @@ export const BtnAdd = styled.button`
   outline: none;
   padding: 13px 10px;
   font-size: 18px;
-  color: #fbfbfb;
+  color: var(--white);
   box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
   background: linear-gradient(
     97deg,
@@ -239,9 +241,9 @@ export const BtnCancel = styled.button`
   outline: none;
   padding: 13px 10px;
   font-size: 18px;
-  color: #623f8b;
+  color: var(--button-text-color);
   box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
-  background-color: #fbfbfb;
+  background-color: var(--white);
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 1.8px;
