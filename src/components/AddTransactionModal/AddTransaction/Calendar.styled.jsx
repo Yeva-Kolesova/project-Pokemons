@@ -4,6 +4,7 @@ import { FiCalendar } from 'react-icons/fi';
 export const DateWrapper = styled.div`
   position: relative;
   display: flex;
+  padding-top: 6px;
 
   @media only screen and (min-width: 768px) {
   }
@@ -28,14 +29,12 @@ export const DateWrapper = styled.div`
 `;
 
 export const CalendarContainer = styled.div`
-  position: relative;
   overflow: hidden;
-  padding-top: 6px;
 `;
 
 export const CalendarIcon = styled(FiCalendar)`
   position: absolute;
-  top: 2.5px;
+  top: 0;
   right: 17px;
   width: 24px;
   height: 24px;
