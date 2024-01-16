@@ -60,7 +60,7 @@ export const CardLineTitle = styled.h4`
   color: var(--white, #fbfbfb);
   font-size: 16px;
   font-style: normal;
-  font-weight: 600;
+  font-family: 'Poppins-SemiBold', sans-serif;
   line-height: normal;
 `;
 
@@ -78,7 +78,7 @@ export const CardLinePSum = styled.p`
   text-align: right;
   font-size: 16px;
   font-style: normal;
-  font-weight: 600;
+  font-family: 'Poppins-SemiBold', sans-serif;
   line-height: normal;
 `;
 

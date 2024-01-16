@@ -44,6 +44,8 @@ export const StyledLink = styled(NavLink)`
       margin-left: 23px;
       color: var(--white);
       font-size: 18px;
+      font-family: ${({ $current }) => $current ? 'Poppins-SemiBold' : 'Poppins-Regular'};
+      font-weight: ${({ $current }) => $current ? 700 : 400};
     }
 
     &::after {

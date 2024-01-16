@@ -108,7 +108,7 @@ export function Chart() {
         <span
           style={{
             fontSize: '18px',
-            fontWeight: 'bold',
+            fontFamily: "'Poppins-SemiBold', sans-serif",
             color: 'var(--white)',
           }}
         >

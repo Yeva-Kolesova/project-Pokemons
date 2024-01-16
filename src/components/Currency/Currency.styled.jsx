@@ -111,14 +111,13 @@ export const CurrencyTableBodyList = styled.div`
 export const CurrencyTableHeadItem = styled.li`
   color: #fbfbfb;
   font-size: 16px;
-  font-weight: 600;
+  font-family: 'Poppins-SemiBold', sans-serif;
   text-align: center;
 `;
 
 export const CurrencyTableItem = styled.li`
   display: inline-block;
-  font-family: "Poppins", sans-serif;
-  color: #fbfbfb
+  color: #fbfbfb;
   font-size: 16px;
   line-height: 1.5;
   text-align: center;
@@ -160,7 +159,6 @@ export const LowerNumber = styled.p`
   left: 48px;
 
   color: #FF868D;
-  font-family: "Poppins", sans-serif;
   font-size: 12px;
   font-weight: 400;
 
@@ -175,7 +173,6 @@ export const HigherNumber = styled.p`
   right: 97px;
 
   color: #FF868D;
-  font-family: "Poppins", sans-serif;
   font-size: 12px;
   font-weight: 400;
 

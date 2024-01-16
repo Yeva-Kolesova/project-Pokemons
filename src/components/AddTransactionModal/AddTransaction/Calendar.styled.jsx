@@ -4,11 +4,12 @@ import { FiCalendar } from 'react-icons/fi';
 export const DateWrapper = styled.div`
   position: relative;
   display: flex;
+  padding-top: 6px;
 
   @media only screen and (min-width: 768px) {
   }
   input {
-    color: #fbfbfb;
+    color: var(--white);
     font-size: 18px;
     font-weight: 400;
     width: 280px;
@@ -18,7 +19,7 @@ export const DateWrapper = styled.div`
     background: transparent;
     outline: none;
     border: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    border-bottom: 1px solid var(--transparency-40);
 
     @media only screen and (min-width: 768px) {
       width: 181px;
@@ -33,11 +34,11 @@ export const CalendarContainer = styled.div`
 
 export const CalendarIcon = styled(FiCalendar)`
   position: absolute;
-  top: -2.5px;
+  top: 0;
   right: 17px;
   width: 24px;
   height: 24px;
-  color: var(--icon-violet, #734aef);
+  color: var(--icon-violet);
 
   pointer-events: none;
   @media only screen and (min-width: 768px) {

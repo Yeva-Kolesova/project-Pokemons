@@ -15,7 +15,7 @@ export const StyledCategory = styled.div`
   p {
     color: var(--white);
     font-size: 16px;
-    font-weight: 600;
+    font-family: 'Poppins-SemiBold', sans-serif;
   }
 `;
 
@@ -60,7 +60,7 @@ export const StyledItem = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 14px 20px 14px 28px;
+  padding: 14px 28px 14px 28px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.41);
 
   div {
@@ -85,7 +85,7 @@ export const StyledItem = styled.li`
 
 export const StyledNoTransactions = styled.p`
   color: var(--white);
-  font-weight: 600;
+  font-family: 'Poppins-SemiBold', sans-serif;
   padding: 20px 28px 8px;
   text-align: center;
 `;
@@ -98,7 +98,7 @@ export const StyledExpenses = styled.div`
 
   color: var(--white);
   font-size: 14px;
-  font-weight: 600;
+  font-family: 'Poppins-SemiBold', sans-serif;
 
   p {
     color: #ff868d;
@@ -113,7 +113,7 @@ export const StyledIncome = styled.div`
 
   color: var(--white);
   font-size: 14px;
-  font-weight: 600;
+  font-family: 'Poppins-SemiBold', sans-serif;
 
   p {
     color: #ffb627;

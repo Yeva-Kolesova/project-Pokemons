@@ -68,10 +68,8 @@ export const StyledTitle = styled.h3`
 `;
 export const Text = styled.p`
   color: #fff;
-  font-family: 'Poppins', sans-serif;
   font-size: 18px;
   line-height: normal;
-  //   margin: 12px auto;
   text-align: center;
   font-style: normal;
   font-weight: 400;
@@ -88,7 +86,6 @@ export const ModalButton = styled.button`
   border-radius: 20px;
   box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
   text-align: center;
-  /* font-family: Poppins; */
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
@@ -99,6 +96,8 @@ export const ModalButton = styled.button`
   color: #fff;
   background: var(--button-gradient);
   margin-bottom: 20px;
+  transition: scale 250ms ease-in-out,
+  box-shadow 250ms ease-in-out;
 
   &:hover {
     scale: 0.99;
@@ -117,7 +116,6 @@ export const ModalButtonCancel = styled.button`
   border-radius: 20px;
   box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
   text-align: center;
-  /* font-family: Poppins; */
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
@@ -126,6 +124,8 @@ export const ModalButtonCancel = styled.button`
   text-transform: uppercase;
   cursor: pointer;
   color: var(--text-button, #623f8b);
+  transition: scale 250ms ease-in-out,
+  box-shadow 250ms ease-in-out;
 
   &:hover {
     scale: 0.99;

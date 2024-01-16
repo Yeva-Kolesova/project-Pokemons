@@ -79,9 +79,7 @@ export const StyledForm = styled.form`
 
 export const StyledLabel = styled.label`
   color: rgba(156, 163, 175, 1);
-  margin-bottom: 40px;
   max-width: 100%;
-
   position: relative;
   height: 45px;
   margin-bottom: 40px;
@@ -164,6 +162,8 @@ export const StyledLogin = styled.button`
   box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
   width: 100%;
   border: none;
+  transition: scale 250ms ease-in-out,
+  box-shadow 250ms ease-in-out;
 
   color: var(--white, #fbfbfb);
   text-align: center;
@@ -206,6 +206,9 @@ export const StyledLink = styled(NavLink)`
   border-radius: 20px;
   background: #fcfcfc;
   box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
+
+  transition: scale 250ms ease-in-out,
+  box-shadow 250ms ease-in-out;
 
   &:hover {
     scale: 0.99;

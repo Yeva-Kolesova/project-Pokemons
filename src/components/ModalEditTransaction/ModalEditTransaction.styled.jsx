@@ -45,7 +45,7 @@ export const StyledModal = styled.div`
   }
 
   &::before {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--transparency-10);
     content: '';
     backdrop-filter: blur(50px);
     position: absolute;
@@ -107,13 +107,15 @@ export const BtnCancel = styled.button`
   outline: none;
   padding: 13px 10px;
   font-size: 18px;
-  color: #623f8b;
+  color: var(--button-text-color);
   box-shadow: 1px 9px 15px 0 rgba(0, 0, 0, 0.2);
   background-color: var(--white);
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 1.8px;
   margin: 20px auto 0;
+  transition: scale 250ms ease-in-out,
+  box-shadow 250ms ease-in-out;
 
   @media only screen and (min-width: 768px) {
     width: 300px;
@@ -146,9 +148,13 @@ export const BtnSubmit = styled.button`
   letter-spacing: 1.8px;
   margin: 40px auto 0;
 
+  transition: scale 250ms ease-in-out,
+  box-shadow 250ms ease-in-out;
+
   @media only screen and (min-width: 768px) {
     width: 300px;
   }
+
   &:hover {
     scale: 0.99;
     box-shadow: 3px 5px 8px 3px rgba(0, 0, 0, 0.5);
