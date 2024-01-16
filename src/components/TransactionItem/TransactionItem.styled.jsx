@@ -57,9 +57,8 @@ export const PSum = styled.td`
   text-align: right;
   font-size: 14px;
   font-style: normal;
-  font-weight: 600;
+  font-family: 'Poppins-SemiBold', sans-serif;
   line-height: normal;
-  text-align: right;
   vertical-align: middle;
   width: 100px;
 `;

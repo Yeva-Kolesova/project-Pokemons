@@ -39,7 +39,7 @@ export const TitleData = styled.th`
   color: var(--white, #fbfbfb);
   font-size: 16px;
   font-style: normal;
-  font-weight: 600;
+  font-family: 'Poppins-SemiBold', sans-serif;
   line-height: normal;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
@@ -53,7 +53,7 @@ export const TitleType = styled.th`
   color: var(--white, #fbfbfb);
   font-size: 16px;
   font-style: normal;
-  font-weight: 600;
+  font-family: 'Poppins-SemiBold', sans-serif;
   line-height: normal;
   text-align: center;
   width: 100px;
@@ -63,7 +63,7 @@ export const TitleCategory = styled.th`
   color: var(--white, #fbfbfb);
   font-size: 16px;
   font-style: normal;
-  font-weight: 600;
+  font-family: 'Poppins-SemiBold', sans-serif;
   line-height: normal;
   text-align: left;
   width: 100px;
@@ -73,7 +73,7 @@ export const TitleComment = styled.th`
   color: var(--white, #fbfbfb);
   font-size: 16px;
   font-style: normal;
-  font-weight: 600;
+  font-family: 'Poppins-SemiBold', sans-serif;
   line-height: normal;
   text-align: left;
   width: 150px;
@@ -83,7 +83,7 @@ export const TitleSum = styled.th`
   color: var(--white, #fbfbfb);
   font-size: 16px;
   font-style: normal;
-  font-weight: 600;
+  font-family: 'Poppins-SemiBold', sans-serif;
   line-height: normal;
   text-align: right;
   width: 100px;
@@ -93,7 +93,7 @@ export const TitleActions = styled.th`
   color: var(--white, #fbfbfb);
   font-size: 16px;
   font-style: normal;
-  font-weight: 600;
+  font-family: 'Poppins-SemiBold', sans-serif;
   line-height: normal;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
@@ -101,7 +101,6 @@ export const TitleActions = styled.th`
 `;
 
 export const ListTransaction = styled.tbody`
-  /* height: 265px; */
   height: 600px;
 
   display: block;
@@ -143,20 +142,15 @@ export const TransactionCardList = styled.ul`
 
 export const NoTransactionStyled = styled.p`
   color: var(--white);
-  font-weight: 600;
+  font-family: 'Poppins-SemiBold', sans-serif;
   font-size: 16px;
   font-style: normal;
-  font-weight: 600;
   line-height: normal;
-  text-align: center;
-  /* padding: 20px 28px 8px; */
-
   text-align: center;
   width: 100%;
 
   @media only screen and (min-width: 768px) {
     position: absolute;
     top: 80px;
-    /* left: 130px; */
   }
 `;

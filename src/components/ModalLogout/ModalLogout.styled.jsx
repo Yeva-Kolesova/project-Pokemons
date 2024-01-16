@@ -68,10 +68,8 @@ export const StyledTitle = styled.h3`
 `;
 export const Text = styled.p`
   color: #fff;
-  font-family: 'Poppins', sans-serif;
   font-size: 18px;
   line-height: normal;
-  //   margin: 12px auto;
   text-align: center;
   font-style: normal;
   font-weight: 400;
