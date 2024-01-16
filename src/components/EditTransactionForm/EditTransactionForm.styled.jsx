@@ -54,6 +54,7 @@ export const CommentInputStyled = styled.input`
   padding-bottom: 52px;
   font-size: 18px;
   font-family: 'Poppins-SemiBold', sans-serif;
+  font-weight: 400;
   border: none;
   border-bottom: 1px solid var(--transparency-40);
   background-color: transparent;
