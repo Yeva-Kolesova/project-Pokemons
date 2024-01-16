@@ -33,10 +33,12 @@ export const BalanceValue = styled.p`
   color: var(--white);
   font-size: 30px;
   line-height: 1.2;
+  font-family: 'Poppins-Bold', sans-serif;
   font-weight: 700;
   height: 36px;
 
   span{
+    font-family: 'Poppins-Regular', sans-serif;
     font-weight: 400;
   }
 `;

@@ -182,7 +182,7 @@ export const AddTransaction = ({ closeModal }) => {
       backdropFilter: 'blur(50px)',
       overflow: 'hidden',
       color: '#FBFBFB',
-      fontFamily: "'Poppins', sans-serif",
+      fontFamily: "'Poppins-Regular', sans-serif",
       fontSize: '16px',
       fontWeight: '400',
 

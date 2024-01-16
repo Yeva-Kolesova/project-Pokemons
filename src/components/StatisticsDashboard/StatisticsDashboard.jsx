@@ -58,7 +58,7 @@ const StatisticsDashboard = () => {
   const selectStyle = {
     container: styles => ({
       ...styles,
-      fontFamily: "'Poppins', sans-serif",
+      fontFamily: "'Poppins-Regular', sans-serif",
       width: isTabletOrDesktop ? '50%' : '100%',
     }),
     control: styles => ({
@@ -97,7 +97,7 @@ const StatisticsDashboard = () => {
       backdropFilter: 'blur(50px)',
       overflow: 'hidden',
       color: '#FBFBFB',
-      fontFamily: "'Poppins', sans-serif",
+      fontFamily: "'Poppins-Regular', sans-serif",
       fontSize: '16px',
       fontWeight: '400',
     }),

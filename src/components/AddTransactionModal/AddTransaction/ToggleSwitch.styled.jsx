@@ -78,11 +78,11 @@ export const SpanToggle = styled.span`
 export const Expense = styled.p`
   color: ${({ $active }) => ($active ? '#ff868d' : '#FFFFFF99')};
   font-size: 16px;
-  font-weight: 600;
+  font-family: 'Poppins-SemiBold', sans-serif;
 `;
 
 export const Income = styled.p`
   color: ${({ $active }) => ($active ? '#ffb627' : '#FFFFFF99')};
   font-size: 16px;
-  font-weight: 600;
+  font-family: 'Poppins-SemiBold', sans-serif;
 `;

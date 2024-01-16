@@ -30,7 +30,7 @@ export const Input = styled.input`
   background: transparent;
   color: var(--white);
   font-size: 18px;
-  font-weight: 600;
+  font-family: 'Poppins-SemiBold', sans-serif;
 
   @media only screen and (min-width: 768px) {
     text-align: center;
@@ -53,7 +53,7 @@ export const CommentInputStyled = styled.input`
   padding-left: 20px;
   padding-bottom: 52px;
   font-size: 18px;
-  font-weight: 600;
+  font-family: 'Poppins-SemiBold', sans-serif;
   border: none;
   border-bottom: 1px solid var(--transparency-40);
   background-color: transparent;
@@ -96,6 +96,7 @@ export const WrapSumCalendar = styled.div`
     color: var(--transparency-60);
     text-align: start;
     font-size: 18px;
+    font-family: 'Poppins-SemiBold', sans-serif;
     font-weight: 700;
   }
 `;
@@ -131,11 +132,11 @@ export const TypeWrapper = styled.div`
 export const Expense = styled.p`
   color: ${({ $active }) => ($active ? '#ff868d' : '#E0E0E0')};
   font-size: 16px;
-  font-weight: 600;
+  font-family: 'Poppins-SemiBold', sans-serif;
 `;
 
 export const Income = styled.p`
   color: ${({ $active }) => ($active ? '#ffb627' : '#E0E0E0')};
   font-size: 16px;
-  font-weight: 600;
+  font-family: 'Poppins-SemiBold', sans-serif;
 `;
