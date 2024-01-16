@@ -5,13 +5,14 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { registerThunk } from '../../reduxConfig/auth/operations';
 import icons from '../../images/icons.svg';
-// import PasswordStrengthBar from 'react-password-strength-bar-with-style-item';
-// import PasswordStrengthBar from 'react-password-strength-bar';
+
 import {
   Gradient,
   StyledBoxForm,
   StyledEmailIcon,
   StyledErr,
+  StyledEye,
+  StyledEyeIcon,
   StyledForm,
   StyledIcon,
   StyledInputBox,
@@ -19,6 +20,7 @@ import {
   StyledLabel,
   StyledLabelBox,
   StyledLink,
+  StyledNoEyeIcon,
   StyledPasswordIcon,
   StyledPasswordStrengthBar,
   StyledRegister,
@@ -57,6 +59,20 @@ const RegistrationForm = () => {
 
   const [pass, setPass] = useState('');
 
+  const [showPass, setShowPass] = useState(false);
+  const [showConfirmPass, setShowConfirmPass] = useState(false);
+
+  const togglePassVisibility = () => setShowPass(!showPass);
+  const toggleConfirmPassVisibility = () =>
+    setShowConfirmPass(!showConfirmPass);
+
+  const thisEye = !showPass ? { type: 'password' } : { type: 'text' };
+  const thisConfirmEye = !showConfirmPass
+    ? { type: 'password' }
+    : { type: 'text' };
+
+  const isFilterActive = pass.length >= 6;
+
   const submit = data => {
     dispatch(registerThunk(data))
       .unwrap()
@@ -66,12 +82,9 @@ const RegistrationForm = () => {
       .catch(err => {
         toast.error(err);
       });
+
     reset();
   };
-
-  // const isFilterActive = pass.length >= 6;
-
-  const isFilterActive = pass.length >= 6;
 
   return (
     <StyledBoxForm>
@@ -116,11 +129,14 @@ const RegistrationForm = () => {
               <StyledInputField
                 {...register('password')}
                 placeholder="Password"
-                type="password"
                 name="password"
                 onChange={e => setPass(e.target.value)}
-                value={pass}
+                {...thisEye}
               />
+
+              <StyledEye type="button" onClick={togglePassVisibility}>
+                {!showPass ? <StyledEyeIcon /> : <StyledNoEyeIcon />}
+              </StyledEye>
             </StyledInputBox>
             <StyledErr>{errors.password?.message}</StyledErr>
           </StyledLabel>
@@ -132,9 +148,13 @@ const RegistrationForm = () => {
               <StyledInputField
                 {...register('confirmPassword')}
                 placeholder="Confirm password"
-                type="password"
                 name="confirmPassword"
+                {...thisConfirmEye}
               />
+
+              <StyledEye type="button" onClick={toggleConfirmPassVisibility}>
+                {!showConfirmPass ? <StyledEyeIcon /> : <StyledNoEyeIcon />}
+              </StyledEye>
             </StyledInputBox>
             <StyledErr>{errors.confirmPassword?.message}</StyledErr>
           </StyledLabel>

@@ -2,6 +2,7 @@ import { MdEmail } from 'react-icons/md';
 import { IoMdLock } from 'react-icons/io';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import { VscEye, VscEyeClosed } from 'react-icons/vsc';
 
 export const StyledBoxForm = styled.div`
   display: flex;
@@ -22,7 +23,6 @@ export const StyledBoxForm = styled.div`
     border-radius: 8px;
 
     &::before {
-      /* background-color: rgba(255, 255, 255, 0.1); */
       content: '';
       backdrop-filter: blur(50px);
       position: absolute;
@@ -122,6 +122,25 @@ export const StyledInputField = styled.input`
   font-weight: 400;
   color: var(--white-60, rgba(255, 255, 255, 0.6));
   padding: 5px 11px;
+  position: relative;
+`;
+
+export const StyledEye = styled.button`
+  position: absolute;
+  top: 2px;
+  right: 6px;
+  background-color: transparent;
+  border: none;
+`;
+
+export const StyledNoEyeIcon = styled(VscEyeClosed)`
+  color: var(--white-60, rgba(255, 255, 255, 0.6));
+  font-size: 25px;
+`;
+
+export const StyledEyeIcon = styled(VscEye)`
+  color: var(--white-60, rgba(255, 255, 255, 0.6));
+  font-size: 27px;
 `;
 
 export const StyledErr = styled.p`
