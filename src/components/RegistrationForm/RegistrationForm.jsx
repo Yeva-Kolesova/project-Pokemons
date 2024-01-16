@@ -35,10 +35,6 @@ const userSchema = yup.object().shape({
     .string()
     .min(6, 'Password must be at least 6 characters!')
     .max(12, 'Password must be at most 12 characters')
-    .matches(
-      /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
-      'Include one letter,number,special character'
-    )
     .required('Please confirm your password'),
   confirmPassword: yup
     .string()
