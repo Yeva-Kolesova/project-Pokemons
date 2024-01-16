@@ -221,6 +221,9 @@ export const BtnAdd = styled.button`
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 1.8px;
+  transition: scale 250ms ease-in-out,
+  box-shadow 250ms ease-in-out;
+
   @media only screen and (min-width: 768px) {
     width: 300px;
   }
@@ -247,6 +250,8 @@ export const BtnCancel = styled.button`
   text-align: center;
   text-transform: uppercase;
   letter-spacing: 1.8px;
+  transition: scale 250ms ease-in-out,
+  box-shadow 250ms ease-in-out;
 
   @media only screen and (min-width: 768px) {
     width: 300px;

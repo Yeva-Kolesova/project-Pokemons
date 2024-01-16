@@ -202,6 +202,9 @@ export const StyledRegister = styled.button`
   text-transform: uppercase;
   cursor: pointer;
   max-width: 280px;
+  transition: scale 250ms ease-in-out,
+  box-shadow 250ms ease-in-out;
+
   &:hover {
     scale: 0.99;
     box-shadow: 3px 5px 8px 3px rgba(0, 0, 0, 0.5);
@@ -232,6 +235,9 @@ export const StyledLink = styled(NavLink)`
   border-radius: 20px;
   background: #fcfcfc;
   box-shadow: 1px 9px 15px 0px rgba(0, 0, 0, 0.2);
+
+  transition: scale 250ms ease-in-out,
+  box-shadow 250ms ease-in-out;
 
   &:hover {
     scale: 0.99;
