@@ -5,8 +5,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { registerThunk } from '../../reduxConfig/auth/operations';
 import icons from '../../images/icons.svg';
-// import PasswordStrengthBar from 'react-password-strength-bar-with-style-item';
-// import PasswordStrengthBar from 'react-password-strength-bar';
+
 import {
   Gradient,
   StyledBoxForm,
@@ -60,19 +59,6 @@ const RegistrationForm = () => {
 
   const [pass, setPass] = useState('');
 
-  const submit = data => {
-    dispatch(registerThunk(data))
-      .unwrap()
-      .then(res => {
-        toast.success(`Welcome ${res.user.username}!`);
-      })
-      .catch(err => {
-        toast.error(err);
-      });
-    reset();
-  };
-
-  const [confirmPass, setConfirmPass] = useState('');
   const [showPass, setShowPass] = useState(false);
   const [showConfirmPass, setShowConfirmPass] = useState(false);
 
@@ -86,6 +72,19 @@ const RegistrationForm = () => {
     : { type: 'text' };
 
   const isFilterActive = pass.length >= 6;
+
+  const submit = data => {
+    dispatch(registerThunk(data))
+      .unwrap()
+      .then(res => {
+        toast.success(`Welcome ${res.user.username}!`);
+      })
+      .catch(err => {
+        toast.error(err);
+      });
+
+    reset();
+  };
 
   return (
     <StyledBoxForm>
@@ -132,7 +131,6 @@ const RegistrationForm = () => {
                 placeholder="Password"
                 name="password"
                 onChange={e => setPass(e.target.value)}
-                value={pass}
                 {...thisEye}
               />
 
@@ -151,8 +149,6 @@ const RegistrationForm = () => {
                 {...register('confirmPassword')}
                 placeholder="Confirm password"
                 name="confirmPassword"
-                onChange={e => setConfirmPass(e.target.value)}
-                value={confirmPass}
                 {...thisConfirmEye}
               />
 

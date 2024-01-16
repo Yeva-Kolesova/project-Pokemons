@@ -45,7 +45,13 @@ const LoginForm = () => {
     mode: 'onChange',
     resolver: yupResolver(userSchema),
   });
+
   const dispatch = useDispatch();
+
+  const [showPass, setShowPass] = useState(false);
+  const togglePassVisibility = () => setShowPass(!showPass);
+  const thisEye = !showPass ? { type: 'password' } : { type: 'text' };
+
   const submit = data => {
     dispatch(logInThunk(data))
       .unwrap()
@@ -58,10 +64,6 @@ const LoginForm = () => {
 
     reset();
   };
-
-  const [showPass, setShowPass] = useState(false);
-  const togglePassVisibility = () => setShowPass(!showPass);
-  const thisEye = !showPass ? { type: 'password' } : { type: 'text' };
 
   return (
     <StyledBoxForm>
