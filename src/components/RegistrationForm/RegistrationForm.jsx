@@ -35,7 +35,11 @@ const userSchema = yup.object().shape({
     .string()
     .min(6, 'Password must be at least 6 characters!')
     .max(12, 'Password must be at most 12 characters')
-    .required('Required'),
+    // .matches(
+    //   /^.*(?=.*[!@#$%^&*()\-_=+{};:,<.>])(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$/,
+    //   'Password must include at least one uppercase letter, one number, and one special character'
+    // )
+    .required('Please confirm your password'),
   confirmPassword: yup
     .string()
     .oneOf([yup.ref('password'), null], 'Passwords must match!')
@@ -68,6 +72,10 @@ const RegistrationForm = () => {
       });
     reset();
   };
+
+  // const isFilterActive = pass.length >= 6;
+
+  const isFilterActive = pass.length >= 6;
 
   return (
     <StyledBoxForm>
@@ -115,6 +123,7 @@ const RegistrationForm = () => {
                 type="password"
                 name="password"
                 onChange={e => setPass(e.target.value)}
+                value={pass}
               />
             </StyledInputBox>
             <StyledErr>{errors.password?.message}</StyledErr>
@@ -137,15 +146,15 @@ const RegistrationForm = () => {
 
         <StyledSpan>
           <StyledPasswordStrengthBar
+            active={isFilterActive}
             password={pass}
-            // style={{
-            //   flexGrow: '1',
-            // }}
             scoreWordStyle={{
               display: 'none',
             }}
+            minLength={6}
+            maxLength={12}
             barColors={['#ddd', '#f6b44d', '#f6b44d', '#25c281', '#25c281']}
-            isRequired={'true'}
+            isRequired={true}
             max={userSchema.fields.password.max}
           />
         </StyledSpan>

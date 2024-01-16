@@ -50,9 +50,9 @@ const LoginForm = () => {
         toast.success(`Welcome ${res.user.username}!`);
       })
       .catch(err => {
-        console.error('Login failed:', err);
         toast.error('Login failed. Please check your credentials.');
       });
+
     reset();
   };
 
